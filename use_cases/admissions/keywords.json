@@ -1,0 +1,346 @@
+{
+  "WEAK_POSITIVES": [
+    "ok", "okay", "haan", "ha", "han", "hanji", "hmm",
+    "yes", "yeah", "yep", "sure", "right", "correct",
+    "theek", "thik", "theek hai", "bilkul",
+    "got it", "perfect", "great", "ready", "proceed",
+    "हाँ", "हां", "जी", "ठीक है", "बिल्कुल", "अच्छा", "सही"
+  ],
+  "STRONG_COMPLETION": [
+    "done", "submitted", "entered", "completed", "logged in",
+    "clicked", "logged", "submit", "enter",
+    "kar diya", "kardiya", "kardia", "kr diya", "krdiya", "kar liya",
+    "ho gaya", "ho gya", "hogaya", "hogya", "ho gaya hai", "ho chuka",
+    "hua", "dal diya", "daal diya", "bhej diya",
+    "कर दिया", "हो गया", "भेज दिया", "डाल दिया", "सबमिट कर दिया"
+  ],
+  "SHORT_UTTERANCE_WHITELIST": [
+    "yes", "no", "ok", "okay",
+    "done", "wait", "help", "repeat",
+    "yes please", "no thank you"
+  ],
+  "SPOKEN_DIGITS": {
+    "zero": "0", "one": "1", "two": "2", "three": "3", "four": "4",
+    "five": "5", "six": "6", "seven": "7", "eight": "8", "nine": "9",
+    "shunya": "0", "ek": "1", "do": "2", "teen": "3", "char": "4",
+    "paanch": "5", "chhe": "6", "saat": "7", "aath": "8", "rose": "9", "nau": "9",
+    "oh": "0"
+  },
+  "NEGATIVE_KEYWORDS": [
+    "no", "nahi", "nhi", "na", "nahin", "nope", "not done",
+    "nahi hua", "nhi hua", "nhi ho raha", "mana", "galat",
+    "incorrect", "mat", "band karo", "nhi kr rhi", "nhi kr rha",
+    "abhi nhi", "abhi nahi","नहीं", "ना", "नही", "मना", "गलत", "बंद करो", "मत"
+  ],
+  "REPEAT_KEYWORDS": [
+    "repeat", "again", "sorry", "pardon", "ek baar", "dobara",
+    "dubara", "phir se", "fir se", "sunai nahi diya", "kya bola",
+    "boliye", "say that again", "what did you say",
+    "दोबारा", "फिर से", "समझ नहीं आया", "क्या बोला"
+  ],
+  "WAIT_KEYWORDS": [
+    "wait", "hold", "ruko", "ek second", "one second",
+    "just a moment", "minute", "hold on", "thoda ruko",
+    "रुको", "एक सेकंड", "ठहरो"
+  ],
+  "HELP_KEYWORDS": [
+    "help", "problem", "issue", "stuck", "error", "fail",
+    "not working", "samajh nahi", "confused",
+    "pata nahi", "kya karna hai",
+    "bhul", "bhool", "yaad nahi", "forgot", "forget",
+    "password nahi pata", "password bhul", "pata nahi password",
+    "user id nahi pata", "user id bhul", "id bhul",
+    "password reset", "reset password"
+  ],
+  "HUMAN_AGENT_KEYWORDS": [
+    "agent", "human", "representative", "customer care", "support person",
+    "agent se baat", "insaan se baat", "kisi agent se baat", "human agent"
+  ],
+  "ERROR_KEYWORDS": [
+    "nahi ho raha", "nhi ho raha", "not working", "error", "failed", "fail",
+    "page nahi khul raha", "page nahi khul rha", "page load nahi hua",
+    "submit nahi ho raha", "stuck", "issue", "problem", "invalid otp",
+    "otp wrong", "otp galat", "expired", "timeout", "slow", "loading"
+  ],
+  "EXIT_KEYWORDS": [
+    "bye",
+    "disconnect",
+    "stop",
+    "not interested",
+    "don't call",
+    "do not call",
+    "no need",
+    "end call",
+    "wrong number"
+  ],
+  "IN_PROGRESS_KEYWORDS": [
+    "kar raha hoon", "kar raha hu", "kar rahi hoon", "kar rahi hu",
+    "doing", "trying", "process mein", "proccess", "in progress",
+    "entering", "type kar", "typing", "dekh raha", "wait", "ruko"
+  ],
+  "CALL_LATER_KEYWORDS": [
+    "call later",
+    "later",
+    "busy now",
+    "busy",
+    "in meeting",
+    "call me later",
+    "set callback",
+    "callback",
+    "schedule callback"
+  ],
+  "VISIT_KEYWORDS": [
+    "campus visit", "visit campus", "offline", "visit", "option 1",
+    "in person", "in-person", "physically", "come to campus",
+    "campus dekhna", "aana chahta", "aa jaunga", "aaonga",
+    "janakpuri aana", "campus aana", "physical visit",
+    "physically attend", "college visit", "college dekhna"
+  ],
+  "ONLINE_KEYWORDS": [
+    "online", "virtual", "option 2", "video call", "google meet",
+    "zoom", "teams", "webex", "phone call", "over the phone",
+    "from home", "ghar se", "online counselling",
+    "phone pe baat", "call pe", "video pe", "online session",
+    "ghar baithe", "net pe", "whatsapp call", "online hoga"
+  ],
+  "DECLINE_VISIT_KEYWORDS": [
+    "not interested", "no need", "don't want", "dont want",
+    "just send", "send info", "only brochure", "sirf details",
+    "bas details bhejo", "details send karo", "no session",
+    "no counselling", "no need for session", "don't want session",
+    "nahi chahiye", "rehne do"
+  ],
+  "WRONG_NUMBER_KEYWORDS": [
+    "wrong number",
+    "no such person",
+    "not this person",
+    "galat number",
+    "गलत नंबर"
+  ],
+  "WRONG_PERSON_KEYWORDS": [
+    "wrong person",
+    "not me",
+    "not him",
+    "not her",
+    "not speaking",
+    "you have the wrong person",
+    "this is not",
+    "not the right person"
+  ],
+  "BUSY_KEYWORDS": [
+    "busy",
+    "not free",
+    "in class",
+    "in meeting",
+    "can't talk",
+    "cannot talk",
+    "call later"
+  ],
+  "EARLY_STUDY_KEYWORDS": [
+    "1st year",
+    "first year",
+    "2nd year",
+    "second year",
+    "3rd year",
+    "third year",
+    "not final year",
+    "still studying",
+    "not yet final year"
+  ],
+  "FINAL_YEAR_KEYWORDS": [
+    "final year", "last year", "last semester", "i am in final year", "i am in last year", "i am in last semester",
+    "appearing this year", "graduating this year",
+    "final sem", "final semester", "6th semester", "8th semester",
+    "completing this year", "completing soon",
+    "aane wala hai", "almost done"
+  ],
+  "GRADUATED_KEYWORDS": [
+    "completed", "graduate", "graduated", "passed", "pass out",
+    "degree complete", "yes i am graduated",
+    "finish", "finished", "done", "complete", "ho gayi", "ho gai",
+    "kar li", "kar liya", "khatam", "khatam kar li", "khatam ho gaya",
+    "ho chuki", "ho chuka", "nikal gaya", "nikal gayi",
+    "cleared", "cleared degree", "degree ho gayi", "degree khatam"
+  ],
+  "EXAM_GIVEN_KEYWORDS": [
+    "appeared",
+    "given",
+    "gave",
+    "registered",
+    "registration",
+    "booked slot"
+  ],
+  "DND_KEYWORDS": [
+    "not interested",
+    "don't call",
+    "do not call",
+    "already admitted",
+    "admitted elsewhere",
+    "stop calling"
+  ],
+  "PROGRAM_INFO_INTEREST_KEYWORDS": [
+    "tell me more",
+    "more info",
+    "more details",
+    "details",
+    "what about",
+    "placements",
+    "placement",
+    "fee",
+    "fees",
+    "scholarship",
+    "package"
+  ],
+  "PROGRAM_ALIASES": {
+    "both": [
+      "both", "both programs", "both of them", "dono",
+      "all programs", "all of them"
+    ],
+    "pgdm": [
+      "pgdm", "p g d m", "bgdm", "pijidim", "pijidi",
+      "pgdm program", "p g d m program",
+      "post graduate diploma", "post graduation diploma",
+      "aicte", "diploma in management"
+    ],
+    "mba": [
+      "mba", "m b a",
+      "master of business administration",
+      "masters in business", "mba program",
+      "ggsipu", "ip university affiliated"
+    ]
+  },
+  "NO_REACTION_KEYS": ["hmm", "hm", "hmmm", "hmm.", "ok", "okay"],
+  "UNDECIDED_KEYS": [
+    "not sure",
+    "dont know",
+    "don't know",
+    "depends",
+    "confused",
+    "undecided"
+  ],
+  "MBA_KEYWORDS": ["mba", "master of business administration"],
+  "PGDM_KEYWORDS": ["pgdm", "post graduate diploma"],
+  "ENTRANCE_EXAMS": ["cat", "mat", "cmat", "xat", "nmat", "snap"],
+  "SPECIALIZATION_OVERVIEW": {
+    "marketing": "Marketing specialization focuses on digital marketing, branding, consumer behaviour and sales strategies.",
+    "finance": "Finance specialization covers investment banking, financial analysis, corporate finance and risk management.",
+    "hr": "Human Resource specialization focuses on talent management and organizational development.",
+    "operations": "Operations specialization covers supply chain management, logistics and process optimization.",
+    "business_analytics": "Business Analytics specialization focuses on data analysis, business intelligence and decision making."
+  },
+  "ENTRANCE_EXAM_PHONETIC": {
+    "met": "MAT", "maat": "MAT", "matt": "MAT",
+    "kat": "CAT", "cut": "CAT", "cet": "CAT",
+    "see mat": "CMAT", "c mat": "CMAT", "semat": "CMAT",
+    "zat": "XAT", "zaat": "XAT"
+  },
+  "SPECIALIZATION_KEYWORDS": {
+    "finance": [
+      "finance", "fin", "financial", "fintech", "banking",
+      "accounts", "investment", "ca", "cfa", "stock", "equity"
+    ],
+    "marketing": [
+      "marketing", "sales", "digital marketing", "branding",
+      "advertising", "social media", "market", "pr", "promotion"
+    ],
+    "hr": [
+      "hr", "human resource", "human resources", "people management",
+      "recruitment", "talent", "payroll", "hrd"
+    ],
+    "operations": [
+      "operations", "supply chain", "logistics", "scm",
+      "production", "ops", "manufacturing", "procurement"
+    ],
+    "analytics": [
+      "analytics", "business analytics", "data", "data science",
+      "bi", "business intelligence", "data analyst", "machine learning",
+      "ml", "ai", "artificial intelligence"
+    ]
+  },
+  "CLOSING_POSITIVE_KEYWORDS": [
+    "thank you", "thanks", "okay", "ok", "sounds good", "great",
+    "perfect", "wonderful", "sure", "alright", "good", "fine",
+    "noted", "understood", "got it", "appreciate it",
+    "shukriya", "dhanyavaad", "theek hai", "theek", "accha",
+    "achha", "bahut accha", "bilkul", "samajh gaya", "samajh gayi",
+    "haan theek", "done", "ho gaya"
+  ],
+  "CLOSING_LASTMINUTE_FEE_KEYWORDS": [
+    "fee", "fees", "cost", "kitna paisa", "how much", "price",
+    "scholarship", "scholarship amount", "fee structure",
+    "how much does it cost", "total cost", "fee kitni hai",
+    "kitne paise", "fee batao", "fee kya hai"
+  ],
+  "CLOSING_LASTMINUTE_GENERAL_KEYWORDS": [
+    "wait", "one more", "one more thing", "ek aur", "ek cheez",
+    "quickly", "one question", "last question", "hold on",
+    "actually", "before you go", "ruko", "ruk jao", "ek second",
+    "ek minute", "thoda ruko", "question", "doubt", "query",
+    "what about", "what happens", "tell me about"
+  ],
+  "TOPIC_ROUTE_KEYWORDS": {
+    "placements": ["placement", "placements", "package", "salary", "recruit", "job", "company"],
+    "fees": ["fee", "fees", "cost", "scholarship", "payment", "kitna paisa"],
+    "location": ["location", "address", "where", "janakpuri", "kahan", "campus location"],
+    "hostel": ["hostel", "accommodation", "room"],
+    "specializations": ["specialization", "specialisation", "specialize"],
+    "admission_process": ["admission process", "how to apply", "apply kaise"],
+    "documents_required": ["document", "documents", "marksheet", "papers needed"],
+    "programs": ["mba", "pgdm", "course", "program"],
+    "exams": ["cat", "mat", "cmat", "xat", "entrance exam"],
+    "internships": ["internship", "intern"],
+    "brochure": ["brochure", "pdf", "whatsapp details"]
+  },
+  "HANDOFF_KEYWORDS": [
+    "speak to someone", "real person", "manager", "complaint",
+    "frustrated", "angry", "useless", "waste of time", "bekaar",
+    "negotiate fee", "discount", "fee kam", "scholarship amount"
+  ],
+  "CONFUSION_KEYWORDS": [
+    "don't understand", "dont understand", "samajh nahi", "confused",
+    "kya bol rahe", "what are you saying", "repeat everything"
+  ],
+  "NO_EXAM_KEYWORDS": [
+    "no exam", "not given", "not appeared", "haven't given",
+    "have not given", "nahi diya", "nhi diya",
+    "didn't give", "no cat", "no mat", "nahi diya koi exam"
+  ],
+  "AMBIGUOUS_SHORT": [
+    "yes", "no", "ok", "okay", "haan", "ha", "han",
+    "done", "sure", "hmm", "yeah", "yep", "nahi", "nhi",
+    "theek", "bilkul", "maybe", "i think"
+  ],
+  "SLOT_WEEKDAY_KEYWORDS": [
+    "weekday", "week day", "working day", "monday", "tuesday",
+    "wednesday", "thursday", "friday", "mon", "tue", "wed", "thu", "fri",
+    "somvar", "mangalvar", "budhvar", "guruvar", "shukravar"
+  ],
+  "SLOT_WEEKEND_KEYWORDS": [
+    "weekend", "week end", "saturday", "sunday", "sat", "sun",
+    "shanivaar", "ravivar", "shanivar"
+  ],
+  "SLOT_MORNING_KEYWORDS": [
+    "morning", "subah", "subeh", "am",
+    "9 am", "10 am", "11 am", "9am", "10am", "11am"
+  ],
+  "SLOT_AFTERNOON_KEYWORDS": [
+    "afternoon", "dopahar", "noon", "lunch",
+    "12 pm", "1 pm", "2 pm", "3 pm", "1pm", "2pm", "3pm"
+  ],
+  "SLOT_EVENING_KEYWORDS": [
+    "evening", "shaam", "sham", "after 5",
+    "4 pm", "5 pm", "6 pm", "7 pm", "4pm", "5pm", "6pm", "7pm"
+  ],
+  "LLM_CATEGORY_MAP": {
+    "CONFIRMATION": "affirm",
+    "REJECTION":    "deny",
+    "REPEAT":       "repeat",
+    "WAIT":         "wait",
+    "GOODBYE":      "exit",
+    "EXIT":         "exit",
+    "NOISE":        "unknown",
+    "PROGRAM_MBA":  "program_mba",
+    "PROGRAM_PGDM": "program_pgdm",
+    "PROGRAM_BOTH": "program_both"
+  }
+}

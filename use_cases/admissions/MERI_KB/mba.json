@@ -1,0 +1,230 @@
+{
+  "topic": "MBA",
+  "description": "MBA programme related knowledge for MERI Admission Voice Agent.",
+
+  "faqs": [
+    {
+      "intent": "ask_mba_overview",
+      "questions": [
+        "Tell me about MBA.",
+        "What is MBA?",
+        "Can you tell me about the MBA programme?",
+        "MBA details.",
+        "MBA course information.",
+        "I want information about MBA."
+      ],
+      "answer": "The MBA at MERI is a two-year full-time programme affiliated with Guru Gobind Singh Indraprastha University (GGSIPU) and approved by AICTE. It focuses on management education through classroom learning, case studies, live projects, industry interaction, and experiential learning.",
+      "keywords": [
+        "mba",
+        "programme",
+        "course",
+        "management"
+      ],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_mba_duration",
+      "questions": [
+        "MBA duration?",
+        "How long is MBA?",
+        "How many years is MBA?",
+        "What is the duration of MBA?",
+        "How much time does MBA take?"
+      ],
+      "answer": "The MBA programme is a two-year full-time programme.",
+      "keywords": [
+        "duration",
+        "years",
+        "full time"
+      ],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_mba_approval",
+      "questions": [
+        "Is MBA approved?",
+        "Is MBA AICTE approved?",
+        "Is MBA affiliated with GGSIPU?",
+        "Is the MBA degree valid?",
+        "Who approves the MBA programme?"
+      ],
+      "answer": "The MBA programme is approved by AICTE and affiliated with Guru Gobind Singh Indraprastha University (GGSIPU).",
+      "keywords": [
+        "AICTE",
+        "GGSIPU",
+        "approved",
+        "affiliated"
+      ],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_mba_specializations",
+      "questions": [
+        "What specializations are available in MBA?",
+        "Which MBA specializations do you offer?",
+        "MBA streams?",
+        "MBA specialization list?",
+        "What are the specialization options?"
+      ],
+      "answer": "MBA specializations include Marketing, Finance, Human Resource Management, Business Analytics, International Business, and Information Technology.",
+      "keywords": [
+        "specialization",
+        "marketing",
+        "finance",
+        "hr",
+        "analytics",
+        "international business",
+        "it"
+      ],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_best_specialization",
+      "questions": [
+        "Which specialization is best?",
+        "Which MBA specialization should I choose?",
+        "Which specialization has better scope?",
+        "Which specialization has better placements?",
+        "Which specialization has higher salary?"
+      ],
+      "answer": "The best specialization depends on your interests, strengths, and career goals. Our admissions counsellor can help you choose the most suitable specialization based on your aspirations.",
+      "keywords": [
+        "best specialization",
+        "scope",
+        "career",
+        "salary"
+      ],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_mba_curriculum",
+      "questions": [
+        "What is taught in MBA?",
+        "MBA syllabus?",
+        "MBA curriculum?",
+        "What subjects are covered?",
+        "How is MBA taught?"
+      ],
+      "answer": "The MBA programme includes management concepts, business communication, case studies, presentations, live projects, workshops, industry interaction, and experiential learning to develop practical management skills.",
+      "keywords": [
+        "curriculum",
+        "subjects",
+        "syllabus",
+        "learning"
+      ],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_mba_eligibility",
+      "questions": [
+        "Who can apply for MBA?",
+        "MBA eligibility?",
+        "Am I eligible for MBA?",
+        "Can final-year students apply?",
+        "Graduation required for MBA?"
+      ],
+      "answer": "Students who have completed graduation or are in their final year can connect with the admissions team to verify the latest MBA eligibility requirements.",
+      "keywords": [
+        "eligibility",
+        "graduation",
+        "final year"
+      ],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_mba_admission",
+      "questions": [
+        "How can I get admission in MBA?",
+        "MBA admission process?",
+        "How do I apply for MBA?",
+        "MBA admission steps?"
+      ],
+      "answer": "The admission process includes confirming eligibility, discussing the programme with the admissions team, completing counselling, submitting the required documents, and following the institute's admission procedure.",
+      "keywords": [
+        "admission",
+        "apply",
+        "process"
+      ],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_mba_fees",
+      "questions": [
+        "MBA fees?",
+        "How much is the MBA fee?",
+        "MBA fee structure?",
+        "Semester fee for MBA?",
+        "Total MBA fees?"
+      ],
+      "answer": "The latest MBA fee structure is shared by the admissions counsellor. Please connect with the admissions team for the most up-to-date fee details.",
+      "keywords": [
+        "fees",
+        "cost",
+        "price",
+        "payment"
+      ],
+      "handoff": true
+    },
+
+    {
+      "intent": "ask_mba_placements",
+      "questions": [
+        "Does MBA have placements?",
+        "MBA placement support?",
+        "What is the MBA placement record?",
+        "MBA average package?",
+        "MBA highest package?"
+      ],
+      "answer": "MERI provides placement support, industry exposure, and employability-focused learning. The latest placement statistics and recruiter information can be shared during counselling.",
+      "keywords": [
+        "placements",
+        "package",
+        "career",
+        "jobs"
+      ],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_mba_documents",
+      "questions": [
+        "Which documents are required for MBA admission?",
+        "MBA admission documents?",
+        "What documents should I submit?"
+      ],
+      "answer": "Generally required documents include graduation marksheets, final-year proof if applicable, entrance exam scorecard if available, ID proof, and passport-size photographs.",
+      "keywords": [
+        "documents",
+        "marksheet",
+        "certificate",
+        "id proof"
+      ],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_mba_brochure",
+      "questions": [
+        "Can I get the MBA brochure?",
+        "Send MBA brochure.",
+        "Can you WhatsApp the MBA brochure?",
+        "MBA prospectus?"
+      ],
+      "answer": "Yes, the MBA brochure can be shared on your WhatsApp after confirming your WhatsApp number.",
+      "keywords": [
+        "brochure",
+        "prospectus",
+        "whatsapp"
+      ],
+      "handoff": false
+    }
+  ]
+}

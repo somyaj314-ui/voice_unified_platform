@@ -1,0 +1,203 @@
+{
+  "topic": "Admission Process",
+  "description": "Admission process related knowledge for MERI MBA and PGDM Admission Voice Agent.",
+
+  "faqs": [
+    {
+      "intent": "ask_admission_process",
+      "examples": [
+        "What is the admission process?",
+        "How can I get admission?",
+        "How do I apply?",
+        "How do I take admission in MERI?",
+        "Tell me the admission procedure."
+      ],
+      "answer": "The admission process starts with checking your eligibility. Eligible candidates can apply for the MBA or PGDM programme, attend the counselling process, submit the required documents, complete the verification process, and fulfill the remaining admission formalities as guided by the admissions team.",
+      "keywords": [
+        "admission",
+        "process",
+        "procedure",
+        "apply"
+      ]
+    },
+
+    {
+      "intent": "ask_application_process",
+      "examples": [
+        "How do I apply?",
+        "How can I submit my application?",
+        "Where can I apply?",
+        "How do I register for admission?",
+        "How do I start my application?"
+      ],
+      "answer": "If you meet the eligibility criteria, you can begin the admission process by contacting the admissions team or applying through the official admission process. The admissions team will guide you through the complete application procedure.",
+      "keywords": [
+        "application",
+        "register",
+        "apply",
+        "registration"
+      ]
+    },
+
+    {
+      "intent": "ask_documents_required",
+      "examples": [
+        "What documents are required?",
+        "Which documents should I submit?",
+        "Documents for admission?",
+        "Admission documents?",
+        "Required certificates?"
+      ],
+      "answer": "Generally, candidates need graduation marksheets, final-year proof if applicable, entrance exam scorecard if available, a valid ID proof, passport-size photographs, and other documents as required during the admission process.",
+      "keywords": [
+        "documents",
+        "marksheets",
+        "id proof",
+        "photographs",
+        "certificates"
+      ]
+    },
+
+    {
+      "intent": "ask_admission_steps",
+      "examples": [
+        "What are the admission steps?",
+        "What happens after I apply?",
+        "What is the complete admission journey?",
+        "Explain the admission steps."
+      ],
+      "answer": "The admission process generally includes checking eligibility, selecting the programme, submitting the application, document verification, counselling, and completing the admission formalities.",
+      "keywords": [
+        "steps",
+        "journey",
+        "procedure"
+      ]
+    },
+
+    {
+      "intent": "ask_online_application",
+      "examples": [
+        "Can I apply online?",
+        "Is online admission available?",
+        "Can I register online?",
+        "Can I submit the application online?"
+      ],
+      "answer": "Yes. Candidates can begin the admission process through the official admission channels. The admissions team will guide you through the online application process if applicable.",
+      "keywords": [
+        "online",
+        "apply online",
+        "registration"
+      ]
+    },
+
+    {
+      "intent": "ask_offline_application",
+      "examples": [
+        "Can I apply offline?",
+        "Can I visit the campus for admission?",
+        "Can I submit the form at the college?",
+        "Is offline admission available?"
+      ],
+      "answer": "Yes. You may visit the MERI campus in Janakpuri for admission-related guidance. The admissions team will assist you with the application process and documentation.",
+      "keywords": [
+        "offline",
+        "campus",
+        "visit"
+      ]
+    },
+
+    {
+      "intent": "ask_admission_open",
+      "examples": [
+        "Are admissions open?",
+        "Is admission open now?",
+        "Can I apply now?",
+        "Is the admission process currently running?"
+      ],
+      "answer": "Admission availability depends on the current admission cycle. Please connect with the admissions team for the latest admission status and important dates.",
+      "keywords": [
+        "admission open",
+        "admission status",
+        "current admission"
+      ]
+    },
+
+    {
+      "intent": "ask_counselling",
+      "examples": [
+        "Is counselling required?",
+        "Can I talk to a counsellor?",
+        "Can I book counselling?",
+        "How do I get admission counselling?"
+      ],
+      "answer": "Yes. You can connect with the admissions counsellor for personalized guidance regarding programme selection, eligibility, admission, and career planning.",
+      "keywords": [
+        "counselling",
+        "counsellor",
+        "guidance"
+      ]
+    },
+
+    {
+      "intent": "ask_campus_visit",
+      "examples": [
+        "Can I visit the campus?",
+        "Can I schedule a campus visit?",
+        "Can I tour the campus?",
+        "How do I visit MERI?"
+      ],
+      "answer": "Yes. You can schedule a campus visit to MERI, Janakpuri, or opt for an online counselling session based on your preference.",
+      "keywords": [
+        "campus visit",
+        "tour",
+        "visit"
+      ]
+    },
+
+    {
+      "intent": "ask_brochure",
+      "examples": [
+        "Can I get the brochure?",
+        "Send me the brochure.",
+        "Can you share the brochure?",
+        "Can I receive the brochure on WhatsApp?"
+      ],
+      "answer": "Yes. The programme brochure can be shared with you on WhatsApp after confirming your WhatsApp number.",
+      "keywords": [
+        "brochure",
+        "prospectus",
+        "whatsapp"
+      ]
+    },
+
+    {
+      "intent": "ask_admission_timeline",
+      "examples": [
+        "How long does admission take?",
+        "When will my admission be completed?",
+        "How much time does the admission process take?"
+      ],
+      "answer": "The admission timeline depends on document verification, counselling, and completion of the required admission formalities. The admissions team will guide you throughout the process.",
+      "keywords": [
+        "timeline",
+        "duration",
+        "admission time"
+      ]
+    },
+
+    {
+      "intent": "ask_after_application",
+      "examples": [
+        "What happens after I apply?",
+        "What is the next step after registration?",
+        "What should I do after submitting the application?"
+      ],
+      "answer": "After submitting your application, the admissions team will review your details, guide you through counselling, verify your documents, and assist you with the remaining admission formalities.",
+      "keywords": [
+        "after application",
+        "next step",
+        "verification"
+      ]
+    }
+  ]
+}

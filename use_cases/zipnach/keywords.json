@@ -1,0 +1,63 @@
+{
+  "WRONG_NUMBER_KEYWORDS": [
+    "wrong number",
+    "galat number"
+  ],
+  "WRONG_PERSON_KEYWORDS": [
+    "wrong person",
+    "not me"
+  ],
+  "DND_KEYWORDS": [
+    "do not call",
+    "stop calling",
+    "dnd"
+  ],
+  "CALL_LATER_KEYWORDS": [
+    "call later",
+    "busy",
+    "baad mein"
+  ],
+  "HUMAN_AGENT_KEYWORDS": [
+    "talk to human",
+    "agent",
+    "customer care"
+  ],
+  "EXIT_KEYWORDS": [
+    "bye",
+    "exit",
+    "quit"
+  ],
+  "REPEAT_KEYWORDS": [
+    "repeat",
+    "say again",
+    "pardon"
+  ],
+  "WAIT_KEYWORDS": [
+    "wait",
+    "hold on",
+    "ek minute"
+  ],
+  "HELP_KEYWORDS": [
+    "help",
+    "assist"
+  ],
+  "WEAK_POSITIVES": [
+    "yes",
+    "yeah",
+    "haan",
+    "correct",
+    "right"
+  ],
+  "STRONG_COMPLETION": [
+    "done",
+    "completed",
+    "ho gaya"
+  ],
+  "NEGATIVE_KEYWORDS": [
+    "no",
+    "nah",
+    "nahi",
+    "wrong",
+    "incorrect"
+  ]
+}

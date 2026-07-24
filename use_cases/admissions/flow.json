@@ -1,0 +1,87 @@
+{
+  "initial_state": "CALL_CONNECTED",
+  "llm_fallback_states": [
+    "QUALIFICATION_Q1",
+    "QUALIFICATION_Q2",
+    "VISIT_OPTION",
+    "PROGRAM_SELECTION"
+  ],
+  "states": {
+    "CALL_CONNECTED": {
+      "script_key": "outbound_intro",
+      "transitions": {
+        "affirm": "QUALIFICATION_Q1",
+        "deny": "CLOSING",
+        "default": "QUALIFICATION_Q1"
+      }
+    },
+    "QUALIFICATION_Q1": {
+      "script_key": "qualification_question_1",
+      "llm_fallback": true,
+      "transitions": {
+        "grad_completed": "QUALIFICATION_Q2",
+        "grad_final_year": "QUALIFICATION_Q2",
+        "grad_early": "CLOSING",
+        "default": "QUALIFICATION_Q1"
+      }
+    },
+    "QUALIFICATION_Q2": {
+      "script_key": "qualification_question_2",
+      "llm_fallback": true,
+      "transitions": {
+        "exam_given": "PROGRAM_OVERVIEW",
+        "exam_not_given": "PROGRAM_OVERVIEW",
+        "default": "PROGRAM_OVERVIEW"
+      }
+    },
+    "PROGRAM_OVERVIEW": {
+      "script_key": "program_overview_intro",
+      "transitions": {
+        "default": "PROGRAM_SELECTION"
+      }
+    },
+    "PROGRAM_SELECTION": {
+      "script_key": "program_selection_question",
+      "llm_fallback": true,
+      "transitions": {
+        "program_mba": "VISIT_OPTION",
+        "program_pgdm": "VISIT_OPTION",
+        "program_both": "VISIT_OPTION",
+        "default": "VISIT_OPTION"
+      }
+    },
+    "VISIT_OPTION": {
+      "script_key": "visit_option",
+      "llm_fallback": true,
+      "transitions": {
+        "visit_campus": "VISIT_SLOT_CAPTURE",
+        "visit_online": "WHATSAPP_READBACK",
+        "default": "WHATSAPP_READBACK"
+      }
+    },
+    "VISIT_SLOT_CAPTURE": {
+      "script_key": "visit_slot_campus",
+      "transitions": {
+        "default": "WHATSAPP_READBACK"
+      }
+    },
+    "WHATSAPP_READBACK": {
+      "script_key": "whatsapp_readback",
+      "transitions": {
+        "affirm": "WHATSAPP_CONFIRMATION",
+        "deny": "CLOSING",
+        "default": "WHATSAPP_CONFIRMATION"
+      }
+    },
+    "WHATSAPP_CONFIRMATION": {
+      "script_key": "whatsapp_confirmation",
+      "transitions": {
+        "default": "CLOSING"
+      }
+    },
+    "CLOSING": {
+      "script_key": "closing",
+      "terminal": true
+    }
+  }
+}

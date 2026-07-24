@@ -1,0 +1,114 @@
+{
+  "topic": "Campus Facilities",
+  "description": "Facilities, hostel, and transport related knowledge for the MERI Admission Voice Agent.",
+
+  "faqs": [
+    {
+      "intent": "ask_facilities_overview",
+      "examples": [
+        "What facilities are available?",
+        "Tell me about the campus facilities.",
+        "What infrastructure does MERI have?"
+      ],
+      "answer": "MERI offers smart classrooms, a well-equipped library, computer labs, sports and fitness facilities, and a modern campus environment.",
+      "keywords": ["facilities", "infrastructure", "campus"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_library",
+      "examples": [
+        "Do you have a library?",
+        "How is the library?",
+        "Library facilities?"
+      ],
+      "answer": "MERI has a well-stocked library supporting academic and reference material for students.",
+      "keywords": ["library", "books", "reading room"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_computer_labs",
+      "examples": [
+        "Do you have computer labs?",
+        "Is there an IT lab?",
+        "Computer facilities?"
+      ],
+      "answer": "MERI has computer labs including an Apple Certified Computer Lab to support technology-based learning.",
+      "keywords": ["computer lab", "it lab", "apple lab"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_classrooms",
+      "examples": [
+        "How are the classrooms?",
+        "Do you have smart classrooms?",
+        "Classroom facilities?"
+      ],
+      "answer": "Classrooms at MERI are smart, LCD-enabled spaces designed for interactive learning.",
+      "keywords": ["classroom", "smart classroom", "lcd"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_sports_fitness",
+      "examples": [
+        "Do you have sports facilities?",
+        "Is there a gym?",
+        "Fitness facilities on campus?"
+      ],
+      "answer": "MERI promotes a holistic sports and fitness culture as part of campus life.",
+      "keywords": ["sports", "fitness", "gym"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_hostel",
+      "examples": [
+        "Is hostel available?",
+        "Do you provide accommodation?",
+        "Hostel facility?",
+        "Is there a hostel on campus?"
+      ],
+      "answer": "For the latest information on hostel availability and accommodation options, please connect with the admissions team.",
+      "keywords": ["hostel", "accommodation", "residence"],
+      "handoff": true
+    },
+
+    {
+      "intent": "ask_transport",
+      "examples": [
+        "Is transport available?",
+        "Do you have a college bus?",
+        "Transport facility?"
+      ],
+      "answer": "For the latest information on transport availability and routes, please connect with the admissions team.",
+      "keywords": ["transport", "bus", "commute"],
+      "handoff": true
+    },
+
+    {
+      "intent": "ask_wifi",
+      "examples": [
+        "Is WiFi available on campus?",
+        "Do you have internet facility?"
+      ],
+      "answer": "For details on WiFi and internet facilities on campus, please connect with the admissions team.",
+      "keywords": ["wifi", "internet"],
+      "handoff": true
+    },
+
+    {
+      "intent": "ask_special_labs",
+      "examples": [
+        "Do you have any special labs?",
+        "Are there specialized facilities?",
+        "Any GIS or space studies labs?"
+      ],
+      "answer": "MERI has special facilities such as a Department of Space Studies, a GIS lab, and audio-video labs.",
+      "keywords": ["special lab", "gis lab", "space studies"],
+      "handoff": false
+    }
+  ]
+}

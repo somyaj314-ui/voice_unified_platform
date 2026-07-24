@@ -1,0 +1,78 @@
+{
+  "topic": "Campus Life",
+  "description": "Student clubs, events, and campus experience knowledge for the MERI Admission Voice Agent.",
+
+  "faqs": [
+    {
+      "intent": "ask_campus_life_overview",
+      "examples": [
+        "What is campus life like?",
+        "Tell me about student life at MERI.",
+        "What activities happen on campus?"
+      ],
+      "answer": "Beyond academics, MERI offers an active campus life with student clubs, events, personality development programs, and leadership initiatives.",
+      "keywords": ["campus life", "student life", "activities"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_student_clubs",
+      "examples": [
+        "What clubs are available?",
+        "Do you have student clubs?",
+        "List of campus clubs?"
+      ],
+      "answer": "MERI has student-led clubs including the Fashion Club, Literary Club, CSR Club, Music & Dance Club, Photography Club, and Entrepreneurship Cell.",
+      "keywords": ["clubs", "student clubs", "societies"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_events_seminars",
+      "examples": [
+        "What events do you organize?",
+        "Are there seminars and workshops?",
+        "Do you host talks and events?"
+      ],
+      "answer": "MERI regularly organizes seminars, workshops, media talks, alumni talks, and entrepreneurial talks for students.",
+      "keywords": ["events", "seminars", "workshops"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_personality_development",
+      "examples": [
+        "Do you offer personality development?",
+        "Is there leadership training?",
+        "Soft skills training available?"
+      ],
+      "answer": "Yes, MERI includes personality development programs and leadership initiatives as part of the overall student experience.",
+      "keywords": ["personality development", "leadership", "soft skills"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_entrepreneurship_cell",
+      "examples": [
+        "Do you support entrepreneurship?",
+        "Is there an entrepreneurship cell?",
+        "Can I start a startup while studying?"
+      ],
+      "answer": "MERI has a dedicated Entrepreneurship Cell that supports students interested in exploring startup and entrepreneurial ideas.",
+      "keywords": ["entrepreneurship", "startup", "e-cell"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_cultural_activities",
+      "examples": [
+        "Are there cultural activities?",
+        "Do you have fests?",
+        "Cultural events on campus?"
+      ],
+      "answer": "MERI hosts cultural activities and competitions throughout the year as part of a balanced campus experience.",
+      "keywords": ["cultural activities", "fest", "competitions"],
+      "handoff": false
+    }
+  ]
+}

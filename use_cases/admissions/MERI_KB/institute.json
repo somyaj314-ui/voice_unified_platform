@@ -1,0 +1,107 @@
+{
+  "topic": "Institute Profile & Approvals",
+  "description": "Institute background, approvals, affiliations, and accreditation knowledge for the MERI Admission Voice Agent.",
+
+  "faqs": [
+    {
+      "intent": "ask_institute_overview",
+      "examples": [
+        "Tell me about MERI.",
+        "What is MERI?",
+        "About your institute?",
+        "What kind of college is this?",
+        "Tell me about the college."
+      ],
+      "answer": "MERI, Management Education & Research Institute, is a professional institute in Janakpuri, New Delhi, offering MBA and PGDM programmes with a focus on industry-oriented learning and career support.",
+      "keywords": ["meri", "institute", "college", "about"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_institute_established_year",
+      "examples": [
+        "When was MERI established?",
+        "How old is the institute?",
+        "Since when is MERI running?",
+        "Founding year of MERI?"
+      ],
+      "answer": "MERI was established in 1995 and is promoted by the Triveni Educational & Social Welfare Society.",
+      "keywords": ["established", "founded", "1995", "history"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_ggsipu_affiliation",
+      "examples": [
+        "Is MERI affiliated to a university?",
+        "Which university is MERI affiliated with?",
+        "Is MBA affiliated with GGSIPU?",
+        "University affiliation details?"
+      ],
+      "answer": "MERI's MBA programme is affiliated with Guru Gobind Singh Indraprastha University (GGSIPU).",
+      "keywords": ["ggsipu", "university", "affiliation"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_aicte_approval",
+      "examples": [
+        "Is the institute AICTE approved?",
+        "Is MERI recognized by AICTE?",
+        "AICTE approval status?"
+      ],
+      "answer": "Both the MBA and PGDM programmes at MERI are approved by the All India Council for Technical Education (AICTE).",
+      "keywords": ["aicte", "approved", "recognized"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_ugc_recognition",
+      "examples": [
+        "Is MERI recognized by UGC?",
+        "UGC recognition status?",
+        "Is the institute UGC approved?"
+      ],
+      "answer": "MERI is recognized by the University Grants Commission (UGC) at the institute level.",
+      "keywords": ["ugc", "recognized", "recognition"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_naac_accreditation",
+      "examples": [
+        "Is MERI NAAC accredited?",
+        "What is the NAAC grade?",
+        "NAAC accreditation status?"
+      ],
+      "answer": "MERI holds a NAAC 'A' grade accreditation.",
+      "keywords": ["naac", "accreditation", "grade a"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_iso_certification",
+      "examples": [
+        "Is MERI ISO certified?",
+        "ISO certification details?",
+        "Is the institute quality certified?"
+      ],
+      "answer": "MERI is an ISO 9001:2015 certified institution.",
+      "keywords": ["iso", "certified", "quality"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_why_choose_meri",
+      "examples": [
+        "Why should I choose MERI?",
+        "What makes MERI different?",
+        "Why is MERI a good option?",
+        "What are MERI's strengths?"
+      ],
+      "answer": "MERI is a NAAC 'A' accredited, AICTE-approved institute affiliated with GGSIPU, known for industry-oriented learning, placement collaborations, international university tie-ups, and modern campus infrastructure.",
+      "keywords": ["why choose", "strengths", "usp", "advantages"],
+      "handoff": false
+    }
+  ]
+}

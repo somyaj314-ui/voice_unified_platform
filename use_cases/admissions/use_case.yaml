@@ -1,0 +1,11 @@
+name: admissions
+display_name: MERI Admissions Bot
+server_port: 8767
+asterisk:
+  app_name: admissions_agent
+tts:
+  preset_id: my_speaker_saavi
+llm:
+  model: qwen2.5:1.5b
+extra_kb_dirs:
+- MERI_KB

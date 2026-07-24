@@ -1,0 +1,18 @@
+# Environments
+venv/
+env/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Project specifics
+.env
+.cache/
+
+# OS generated files
+.DS_Store
+Thumbs.db

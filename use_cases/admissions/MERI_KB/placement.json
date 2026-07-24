@@ -1,0 +1,158 @@
+{
+  "topic": "Placements",
+  "description": "Placement and career support related knowledge for MERI MBA and PGDM Admission Voice Agent.",
+
+  "faqs": [
+    {
+      "intent": "ask_placement_support",
+      "examples": [
+        "Do you provide placements?",
+        "Does MERI provide placement support?",
+        "Will I get placement?",
+        "Is placement available?",
+        "Do MBA students get placements?",
+        "Do PGDM students get placements?"
+      ],
+      "answer": "Yes. MERI provides placement assistance and career support to MBA and PGDM students through its placement and corporate relations activities.",
+      "keywords": [
+        "placement",
+        "placement support",
+        "jobs",
+        "career"
+      ]
+    },
+
+    {
+      "intent": "ask_placement_record",
+      "examples": [
+        "How are placements at MERI?",
+        "What is the placement record?",
+        "How successful are placements?",
+        "Are placements good?"
+      ],
+      "answer": "MERI focuses on enhancing students' employability through academic learning, industry interaction, internships, skill development, and placement assistance.",
+      "keywords": [
+        "placement record",
+        "placement performance",
+        "placements"
+      ]
+    },
+
+    {
+      "intent": "ask_average_package",
+      "examples": [
+        "What is the average package?",
+        "Average salary package?",
+        "Average CTC?",
+        "What is the average placement package?"
+      ],
+      "answer": "According to the information published on the official website, the average placement package is approximately 8 LPA. Candidates are advised to confirm the latest placement statistics with the admissions team.",
+      "keywords": [
+        "average package",
+        "average salary",
+        "average ctc",
+        "8 lpa"
+      ]
+    },
+
+    {
+      "intent": "ask_highest_package",
+      "examples": [
+        "What is the highest package?",
+        "Highest salary offered?",
+        "Maximum placement package?",
+        "Highest CTC?"
+      ],
+      "answer": "According to the official website, the highest placement package mentioned is 14.56 LPA. Candidates should verify the latest placement figures with the admissions team.",
+      "keywords": [
+        "highest package",
+        "highest salary",
+        "highest ctc",
+        "14.56 lpa"
+      ]
+    },
+
+    {
+      "intent": "ask_top_recruiters",
+      "examples": [
+        "Which companies visit MERI?",
+        "Who are the recruiters?",
+        "Top recruiting companies?",
+        "Which companies hire students?"
+      ],
+      "answer": "MERI has placement collaborations with leading companies across different industries. The admissions team can provide the latest list of recruiting organizations.",
+      "keywords": [
+        "companies",
+        "recruiters",
+        "placement companies",
+        "corporates"
+      ]
+    },
+
+    {
+      "intent": "ask_internships",
+      "examples": [
+        "Are internships provided?",
+        "Do students get internships?",
+        "Is internship compulsory?",
+        "Summer internship?"
+      ],
+      "answer": "Students receive opportunities for industry exposure through internships, live projects, and corporate interactions as part of their management education.",
+      "keywords": [
+        "internship",
+        "summer internship",
+        "industrial training"
+      ]
+    },
+
+    {
+      "intent": "ask_career_support",
+      "examples": [
+        "What career support do you provide?",
+        "Do you provide career guidance?",
+        "Will you help with interviews?",
+        "Do you provide employability training?"
+      ],
+      "answer": "MERI supports students through personality development activities, industry interaction, skill enhancement initiatives, and placement assistance to improve career opportunities.",
+      "keywords": [
+        "career support",
+        "training",
+        "personality development",
+        "interview"
+      ]
+    },
+
+    {
+      "intent": "ask_placement_guarantee",
+      "examples": [
+        "Is placement guaranteed?",
+        "Will I definitely get a job?",
+        "Do you guarantee placements?",
+        "100 percent placement?"
+      ],
+      "answer": "MERI provides placement assistance and career support. However, placements depend on several factors such as a student's academic performance, skills, interview performance, and the recruiting company's selection process.",
+      "keywords": [
+        "guarantee",
+        "100 percent placement",
+        "job guarantee"
+      ]
+    },
+
+    {
+      "intent": "ask_industry_exposure",
+      "examples": [
+        "Do students get industry exposure?",
+        "Are there industrial visits?",
+        "Corporate exposure?",
+        "Industry interaction?"
+      ],
+      "answer": "Yes. MERI emphasizes industry exposure through guest lectures, workshops, seminars, internships, live projects, and interaction with industry professionals.",
+      "keywords": [
+        "industry exposure",
+        "corporate interaction",
+        "industrial visit",
+        "guest lecture"
+      ]
+    }
+  ]
+}

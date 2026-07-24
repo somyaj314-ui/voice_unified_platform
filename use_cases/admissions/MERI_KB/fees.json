@@ -1,0 +1,177 @@
+{
+  "topic": "Fees",
+  "description": "Fee structure and payment related knowledge for MERI MBA and PGDM Admission Voice Agent.",
+
+  "faqs": [
+    {
+      "intent": "ask_fee_structure",
+      "examples": [
+        "What is the fee structure?",
+        "Tell me the fees.",
+        "How much are the fees?",
+        "What are the course fees?",
+        "Fee details?"
+      ],
+      "answer": "The latest fee structure for MBA and PGDM programmes is shared by the admissions team. Please connect with an admissions counsellor for the most up-to-date fee details.",
+      "keywords": [
+        "fees",
+        "fee structure",
+        "course fee",
+        "cost"
+      ]
+    },
+
+    {
+      "intent": "ask_mba_fees",
+      "examples": [
+        "What are the MBA fees?",
+        "MBA fee structure?",
+        "How much is the MBA fee?",
+        "MBA course fees?",
+        "MBA total fees?"
+      ],
+      "answer": "The latest MBA fee structure is available with the admissions team. Please contact the admissions counsellor for the current fee details.",
+      "keywords": [
+        "mba fee",
+        "mba fees",
+        "mba cost"
+      ]
+    },
+
+    {
+      "intent": "ask_pgdm_fees",
+      "examples": [
+        "What are the PGDM fees?",
+        "PGDM fee structure?",
+        "How much is the PGDM fee?",
+        "PGDM total fees?",
+        "PGDM course fees?"
+      ],
+      "answer": "The latest PGDM fee structure is available with the admissions team. Please contact the admissions counsellor for the current fee details.",
+      "keywords": [
+        "pgdm fee",
+        "pgdm fees",
+        "pgdm cost"
+      ]
+    },
+
+    {
+      "intent": "ask_payment_mode",
+      "examples": [
+        "How can I pay the fees?",
+        "What are the payment options?",
+        "Can I pay online?",
+        "How do I make the payment?",
+        "Fee payment methods?"
+      ],
+      "answer": "The admissions team will guide you regarding the available fee payment options and payment process during admission.",
+      "keywords": [
+        "payment",
+        "payment mode",
+        "online payment",
+        "fee payment"
+      ]
+    },
+
+    {
+      "intent": "ask_installments",
+      "examples": [
+        "Can I pay the fees in installments?",
+        "Is EMI available?",
+        "Can I pay semester-wise?",
+        "Is installment payment allowed?",
+        "Flexible fee payment?"
+      ],
+      "answer": "Information regarding installment or flexible fee payment options is provided by the admissions team based on the current admission policy.",
+      "keywords": [
+        "installment",
+        "emi",
+        "semester fee",
+        "payment plan"
+      ]
+    },
+
+    {
+      "intent": "ask_refund_policy",
+      "examples": [
+        "What is the refund policy?",
+        "Can I get a fee refund?",
+        "Is the admission fee refundable?",
+        "Refund rules?",
+        "Fee cancellation policy?"
+      ],
+      "answer": "Fee refund and cancellation policies are governed by the applicable institute and university guidelines. Please contact the admissions team for the latest policy.",
+      "keywords": [
+        "refund",
+        "cancellation",
+        "refund policy"
+      ]
+    },
+
+    {
+      "intent": "ask_scholarship",
+      "examples": [
+        "Do you provide scholarships?",
+        "Is there any scholarship?",
+        "Can I get a scholarship?",
+        "Scholarship available?",
+        "Financial assistance?"
+      ],
+      "answer": "Scholarship availability and eligibility depend on the current admission policy. Please contact the admissions team for the latest scholarship information.",
+      "keywords": [
+        "scholarship",
+        "financial assistance",
+        "fee concession"
+      ]
+    },
+
+    {
+      "intent": "ask_education_loan",
+      "examples": [
+        "Can I get an education loan?",
+        "Do you help with education loans?",
+        "Loan facility available?",
+        "Can I apply for a student loan?"
+      ],
+      "answer": "For information regarding education loan assistance or documentation, please contact the admissions team. They will guide you based on the current process.",
+      "keywords": [
+        "education loan",
+        "student loan",
+        "loan"
+      ]
+    },
+
+    {
+      "intent": "ask_additional_charges",
+      "examples": [
+        "Are there any additional charges?",
+        "Are there any extra fees?",
+        "Any hidden charges?",
+        "Apart from tuition fees, are there other charges?"
+      ],
+      "answer": "The complete fee breakup and any applicable charges are shared by the admissions team during the admission process.",
+      "keywords": [
+        "additional charges",
+        "extra fees",
+        "hidden charges",
+        "fee breakup"
+      ]
+    },
+
+    {
+      "intent": "ask_hostel_fee",
+      "examples": [
+        "What is the hostel fee?",
+        "Hostel charges?",
+        "How much does the hostel cost?",
+        "Accommodation fee?"
+      ],
+      "answer": "Please contact the admissions team for the latest information regarding hostel availability and applicable hostel charges.",
+      "keywords": [
+        "hostel fee",
+        "hostel charges",
+        "accommodation"
+      ]
+    }
+  ]
+}

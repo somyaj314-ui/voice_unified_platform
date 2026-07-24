@@ -1,0 +1,32 @@
+{
+  "fields": {
+    "customer_name": {
+      "type": "text"
+    },
+    "loan_status": {
+      "type": "enum",
+      "values": [
+        "approved",
+        "rejected",
+        "pending"
+      ]
+    },
+    "verification_status": {
+      "type": "boolean",
+      "positive_phrases": [
+        "verified",
+        "done",
+        "yes"
+      ],
+      "negative_phrases": [
+        "not verified",
+        "pending",
+        "no"
+      ]
+    }
+  },
+  "required_order": [
+    "customer_name",
+    "loan_status"
+  ]
+}

@@ -1,0 +1,199 @@
+{
+  "meta": {
+    "kb_name": "meri_mba_pgdm_admissions_kb",
+    "version": "2.0.0",
+    "institution": {
+      "code": "MERI_JANAKPURI",
+      "name": "Management Education & Research Institute",
+      "short_name": "MERI",
+      "campus": "Janakpuri",
+      "city": "New Delhi",
+      "country": "India"
+    },
+    "created_for": "Admission Voice Agent",
+    "supported_programs": [
+      "MBA",
+      "PGDM"
+    ],
+    "supported_languages": [
+      "en",
+      "hi",
+      "hinglish"
+    ],
+    "primary_source_policy": "official_website_only",
+    "primary_sources": [
+      "https://meri.edu.in/",
+      "https://meri.edu.in/meri/programs-mba-pgdm/"
+    ],
+    "knowledge_scope": [
+      "Program Overview",
+      "MBA",
+      "PGDM",
+      "Eligibility",
+      "Admission Process",
+      "Entrance Exams",
+      "Specializations",
+      "Placements",
+      "Internships",
+      "Academics",
+      "Faculty",
+      "Industry Exposure",
+      "Certifications",
+      "Facilities",
+      "Campus Life",
+      "Hostel",
+      "Transport",
+      "Location",
+      "Approvals",
+      "Fees",
+      "Scholarships",
+      "Documents",
+      "Campus Visit",
+      "Counselling",
+      "Brochure",
+      "Contact"
+    ],
+    "excluded_topics": [
+      "Personal opinions",
+      "Unofficial placement statistics",
+      "Unofficial rankings",
+      "Current admission cutoff",
+      "Current fee discounts",
+      "Scholarship amount unless officially published"
+    ],
+    "last_updated": "2026-06-02",
+    "maintainer": "Admission Voice Bot Team"
+  },
+
+  "voice_agent": {
+    "mode": "outbound",
+    "voice_style": "friendly_professional",
+    "max_response_sentences": 3,
+    "max_response_duration_seconds": 25,
+    "allow_followup_questions": true,
+    "allow_context_switch": true,
+    "allow_interruptions": true,
+    "always_return_to_flow": true
+  },
+
+  "conversation": {
+    "goal": "Qualify prospective students, answer admission-related queries, and convert interested candidates into counselling or campus visits.",
+    "primary_cta": [
+      "Book Counselling",
+      "Book Campus Visit",
+      "Share Brochure",
+      "Collect WhatsApp Number"
+    ]
+  },
+
+  "state_to_script_key": {
+    "CALL_CONNECTED": "outbound_intro",
+    "QUALIFICATION_Q1": "qualification_question_1",
+    "PROGRAM_OVERVIEW": "program_overview_intro",
+    "PROGRAM_SELECTION": "program_selection_question",
+    "QUALIFICATION_Q2": "qualification_question_2",
+    "PROGRAM_INFO": "program_information",
+    "SPECIALIZATION_INFO": "specializations",
+    "PLACEMENTS_INFO": "placements",
+    "FACILITIES_INFO": "facilities",
+    "CAMPUS_INFO": "campus_life",
+    "ADMISSION_PROCESS": "admission_process",
+    "DOCUMENTS_INFO": "documents_required",
+    "FEES_INFO": "fees",
+    "VISIT_OPTION": "visit_option",
+    "VISIT_SLOT_CAPTURE": "visit_slot_capture",
+    "WHATSAPP_READBACK": "whatsapp_readback",
+    "WHATSAPP_CONFIRMATION": "whatsapp_confirmation",
+    "BROCHURE_CONFIRMATION": "brochure_confirmation",
+    "COUNSELLOR_TRANSFER": "connect_counsellor",
+    "CLOSING": "closing"
+  },
+
+  "llm_fallback": {
+    "enabled": true,
+    "states": [
+      "QUALIFICATION_Q1",
+      "QUALIFICATION_Q2",
+      "PROGRAM_SELECTION",
+      "VISIT_OPTION",
+      "PROGRAM_INFO"
+    ],
+    "max_consecutive_queries": 3,
+    "resume_original_flow": true
+  },
+
+  "retrieval": {
+    "engine": "hybrid",
+    "search_order": [
+      "intent_match",
+      "semantic_similarity",
+      "keyword_match"
+    ],
+    "minimum_confidence": 0.65,
+    "top_k": 3,
+    "use_related_questions": true,
+    "use_keywords": true,
+    "use_synonyms": true
+  },
+
+  "handoff_policy": {
+    "transfer_to_counsellor_for": [
+      "Current fee structure",
+      "Scholarship details",
+      "Education loan assistance",
+      "Current admission cutoff",
+      "Seat availability",
+      "Admission deadline",
+      "Application status",
+      "Hostel fee",
+      "Payment issues",
+      "Special approval requests"
+    ],
+    "transfer_after_failed_attempts": 2
+  },
+
+  "voice_rules": {
+    "prefer_short_answers": true,
+    "avoid_long_lists": true,
+    "never_guess_information": true,
+    "use_official_information_only": true,
+    "confirm_dynamic_information": true,
+    "avoid_answering_unverified_questions": true
+  },
+
+  "supported_intents": {
+    "programs": true,
+    "mba": true,
+    "pgdm": true,
+    "eligibility": true,
+    "admission_process": true,
+    "entrance_exam": true,
+    "specializations": true,
+    "placements": true,
+    "fees": true,
+    "scholarships": true,
+    "faculty": true,
+    "academics": true,
+    "facilities": true,
+    "campus_life": true,
+    "documents": true,
+    "approvals": true,
+    "location": true,
+    "campus_visit": true,
+    "brochure": true,
+    "contact": true,
+    "repeat": true,
+    "wait": true,
+    "affirmative": true,
+    "negative": true,
+    "human_agent": true,
+    "goodbye": true
+  },
+  "response_constraints": {
+    "voice_safe_only": true,
+    "max_words": 70,
+    "max_followup_questions": 1,
+    "avoid_markdown": true,
+    "avoid_tables": true
+  }
+}

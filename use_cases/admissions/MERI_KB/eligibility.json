@@ -1,0 +1,153 @@
+{
+  "topic": "Eligibility",
+  "description": "Eligibility criteria related knowledge for MERI MBA and PGDM Admission Voice Agent.",
+
+  "faqs": [
+    {
+      "intent": "ask_eligibility",
+      "examples": [
+        "What is the eligibility criteria?",
+        "Who can apply?",
+        "Am I eligible?",
+        "What are the admission requirements?",
+        "What qualification is required?"
+      ],
+      "answer": "Candidates must have a recognized Bachelor's degree with at least 50% aggregate marks. Students appearing in the final year of their graduation may also apply, subject to the applicable admission guidelines.",
+      "keywords": [
+        "eligibility",
+        "criteria",
+        "qualification",
+        "requirements"
+      ]
+    },
+
+    {
+      "intent": "ask_minimum_marks",
+      "examples": [
+        "How many marks are required in graduation?",
+        "Minimum percentage required?",
+        "Is 50 percent required?",
+        "What is the minimum graduation percentage?",
+        "Graduation marks required?"
+      ],
+      "answer": "Candidates must have a minimum of 50% aggregate marks in their Bachelor's degree to be eligible for admission as per the published eligibility criteria.",
+      "keywords": [
+        "50%",
+        "minimum marks",
+        "percentage",
+        "graduation marks"
+      ]
+    },
+
+    {
+      "intent": "ask_less_than_50",
+      "examples": [
+        "I have less than 50 percent in graduation.",
+        "I scored 48 percent.",
+        "I have 45 percent in graduation.",
+        "Can I apply with 49 percent?",
+        "I don't have 50 percent."
+      ],
+      "answer": "As per the published eligibility criteria, candidates are required to have a minimum of 50% aggregate marks in graduation. If your graduation marks are below 50%, you would not meet the current eligibility criteria for admission.",
+      "keywords": [
+        "below 50",
+        "49 percent",
+        "48 percent",
+        "45 percent",
+        "less than 50"
+      ]
+    },
+
+    {
+      "intent": "ask_final_year",
+      "examples": [
+        "Can final year students apply?",
+        "I'm in my final year.",
+        "Can I apply before graduation?",
+        "I'm awaiting my results.",
+        "Can last year students apply?"
+      ],
+      "answer": "Yes. Students appearing in the final year of their Bachelor's degree may apply, subject to the applicable admission guidelines and fulfilment of the eligibility requirements.",
+      "keywords": [
+        "final year",
+        "appearing",
+        "last year",
+        "results awaited"
+      ]
+    },
+
+    {
+      "intent": "ask_stream_eligibility",
+      "examples": [
+        "Can B.Com students apply?",
+        "Can BBA students apply?",
+        "Can BCA students apply?",
+        "Can engineering students apply?",
+        "Can arts students apply?",
+        "Can commerce students apply?",
+        "Can science students apply?"
+      ],
+      "answer": "Candidates with a recognized Bachelor's degree in any discipline who meet the minimum eligibility criteria may apply for admission.",
+      "keywords": [
+        "bcom",
+        "bba",
+        "bca",
+        "engineering",
+        "arts",
+        "commerce",
+        "science"
+      ]
+    },
+
+    {
+      "intent": "ask_work_experience",
+      "examples": [
+        "Is work experience required?",
+        "Do I need job experience?",
+        "Can freshers apply?",
+        "Can I apply without experience?"
+      ],
+      "answer": "A Bachelor's degree meeting the minimum eligibility criteria is required. Please contact the admissions team for the latest information regarding any additional admission requirements.",
+      "keywords": [
+        "work experience",
+        "experience",
+        "freshers",
+        "job"
+      ]
+    },
+
+    {
+      "intent": "ask_age_limit",
+      "examples": [
+        "Is there an age limit?",
+        "Maximum age?",
+        "Minimum age?",
+        "Age criteria?"
+      ],
+      "answer": "The published eligibility information primarily specifies the academic qualification requirements. For any age-related admission policies, please contact the admissions team.",
+      "keywords": [
+        "age",
+        "maximum age",
+        "minimum age"
+      ]
+    },
+
+    {
+      "intent": "ask_reserved_category",
+      "examples": [
+        "What is the eligibility for reserved category?",
+        "Is there any relaxation for SC?",
+        "Eligibility for ST students?",
+        "Eligibility for OBC students?"
+      ],
+      "answer": "Eligibility and reservation policies are governed by the applicable university and admission guidelines. Please contact the admissions team for the latest category-specific eligibility details.",
+      "keywords": [
+        "sc",
+        "st",
+        "obc",
+        "ews",
+        "reserved category"
+      ]
+    }
+  ]
+}

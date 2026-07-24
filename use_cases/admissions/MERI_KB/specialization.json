@@ -1,0 +1,116 @@
+{
+  "topic": "Specializations",
+  "description": "Specialization-track knowledge for the MERI Admission Voice Agent, applicable to MBA (and PGDM where noted).",
+
+  "faqs": [
+    {
+      "intent": "ask_specializations_list",
+      "examples": [
+        "What specializations do you offer?",
+        "List of specializations?",
+        "What streams can I choose?",
+        "Specialization options available?"
+      ],
+      "answer": "Specializations include Marketing, Finance, Human Resource Management, Business Analytics, International Business, and Information Technology.",
+      "keywords": ["specializations", "streams", "list"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_marketing_specialization",
+      "examples": [
+        "Tell me about Marketing specialization.",
+        "What is covered in Marketing?",
+        "Is Marketing a good specialization?"
+      ],
+      "answer": "Marketing focuses on branding, sales, consumer behavior, and marketing strategy, and suits students interested in customer-facing and business growth roles.",
+      "keywords": ["marketing", "branding", "sales"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_finance_specialization",
+      "examples": [
+        "Tell me about Finance specialization.",
+        "What is covered in Finance?",
+        "Is Finance a good specialization?"
+      ],
+      "answer": "Finance covers financial analysis, banking, investment, and corporate finance, and suits students interested in numbers and financial decision-making.",
+      "keywords": ["finance", "banking", "investment"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_hr_specialization",
+      "examples": [
+        "Tell me about HR specialization.",
+        "What is covered in Human Resource Management?",
+        "Is HR a good specialization?"
+      ],
+      "answer": "Human Resource Management covers people management, organizational behavior, and talent management, and suits students interested in recruitment and people operations.",
+      "keywords": ["hr", "human resource", "talent management"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_analytics_specialization",
+      "examples": [
+        "Tell me about Business Analytics.",
+        "What is covered in Analytics?",
+        "Is Business Analytics a good specialization?"
+      ],
+      "answer": "Business Analytics focuses on data-driven decision making, analytics tools, and business insights, and suits students who enjoy working with data and reporting.",
+      "keywords": ["analytics", "data", "business analyst"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_international_business_specialization",
+      "examples": [
+        "Tell me about International Business.",
+        "What is covered in International Business?",
+        "Is International Business a good specialization?"
+      ],
+      "answer": "International Business focuses on global markets, cross-border business, and international trade, and suits students interested in global career exposure.",
+      "keywords": ["international business", "global", "trade"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_it_specialization",
+      "examples": [
+        "Tell me about Information Technology specialization.",
+        "What is covered in the IT specialization?",
+        "Is IT a good specialization for MBA?"
+      ],
+      "answer": "The Information Technology specialization focuses on technology-oriented business management and IT-enabled business processes, suiting students interested in both business and technology.",
+      "keywords": ["information technology", "it specialization", "tech"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_undecided_specialization",
+      "examples": [
+        "I haven't decided my specialization.",
+        "I'm confused about which specialization to choose.",
+        "I don't know which specialization is right for me."
+      ],
+      "answer": "That's completely fine. Our admissions counsellor can help you choose the right specialization based on your interests and career goals.",
+      "keywords": ["undecided", "confused", "not sure"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_specialization_recommendation",
+      "examples": [
+        "Which specialization should I pick?",
+        "Which specialization has better scope?",
+        "Which specialization pays more?",
+        "Recommend a specialization for me."
+      ],
+      "answer": "The right specialization depends on your interests and career goals. Our admissions counsellor can guide you toward the best-fit option and share placement details for each track.",
+      "keywords": ["recommendation", "best specialization", "scope"],
+      "handoff": true
+    }
+  ]
+}

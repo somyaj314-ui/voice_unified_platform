@@ -1,0 +1,66 @@
+{
+  "fields": {
+    "graduation_status": {
+      "type": "enum",
+      "values": [
+        "completed",
+        "final_year",
+        "early_year"
+      ],
+      "allow_overwrite": false
+    },
+    "exam_status": {
+      "type": "enum",
+      "values": [
+        "appeared",
+        "not_appeared"
+      ],
+      "allow_overwrite": false
+    },
+    "exam_name": {
+      "type": "enum",
+      "values": [
+        "CAT",
+        "MAT",
+        "CMAT",
+        "XAT",
+        "GMAT",
+        "SNAP",
+        "NMAT"
+      ],
+      "allow_overwrite": false
+    },
+    "program_interest": {
+      "type": "enum",
+      "values": [
+        "mba",
+        "pgdm",
+        "both"
+      ]
+    },
+    "specialization": {
+      "type": "enum",
+      "values": [
+        "finance",
+        "marketing",
+        "hr",
+        "operations",
+        "analytics"
+      ]
+    },
+    "counselling_mode": {
+      "type": "enum",
+      "values": [
+        "campus_visit",
+        "online",
+        "info_only",
+        "undecided"
+      ]
+    }
+  },
+  "required_order": [
+    "graduation_status",
+    "exam_status",
+    "counselling_mode"
+  ]
+}

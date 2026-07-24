@@ -1,0 +1,94 @@
+{
+  "topic": "Academics, Faculty & Industry Exposure",
+  "description": "Teaching methodology, faculty, certifications, and industry exposure knowledge for the MERI Admission Voice Agent.",
+
+  "faqs": [
+    {
+      "intent": "ask_teaching_methodology",
+      "examples": [
+        "How is teaching done at MERI?",
+        "What is the teaching methodology?",
+        "How are classes conducted?",
+        "What is the learning approach?"
+      ],
+      "answer": "MERI combines classroom teaching with case studies, seminars, workshops, conferences, guest lectures, group discussions, industrial training, and study tours.",
+      "keywords": ["teaching", "methodology", "pedagogy", "learning approach"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_case_study_learning",
+      "examples": [
+        "Do you use case studies?",
+        "Is learning practical?",
+        "Are there live projects?",
+        "How practical is the curriculum?"
+      ],
+      "answer": "Yes, the curriculum uses case-based learning, live projects, and workshop participation to build practical business skills alongside classroom theory.",
+      "keywords": ["case study", "live projects", "practical learning"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_faculty_profile",
+      "examples": [
+        "Tell me about the faculty.",
+        "Who teaches at MERI?",
+        "Are faculty experienced?",
+        "Faculty qualifications?"
+      ],
+      "answer": "MERI's teaching involves a mix of academic faculty and industry speakers who bring in real-world business experience. Detailed faculty profiles can be shared by the admissions team.",
+      "keywords": ["faculty", "professors", "teachers"],
+      "handoff": true
+    },
+
+    {
+      "intent": "ask_certifications",
+      "examples": [
+        "Do you offer certifications?",
+        "Are there certificate courses?",
+        "What certifications can I earn?",
+        "Skill enhancement programs?"
+      ],
+      "answer": "MERI offers 20-plus skill enhancement programs and certificate courses as part of the curriculum to add value beyond the core degree.",
+      "keywords": ["certification", "certificate course", "skill enhancement"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_guest_lectures",
+      "examples": [
+        "Do you have guest lectures?",
+        "Are there industry speakers?",
+        "Do professionals visit the campus?"
+      ],
+      "answer": "Yes, MERI regularly hosts guest lectures, media talks, alumni talks, and entrepreneurial talks from industry professionals.",
+      "keywords": ["guest lecture", "industry speaker", "alumni talk"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_industry_exposure",
+      "examples": [
+        "What industry exposure do you provide?",
+        "Do students interact with companies?",
+        "Is there industrial training?"
+      ],
+      "answer": "Students get industry exposure through workshops, seminars, internships, guest lectures, and industrial training as part of the experiential learning model.",
+      "keywords": ["industry exposure", "industrial training", "internship"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_global_exposure",
+      "examples": [
+        "Do you offer international exposure?",
+        "Is there a student exchange program?",
+        "Any foreign university tie-ups?"
+      ],
+      "answer": "MERI has tie-ups with 26 foreign universities that support student exchange and global exposure opportunities.",
+      "keywords": ["global exposure", "exchange program", "foreign university"],
+      "handoff": false
+    }
+  ]
+}

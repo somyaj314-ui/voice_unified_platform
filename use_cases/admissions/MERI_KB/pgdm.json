@@ -1,0 +1,236 @@
+{
+  "topic": "PGDM",
+  "description": "PGDM programme related knowledge for the MERI Admission Voice Agent.",
+
+  "faqs": [
+    {
+      "intent": "ask_pgdm_overview",
+      "examples": [
+        "Tell me about PGDM.",
+        "What is PGDM?",
+        "PGDM details.",
+        "I want information about PGDM.",
+        "Can you tell me about the PGDM programme?",
+        "PGDM course information."
+      ],
+      "answer": "The PGDM at MERI is an AICTE-approved two-year full-time management programme designed to prepare students for leadership roles through industry-oriented learning, practical exposure, and skill development.",
+      "keywords": [
+        "pgdm",
+        "programme",
+        "course",
+        "management"
+      ]
+    },
+
+    {
+      "intent": "ask_pgdm_duration",
+      "examples": [
+        "How long is PGDM?",
+        "PGDM duration?",
+        "How many years is PGDM?",
+        "What is the duration of PGDM?",
+        "Is PGDM full time?"
+      ],
+      "answer": "The PGDM is a two-year full-time management programme.",
+      "keywords": [
+        "duration",
+        "years",
+        "full time"
+      ]
+    },
+
+    {
+      "intent": "ask_pgdm_approval",
+      "examples": [
+        "Is PGDM approved?",
+        "Is PGDM AICTE approved?",
+        "Who approves the PGDM programme?",
+        "Is the PGDM valid?",
+        "Is PGDM recognized?"
+      ],
+      "answer": "The PGDM programme at MERI is approved by AICTE.",
+      "keywords": [
+        "AICTE",
+        "approved",
+        "recognized"
+      ]
+    },
+
+    {
+      "intent": "ask_pgdm_specializations",
+      "examples": [
+        "What specializations are available in PGDM?",
+        "Which PGDM specializations do you offer?",
+        "PGDM streams?",
+        "PGDM specialization list?",
+        "What are the specialization options in PGDM?"
+      ],
+      "answer": "The PGDM programme offers specializations in Marketing, Finance, Human Resource Management, Business Analytics, International Business, and Information Technology.",
+      "keywords": [
+        "specialization",
+        "marketing",
+        "finance",
+        "hr",
+        "analytics",
+        "international business",
+        "it"
+      ]
+    },
+
+    {
+      "intent": "ask_pgdm_curriculum",
+      "examples": [
+        "What is taught in PGDM?",
+        "PGDM syllabus?",
+        "PGDM curriculum?",
+        "What subjects are covered in PGDM?",
+        "How is PGDM taught?"
+      ],
+      "answer": "The PGDM programme includes case studies, management simulations, live projects, workshops, guest lectures, internships, presentations, and industry interaction to provide practical management education.",
+      "keywords": [
+        "curriculum",
+        "subjects",
+        "syllabus",
+        "learning"
+      ]
+    },
+
+    {
+      "intent": "ask_pgdm_industry_exposure",
+      "examples": [
+        "Does PGDM provide industry exposure?",
+        "Are there internships in PGDM?",
+        "Do PGDM students get live projects?",
+        "Is corporate exposure included in PGDM?",
+        "What practical exposure does PGDM provide?"
+      ],
+      "answer": "The PGDM programme emphasizes industry-oriented learning through internships, live projects, guest lectures, workshops, management simulations, and corporate interaction.",
+      "keywords": [
+        "industry",
+        "internship",
+        "live projects",
+        "corporate",
+        "guest lectures"
+      ]
+    },
+
+    {
+      "intent": "ask_pgdm_eligibility",
+      "examples": [
+        "Who can apply for PGDM?",
+        "PGDM eligibility?",
+        "Am I eligible for PGDM?",
+        "Can final-year students apply for PGDM?",
+        "Graduation required for PGDM?"
+      ],
+      "answer": "Students who have completed graduation or are in their final year can connect with the admissions team to verify the latest PGDM eligibility requirements.",
+      "keywords": [
+        "eligibility",
+        "graduation",
+        "final year"
+      ]
+    },
+
+    {
+      "intent": "ask_pgdm_admission",
+      "examples": [
+        "How can I get admission in PGDM?",
+        "PGDM admission process?",
+        "How do I apply for PGDM?",
+        "PGDM admission steps?"
+      ],
+      "answer": "The admission process includes confirming eligibility, discussing the programme with the admissions team, completing counselling, submitting the required documents, and following the institute's admission procedure.",
+      "keywords": [
+        "admission",
+        "apply",
+        "process"
+      ]
+    },
+
+    {
+      "intent": "ask_pgdm_fees",
+      "examples": [
+        "PGDM fees?",
+        "How much is the PGDM fee?",
+        "PGDM fee structure?",
+        "Semester fee for PGDM?",
+        "Total PGDM fees?"
+      ],
+      "answer": "The latest PGDM fee structure is shared by the admissions counsellor. Please contact the admissions team for the most up-to-date fee details.",
+      "keywords": [
+        "fees",
+        "cost",
+        "payment",
+        "price"
+      ]
+    },
+
+    {
+      "intent": "ask_pgdm_placements",
+      "examples": [
+        "Does PGDM have placements?",
+        "PGDM placement support?",
+        "What is the PGDM placement record?",
+        "PGDM average package?",
+        "PGDM highest package?"
+      ],
+      "answer": "MERI provides placement support, industry exposure, and employability-focused learning for PGDM students. The latest placement statistics and recruiter information can be shared during counselling.",
+      "keywords": [
+        "placements",
+        "package",
+        "career",
+        "jobs"
+      ]
+    },
+
+    {
+      "intent": "ask_pgdm_documents",
+      "examples": [
+        "Which documents are required for PGDM admission?",
+        "PGDM admission documents?",
+        "What documents should I submit for PGDM?"
+      ],
+      "answer": "Generally required documents include graduation marksheets, final-year proof if applicable, entrance exam scorecard if available, ID proof, and passport-size photographs.",
+      "keywords": [
+        "documents",
+        "marksheet",
+        "certificate",
+        "id proof"
+      ]
+    },
+
+    {
+      "intent": "ask_pgdm_brochure",
+      "examples": [
+        "Can I get the PGDM brochure?",
+        "Send PGDM brochure.",
+        "Can you WhatsApp the PGDM brochure?",
+        "PGDM prospectus?"
+      ],
+      "answer": "Yes, the PGDM brochure can be shared on your WhatsApp after confirming your WhatsApp number.",
+      "keywords": [
+        "brochure",
+        "prospectus",
+        "whatsapp"
+      ]
+    },
+
+    {
+      "intent": "compare_mba_pgdm",
+      "examples": [
+        "What is the difference between MBA and PGDM?",
+        "MBA vs PGDM.",
+        "Which is better, MBA or PGDM?",
+        "Should I choose MBA or PGDM?",
+        "Compare MBA and PGDM."
+      ],
+      "answer": "MERI offers both MBA and PGDM programmes. The MBA is affiliated with Guru Gobind Singh Indraprastha University (GGSIPU), while the PGDM is an AICTE-approved autonomous management programme. Both programmes focus on management education, practical learning, industry exposure, and career development. An admissions counsellor can help you choose the programme that best matches your career goals.",
+      "keywords": [
+        "mba vs pgdm",
+        "difference",
+        "compare",
+        "better"
+      ]
+    }
+  ]
+}

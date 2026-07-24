@@ -1,0 +1,85 @@
+{
+  "topic": "Conversation Control",
+
+  "controls": [
+
+    {
+      "intent": "repeat_last_response",
+      "examples": [
+        "Repeat that.",
+        "Say that again.",
+        "Can you repeat?",
+        "What did you say?",
+        "Repeat please."
+      ]
+    },
+
+    {
+      "intent": "speak_slower",
+      "examples": [
+        "Speak slowly.",
+        "Can you speak slower?",
+        "Slow down.",
+        "Please speak slowly."
+      ]
+    },
+
+    {
+      "intent": "did_not_understand",
+      "examples": [
+        "I didn't understand.",
+        "I don't understand.",
+        "Can you explain again?",
+        "I missed that."
+      ]
+    },
+
+    {
+      "intent": "pause",
+      "examples": [
+        "One moment.",
+        "Please wait.",
+        "Hold on.",
+        "Give me a minute."
+      ]
+    },
+
+    {
+      "intent": "continue",
+      "examples": [
+        "Continue.",
+        "Go ahead.",
+        "Please continue."
+      ]
+    },
+
+    {
+      "intent": "stop",
+      "examples": [
+        "Stop.",
+        "That's enough.",
+        "No more."
+      ]
+    },
+
+    {
+      "intent": "goodbye",
+      "examples": [
+        "Bye.",
+        "Goodbye.",
+        "Thank you.",
+        "Thanks."
+      ]
+    },
+
+    {
+      "intent": "human_agent",
+      "examples": [
+        "Connect me to a human.",
+        "Talk to an agent.",
+        "I want a counsellor.",
+        "Transfer my call."
+      ]
+    }
+  ]
+}

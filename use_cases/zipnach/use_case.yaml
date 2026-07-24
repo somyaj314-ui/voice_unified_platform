@@ -1,0 +1,9 @@
+name: zipnach
+display_name: Zipnach Voice Bot
+server_port: 8768
+asterisk:
+  app_name: zipnach_agent
+tts:
+  preset_id: my_speaker_saavi
+llm:
+  model: qwen2.5:1.5b

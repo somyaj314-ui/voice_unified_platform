@@ -1,0 +1,33 @@
+# Audio I/O
+soundfile
+scipy
+numpy
+librosa
+sounddevice
+
+# PyTorch
+torch
+torchaudio
+
+# STT — Whisper
+openai-whisper
+faster-whisper
+
+# RAG — Embeddings
+sentence-transformers
+faiss-cpu
+
+# LLM via Ollama
+ollama
+
+# WebSocket server & API
+websockets
+fastapi
+uvicorn
+httpx
+aiohttp
+
+# Utilities
+python-dotenv
+pyyaml
+requests

@@ -1,0 +1,79 @@
+{
+  "topic": "Location, Visit & Contact",
+  "description": "Campus location, visit scheduling, and contact knowledge for the MERI Admission Voice Agent.",
+
+  "faqs": [
+    {
+      "intent": "ask_location_address",
+      "examples": [
+        "Where is MERI located?",
+        "What is the campus address?",
+        "Which city is MERI in?"
+      ],
+      "answer": "MERI's campus is located in Janakpuri, New Delhi.",
+      "keywords": ["location", "address", "janakpuri", "delhi"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_nearest_metro",
+      "examples": [
+        "What is the nearest metro station?",
+        "How do I reach by metro?",
+        "Is MERI near a metro station?"
+      ],
+      "answer": "For the nearest metro station and directions to reach the campus, please connect with the admissions team.",
+      "keywords": ["metro", "nearest station", "directions"],
+      "handoff": true
+    },
+
+    {
+      "intent": "ask_campus_visit_slots",
+      "examples": [
+        "Can I visit the campus?",
+        "When can I schedule a visit?",
+        "What days can I come for a visit?",
+        "Weekday or weekend visit?"
+      ],
+      "answer": "Yes, you can schedule a campus visit on a weekday or weekend, based on your convenience.",
+      "keywords": ["campus visit", "visit slot", "weekday", "weekend"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_online_counselling",
+      "examples": [
+        "Can I have an online counselling session?",
+        "Is a video call option available?",
+        "Can I talk to a counsellor online?"
+      ],
+      "answer": "Yes, you can opt for a quick online counselling session with our admissions counsellor as an alternative to an in-person campus visit.",
+      "keywords": ["online counselling", "video call", "virtual session"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_contact_helpline",
+      "examples": [
+        "What is your contact number?",
+        "How can I contact the admissions office?",
+        "Is there a helpline number?"
+      ],
+      "answer": "You can reach our admissions helpline, and our team will assist you with any queries. I can also arrange a callback for you.",
+      "keywords": ["contact number", "helpline", "phone number"],
+      "handoff": false
+    },
+
+    {
+      "intent": "ask_map_directions",
+      "examples": [
+        "Can you share the map location?",
+        "How do I find directions to MERI?",
+        "Send me the map link."
+      ],
+      "answer": "We can share the campus location and directions on WhatsApp along with the brochure.",
+      "keywords": ["map", "directions", "location link"],
+      "handoff": false
+    }
+  ]
+}
