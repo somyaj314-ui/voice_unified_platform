@@ -44,9 +44,33 @@
       "script_key": "program_selection_question",
       "llm_fallback": true,
       "transitions": {
-        "program_mba": "VISIT_OPTION",
-        "program_pgdm": "VISIT_OPTION",
-        "program_both": "VISIT_OPTION",
+        "program_mba": "SPECIALIZATION_INFO",
+        "program_pgdm": "SPECIALIZATION_INFO",
+        "program_both": "SPECIALIZATION_INFO",
+        "default": "SPECIALIZATION_INFO"
+      }
+    },
+    "PROGRAM_INFO": {
+      "script_key": "program_selection_question",
+      "transitions": {
+        "default": "SPECIALIZATION_INFO"
+      }
+    },
+    "SPECIALIZATION_INFO": {
+      "script_key": "specializations",
+      "transitions": {
+        "default": "CAMPUS_INFO"
+      }
+    },
+    "CAMPUS_INFO": {
+      "script_key": "campus_life",
+      "transitions": {
+        "default": "CONVERSION"
+      }
+    },
+    "CONVERSION": {
+      "script_key": "conversion",
+      "transitions": {
         "default": "VISIT_OPTION"
       }
     },

@@ -242,7 +242,8 @@ async def _enqueue_audio(queue: asyncio.Queue, audio: bytes, pre_clear: bool = F
 @app.websocket("/ari/audio")
 async def handle_ari_audio(websocket: WebSocket):
     await websocket.accept()
-    session_id = str(uuid.uuid4())
+    # Create a cleaner, prefixed ID using the first 8 characters of a UUID
+    session_id = f"{_cfg.name}-{uuid.uuid4().hex[:8]}"
     print(f"[WS] ARI Connection accepted: {session_id}")
     
     # Resolve pending call info via caller id or similar logic if needed

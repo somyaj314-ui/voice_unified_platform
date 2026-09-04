@@ -26,6 +26,11 @@
   "step_scripts_outbound": {
     "outbound_intro": "Hello, am I speaking with {student_name}? This is the Admissions Assistant calling from Management Education & Research Institute in Janakpuri, Delhi. You had recently shown interest in management studies, so I’m calling to briefly guide you about our MBA and PGDM programs and the admission process. It will just take about a minute - is this a good time to continue?",
     "admission_name_confirm": "Am I speaking with {student_name}?",
+    "identity_ack_yes": "Thank you for your time {student_name}.",
+    "identity_ask_availability": "Thank you for letting me know. May I know if {student_name} is available?",
+    "identity_wait": "Sure, I'll wait.",
+    "identity_not_available": "No problem. Is there a better time to call?",
+    "identity_wrong_number": "Thank you for informing me. I'll update our records. Have a nice day.",
 
     "qualification_question_1": "Have you completed your graduation, or are you currently in your final year?",
     "qualification_question_2": "Have you appeared for CAT, MAT, CMAT, or any management entrance exam?",
@@ -42,9 +47,9 @@
 
     "program_overview_intro": "At MERI, we offer two management programs — our MBA program affiliated with Guru Gobind Singh Indraprastha University and our AICTE-approved PGDM program. Both programs focus on industry exposure, certifications, internships, and strong placement support.",
     "program_selection_question": "Would you like to know more about our MBA program, our PGDM program, or both?",
-    "mba_info": "Our MBA program is affiliated with GGSIP University and combines strong academics with practical industry exposure and placement support.",
-    "pgdm_info": "Our AICTE-approved PGDM program offers industry-focused learning, certifications, live projects, and excellent corporate exposure.",
-    "program_both_info": "Both programs offer strong placement support and industry exposure. Our counsellor can help you decide which option suits your career goals best.",
+    "mba_info": "Our MBA program is affiliated with GGSIP University — a government university — and is recognised across corporates. It covers finance, marketing, HR, and operations with a strong focus on placements and live industry projects.",
+    "pgdm_info": "Our AICTE-approved PGDM is a two-year industry-focused diploma. It includes certifications, live projects, and corporate immersion, making it highly valued by top recruiters.",
+    "program_both_info": "Great choice! Our MBA is a university-affiliated degree from GGSIPU, while our PGDM is AICTE-approved and more industry-intensive. Both have strong placements — our counsellor can help you pick the right fit.",
     "programinfo_interest_to_session": "Great question. Our admission counsellor will share full details - fee structure, scholarships, and placement records - in a free session. Shall I schedule that for you?",
     "programinfo_specific_program": "Noted. I'll focus on {program} for you. Our counsellor will give you a complete overview in a free session. Shall I schedule that for you?",
     "programinfo_silence_nudge": "I understand - management education is a big decision. Would you like to speak with an admission expert who can answer your specific questions?",
@@ -68,12 +73,12 @@
 
     "visit_option": "Would you prefer visiting our Janakpuri campus in person or would an online counselling session work better for you?",
     "visit_option_intro": "To guide you better on eligibility, scholarships, and placements, our counsellor offers a free career counselling session. Would you prefer visiting our campus in Janakpuri, or a quick online counselling session?",
-    "visit_ack_campus": "Excellent! We'd love to host you at our Janakpuri campus. Which day works best for you — weekday or weekend?",
-    "visit_ack_online": "Perfect! Our counsellor will connect with you over a video call. What time works best — morning, afternoon, or evening?",
+    "visit_ack_campus": "Excellent! We'd love to host you at our Janakpuri campus. What day and time would be convenient for you?",
+    "visit_ack_online": "Perfect! Our counsellor will connect with you over a video call. What day and time would be convenient for you?",
     "visit_ack_undecided": "No problem at all. Our counsellor can help you decide later. I'll share the brochure and campus details on WhatsApp.",
     "visit_ack_decline": "Of course! I'll share the brochure and admission details on WhatsApp. You can explore in your own time.",
-    "visit_slot_campus": "Which day works best for you — weekday or weekend?",
-    "visit_slot_online": "What time works best — morning, afternoon, or evening?",
+    "visit_slot_campus":"Great! We'd be happy to arrange a campus visit. What day and time would be convenient for you?",
+    "visit_slot_online": "Great. We can arrange an online counselling session. What day and time works best for you?",
     "visit_slot_confirmed": "Noted! Our team will reach out to confirm.",
 
     "whatsapp_confirmation": "I'll send the brochure and campus details on WhatsApp to the number you're calling from right away.",
@@ -84,10 +89,10 @@
     "whatsapp_ack_refused": "That's completely fine! Our admissions team will be in touch with you soon.",
     "whatsapp_fallback": "No problem, I'll send the details to your registered number.",
 
-    "closing": "Thank you for your time, {student_name}! Our admissions team will assist you further with your MBA and PGDM process. You'll receive details on WhatsApp shortly. Have a great day!",
-    "closing_positive": "Wonderful! All the best with your admission journey, {student_name}. Take care!",
-    "closing_lastminute_fees": "Great question! Our counsellor will share the complete fee structure and scholarship details in your session. It's all covered — you're in good hands!",
-    "closing_lastminute_general": "Our counsellor will cover everything in your session — eligibility, fees, placements, and scholarships. You're all set!",
+    "closing": "Thank you so much for your time, {student_name}! You'll receive the MERI brochure and campus details on WhatsApp shortly. Our admissions counsellor will also follow up to schedule your session. Have a wonderful day!",
+    "closing_positive": "That's great to hear, {student_name}! You're all set — our team will be in touch soon. Wishing you all the best with your admission journey. Take care!",
+    "closing_lastminute_fees": "Absolutely — our counsellor will walk you through the complete fee structure, scholarships, and payment options in your session. Everything will be covered in detail!",
+    "closing_lastminute_general": "Our counsellor will cover everything — eligibility, fees, placements, and scholarships — in your upcoming session. You're in good hands!",
     "closing_silent": "We'll be in touch soon, {student_name}. Have a wonderful day!",
     "closing_helpline_note": "If you have any questions before then, feel free to call our admissions helpline at {helpline}.",
 
@@ -103,138 +108,39 @@
 
   "audio_clips": {
     "call_disclaimer": [
-      "pipeline/audio/audio_converted/call_disclaimer.ul"
+      "use_cases/admissions/recording/call_disclaimer.ul"
     ],
     "admission_intro_p1": [
-      "pipeline/audio/audio_converted/admission_intro_part1.ul"
+      "use_cases/admissions/recording/admission_intro_part1.ul"
     ],
     "admission_intro_p3": [
-      "pipeline/audio/audio_converted/admission_intro_part2.ul"
+      "use_cases/admissions/recording/admission_intro_part2.ul"
     ],
     "qualification_question_1": [
-      "pipeline/audio/audio_converted/qualification_question_1.ul"
+      "use_cases/admissions/recording/qualification_question_1.ul"
     ],
     "graduation_final_year_ack": [
-      "pipeline/audio/audio_converted/qualification_ack_final_year.ul"
+      "use_cases/admissions/recording/qualification_ack_final_year.ul"
     ],
     "graduation_ack_graduated": [
-      "pipeline/audio/audio_converted/qualification_ack_graduated.ul"
+      "use_cases/admissions/recording/qualification_ack_graduated.ul"
     ],
     "graduation_ack_early_interest": [
-      "pipeline/audio/audio_converted/qualification_ack_early_interest.ul"
+      "use_cases/admissions/recording/qualification_ack_early_interest.ul"
     ],
     "mba_overview_intro": [
-      "pipeline/audio/audio_converted/mba_overview.ul"
+      "use_cases/admissions/recording/mba_overview.ul"
     ],
     "pgdm_overview_intro": [
-      "pipeline/audio/audio_converted/pgdm_overview.ul"
+      "use_cases/admissions/recording/pgdm_overview.ul"
     ],
     "both_programs_overview_intro": [
-      "pipeline/audio/audio_converted/both_overview.ul"
+      "use_cases/admissions/recording/both_overview.ul"
     ],
     "program_overview_intro": [
-      "pipeline/audio/audio_converted/program_overview_part1.ul",
-      "pipeline/audio/audio_converted/program_overview_part2.ul",
-      "pipeline/audio/audio_converted/program_overview_part3.ul"
+      "use_cases/admissions/recording/program_overview_part1.ul",
+      "use_cases/admissions/recording/program_overview_part2.ul",
+      "use_cases/admissions/recording/program_overview_part3.ul"
     ]
-  },
-
-  "voice": {
-    "persona_name": "Admissions Assistant",
-    "tone": "warm_clear_professional",
-    "max_sentences": 2,
-    "max_words_per_turn": 45,
-    "ask_one_question_at_a_time": true,
-    "confirm_critical_fields": true,
-    "low_confidence_clarify": "Just to confirm, are you asking about {topic}?",
-    "fallback_on_silence": "I may have missed that. Could you please say it in a few words?",
-    "fallback_on_interrupt": "Sure, please go ahead.",
-    "pronunciation_hints": {
-      "MERI": "May-ree",
-      "GGSIPU": "G-G-S-I-P-U",
-      "AICTE": "A-I-C-T-E",
-      "PGDM": "P-G-D-M"
-    }
-  },
-
-  "objection_handling": {
-    "scenarios": [
-      {
-        "objection_id": "obj_001",
-        "trigger": "I am in final year only",
-        "intent": "eligibility_concern",
-        "acknowledgement": "That’s absolutely fine.",
-        "reassurance": "Final-year students can also connect with the admissions team for guidance.",
-        "factual_response": "We can help you understand the next steps based on your current academic stage.",
-        "conversion_prompt": "Would you like a quick counselling session?",
-        "handoff_required": false
-      },
-      {
-        "objection_id": "obj_002",
-        "trigger": "I have not given any exam",
-        "intent": "exam_concern",
-        "acknowledgement": "That’s okay.",
-        "reassurance": "Our counsellor can still guide you based on your profile.",
-        "factual_response": "We’ll note your status and connect you with the admissions team for the best available path.",
-        "conversion_prompt": "Would you prefer an online counselling session or a campus visit?",
-        "handoff_required": false
-      },
-      {
-        "objection_id": "obj_003",
-        "trigger": "Tell me exact fee now",
-        "intent": "fee_detail",
-        "acknowledgement": "Sure.",
-        "reassurance": "The latest fee structure is best explained by our admissions counsellor.",
-        "factual_response": "That ensures you get the most current and accurate fee details.",
-        "conversion_prompt": "Shall I arrange a counselling call for that?",
-        "handoff_required": true
-      }
-    ]
-  },
-
-  "response_guardrails": {
-    "do_not_claim": [
-      "guaranteed admission",
-      "guaranteed placement",
-      "guaranteed scholarship",
-      "exact fee unless currently verified",
-      "hostel availability unless verified",
-      "exact cut-off unless verified",
-      "exact admission deadline unless verified"
-    ],
-    "always_clarify_if_uncertain": [
-      "fees",
-      "scholarships",
-      "cut-offs",
-      "hostel",
-      "seat availability",
-      "exact exam policy",
-      "exact intake"
-    ],
-    "escalate_to_counsellor_when": [
-      "user asks exact fee breakup",
-      "user asks scholarship amount or concession",
-      "user asks exact admission eligibility against marks or score",
-      "user asks seat confirmation",
-      "user asks refund policy",
-      "user asks detailed comparison between MBA and PGDM for career choice"
-    ],
-    "privacy_rules": {
-      "collect_whatsapp_with_consent": true,
-      "mask_sensitive_data_in_logs": true,
-      "never_repeat_full_number_more_than_once": true
-    }
-  },
-
-  "followup_sequences": {
-    "whatsapp_templates": {
-      "post_call_general": "Hello {name}, thank you for speaking with the admissions team at MERI Janakpuri. We will assist you with MBA / PGDM admission guidance shortly.",
-      "post_call_campus_visit": "Hello {name}, thank you for choosing a campus visit for MERI Janakpuri. Our team will connect with you to confirm the visit slot.",
-      "post_call_online_counselling": "Hello {name}, thank you for choosing an online counselling session for MERI Janakpuri. Our team will share the session details shortly.",
-      "brochure_share": "Hello {name}, thank you for your interest in MERI Janakpuri. Sharing the MBA / PGDM brochure and admission details here.",
-      "missed_call_followup": "Hello {name}, we tried reaching you regarding MBA / PGDM admissions at MERI Janakpuri. You can reply here for counselling support.",
-      "warm_lead_nudge": "Hello {name}, just following up on your interest in MERI’s MBA / PGDM programmes. We can help you with counselling or campus visit scheduling.",
-      "cold_lead_reengagement": "Hello {name}, if you are still exploring MBA / PGDM options, MERI Janakpuri admissions support is available for counselling."
-    }
   }
 }

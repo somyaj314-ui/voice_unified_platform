@@ -1,8 +1,7 @@
 """
-llm_engine.py — Generic LLM engine (Qwen 2.5 1.5B via vLLM).
-=============================================================
-System prompt is loaded from the use case config — NOT hardcoded here.
-Every use case provides its own system_prompt.txt.
+llm_engine.py — Generic LLM engine (strictly for Intent Classification and Routing).
+======================================================================================
+System prompt is loaded from the use case config and injected into intent classifiers.
 """
 
 from __future__ import annotations
@@ -23,28 +22,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# ── Module-level config (set once at startup via configure_llm) ───────────────
+# ── Module-level config ───────────────
 _SYSTEM_PROMPT: str = ""        # loaded from use_case/system_prompt.txt
 _LLM_BACKEND: str = os.getenv("LLM_BACKEND", "vllm").strip().lower()
 _VLLM_BASE_URL: str = os.getenv("VLLM_BASE_URL", "http://localhost:8002/v1").rstrip("/")
 _VLLM_API_KEY: str = os.getenv("VLLM_API_KEY", "EMPTY")
 _VLLM_MODEL: str = os.getenv("VLLM_MODEL", "qwen2.5:1.5b")
 _INTENT_MODEL: str = os.getenv("VLLM_INTENT_MODEL", _VLLM_MODEL)
-_MAX_TOKENS: int = int(os.getenv("LLM_MAX_TOKENS", "150"))
-_TEMPERATURE: float = float(os.getenv("LLM_TEMPERATURE", "0.3"))
-
-# ── Category map for LLM intent classifier (generic) ─────────────────────────
-_DEFAULT_CATEGORY_MAP = {
-    "CONFIRMATION": "affirm",
-    "REJECTION":    "deny",
-    "QUERY":        "unknown",
-    "REPEAT":       "repeat",
-    "WAIT":         "wait",
-    "GOODBYE":      "exit",
-    "EXIT":         "exit",
-    "NOISE":        "unknown",
-}
-_LLM_CATEGORY_MAP: dict = {}
 
 
 def configure_llm(
@@ -59,10 +43,9 @@ def configure_llm(
 ) -> None:
     """
     Call at startup with the use-case config.
-    Resets the LLM singleton so it picks up new settings.
+    Resets the LLM singleton so it picks up new settings and system prompt.
     """
-    global _SYSTEM_PROMPT, _LLM_BACKEND, _VLLM_BASE_URL, _VLLM_MODEL
-    global _MAX_TOKENS, _TEMPERATURE, _LLM_CATEGORY_MAP, _llm
+    global _SYSTEM_PROMPT, _LLM_BACKEND, _VLLM_BASE_URL, _VLLM_MODEL, _llm
 
     _SYSTEM_PROMPT = system_prompt
     if backend:
@@ -71,11 +54,6 @@ def configure_llm(
         _VLLM_BASE_URL = base_url.rstrip("/")
     if model:
         _VLLM_MODEL = model
-    if max_tokens is not None:
-        _MAX_TOKENS = max_tokens
-    if temperature is not None:
-        _TEMPERATURE = temperature
-    _LLM_CATEGORY_MAP = category_map or _DEFAULT_CATEGORY_MAP
     _llm = None   # force re-init
 
 
@@ -83,9 +61,8 @@ def configure_llm(
 
 class LLMEngine:
     """
-    Generic LLM wrapper — vLLM (primary) or Ollama (fallback).
-    The system prompt is injected per-call from the use-case config,
-    NOT embedded in this class.
+    Generic LLM wrapper for classification/routing.
+    The system prompt is injected per-call from the use-case config.
     """
 
     def __init__(self):
@@ -166,65 +143,11 @@ class LLMEngine:
             content = "".join(part.get("text", "") for part in content if isinstance(part, dict))
         return str(content).strip()
 
-    # ── Public API ────────────────────────────────────────────────────────────
+    # ── Intent Classification APIs ────────────────────────────────────────────
 
-    def generate_response(
-        self,
-        user_message: str,
-        conversation_history: list,
-        session_info: dict | None = None,
-        context: str = "",
-    ) -> str:
+    def classify_intent(self, user_text: str, current_state: str, history: list = None) -> str:
         """
-        Generate a voice-ready response using the use-case system prompt.
-        system_prompt is read from the module-level _SYSTEM_PROMPT
-        which is set by configure_llm() at startup.
-        """
-        system_prompt = _SYSTEM_PROMPT or "You are a helpful voice assistant."
-
-        if session_info:
-            system_prompt += "\n\n[SESSION CONTEXT]"
-            name = session_info.get("student_name") or session_info.get("customer_name")
-            if name:
-                system_prompt += f"\n- Name: {name}"
-            for key, label in [
-                ("graduation_status", "Graduation"),
-                ("exam_name", "Exam given"),
-                ("specialization", "Interested specialization"),
-                ("counselling_mode", "Counselling preference"),
-                ("state", "Current flow step"),
-            ]:
-                if session_info.get(key):
-                    system_prompt += f"\n- {label}: {session_info[key]}"
-            system_prompt += "\n\nIMPORTANT: Keep the answer to 1-2 sentences. No bullet points. Voice-ready."
-
-        messages = [{"role": "system", "content": system_prompt}]
-        recent_history = conversation_history[-6:] if len(conversation_history) > 6 else conversation_history
-        messages.extend(recent_history)
-
-        if context:
-            augmented = f"[Knowledge base context: {context}]\n\nUser said: {user_message}"
-        else:
-            augmented = user_message
-        messages.append({"role": "user", "content": augmented})
-
-        try:
-            reply = self._call_chat_backend(
-                messages=messages,
-                model_name=self.vllm_model if self.backend == "vllm" else self.ollama_model,
-                temperature=_TEMPERATURE,
-                max_tokens=_MAX_TOKENS,
-            )
-            reply = reply.replace("*", "").replace("#", "").replace("`", "")
-            print(f"[LLM] Generated: '{reply[:80]}'")
-            return reply
-        except Exception as e:
-            print(f"[LLM] Error: {e}")
-            return "Let me get you the right information. Could you please hold on?"
-
-    def classify_intent(self, user_text: str, current_state: str, history: list | None = None) -> str:
-        """
-        Classify user intent when keywords fail.
+        Use local LLM to classify user intent when keywords fail.
         Returns one of: CONFIRMATION, REJECTION, QUERY, REPEAT, WAIT, GOODBYE, EXIT, NOISE
         """
         history_context = ""
@@ -235,27 +158,32 @@ class LLMEngine:
                 role = "Agent" if msg["role"] == "assistant" else "User"
                 history_context += f"{role}: {msg['content']}\n"
 
-        prompt = f"""Classify the user's intent for a voice assistant.
-Current State: {current_state}
+        prompt = f"""You are an intent classifier for a voice assistant.
+System Context (Use Case Info):
+{_SYSTEM_PROMPT}
+
+Current State of workflow: {current_state}
 {history_context}
-User said: "{user_text}"
+User just said: "{user_text}"
 
+Understand user input in any language, but classify intent only.
 Categories:
-- CONFIRMATION: yes, done, completed, haan, hogya, kar liya
-- REJECTION: no, cancel, nahi, nhi, abhi nahi
-- QUERY: user asks a question or needs info
-- REPEAT: asks to repeat (phir se, dobara, repeat)
-- WAIT: asks to wait (ruko, hold on, one minute)
-- GOODBYE: wants to end call (bye, dhanyavaad)
-- EXIT: wants to stop and do later (baad me, phir kabhi)
-- NOISE: irrelevant noise or greetings
+- CONFIRMATION: User says yes, done, completed, ho gaya, haan, hogya, kar liya, etc.
+- REJECTION: User says no, not now, cancel, nahi, nhi, nhi hua, etc.
+- QUERY: User asks a question, expresses a problem, or needs help.
+- REPEAT: User asks to repeat (phir se, dobara, dubara, repeat).
+- WAIT: User asks to wait (ruko, hold on, one minute).
+- GOODBYE: User wants to end the call (bye, goodbye, dhanyavaad, shubh ho).
+- EXIT: User wants to stop now and do it later (baad me, phir kabhi, not now, stop, exit).
+- NOISE: Irrelevant noise or greetings.
 
-Output ONLY the category name."""
+Output ONLY the category name.
+"""
         try:
             result = self._call_chat_backend(
                 messages=[
                     {"role": "system", "content": "You are a precise intent classifier. Output only one word."},
-                    {"role": "user", "content": prompt},
+                    {"role": "user", "content": prompt}
                 ],
                 model_name=self.intent_model if self.backend == "vllm" else self.ollama_model,
                 temperature=0,
@@ -263,12 +191,81 @@ Output ONLY the category name."""
             ).strip().upper()
             for cat in ["CONFIRMATION", "REJECTION", "QUERY", "REPEAT", "WAIT", "GOODBYE", "EXIT"]:
                 if cat in result:
-                    print(f"[LLM-Classifier] '{user_text[:50]}' → {cat}")
+                    print(f"[LLM-Classifier] Classified '{user_text}' as {cat}")
                     return cat
             return "NOISE"
         except Exception as e:
             print(f"[LLM-Classifier] Error: {e}")
             return "NOISE"
+
+    def route_intent(self, user_text: str, current_state: str, history: list = None) -> dict:
+        """
+        Classify the user's intent into: knowledge_query, conversation_control, workflow, general_response.
+        Returns a dict e.g. {"intent": "knowledge_query", "action": null, "topic": "domain specific topic"}
+        """
+        history_context = ""
+        if history:
+            recent = history[-4:]
+            history_context = "Recent conversation:\n"
+            for msg in recent:
+                role = "Agent" if msg["role"] == "assistant" else "User"
+                history_context += f"{role}: {msg['content']}\n"
+
+        prompt = f"""You are a precise routing engine for a voice assistant.
+System Context (Use Case Info):
+{_SYSTEM_PROMPT}
+
+Analyze the user's speech in the context of the current state and conversation history.
+
+Current State of workflow: {current_state}
+{history_context}
+User just said: "{user_text}"
+
+Classify into one of the following JSON format:
+{{
+  "intent": "knowledge_query" | "conversation_control" | "workflow" | "general_response",
+  "action": "repeat" | "wait" | "continue" | "confirm" | "reject" | "exit" | null,
+  "topic": "<extract the main topic being discussed as a string>" | null
+}}
+
+Intent Descriptions:
+- knowledge_query: User is asking a question related to the business/domain (refer to System Context).
+- conversation_control: User requests to repeat, wait/hold, stop, or exit.
+- workflow: User is providing information or confirming/rejecting a question asked by the bot.
+- general_response: Greetings, simple acknowledgment without state transition, or noise/greetings.
+
+Output ONLY valid JSON.
+"""
+        try:
+            result_raw = self._call_chat_backend(
+                messages=[
+                    {"role": "system", "content": "You are a precise intent routing engine. Output only JSON."},
+                    {"role": "user", "content": prompt}
+                ],
+                model_name=self.intent_model if self.backend == "vllm" else self.ollama_model,
+                temperature=0,
+                max_tokens=60,
+                response_format="json",
+            ).strip()
+            
+            try:
+                data = json.loads(result_raw)
+            except json.JSONDecodeError:
+                match = re.search(r"\{.*\}", result_raw, flags=re.DOTALL)
+                data = json.loads(match.group(0)) if match else {"intent": "workflow"}
+                
+            if not isinstance(data, dict):
+                data = {"intent": "workflow"}
+            
+            # Normalize intent and action
+            data["intent"] = str(data.get("intent") or "workflow").strip().lower()
+            data["action"] = str(data.get("action") or "").strip().lower() if data.get("action") else None
+            data["topic"] = str(data.get("topic") or "").strip().lower() if data.get("topic") else None
+            print(f"[LLM-Router] Routed '{user_text}' -> {data}")
+            return data
+        except Exception as e:
+            print(f"[LLM-Router] Error: {e}")
+            return {"intent": "workflow"}
 
     def classify_slot(self, current_state: str, user_text: str, last_bot_message: str = "") -> dict:
         """
@@ -280,7 +277,10 @@ Output ONLY the category name."""
         if not utterance:
             return {"intent": "unclear"}
 
-        prompt = f"""State: {state}
+        prompt = f"""System Context:
+{_SYSTEM_PROMPT}
+
+State: {state}
 Agent Question: {last_bot_message}
 User Response: {utterance}
 

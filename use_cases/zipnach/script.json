@@ -1,118 +1,4 @@
 {
-  "faqs": [
-    {
-      "question": "What is a mandate?",
-      "answer": "A mandate is an authorization that allows automatic debits from your bank account as per your agreed repayment schedule. It is a one-time setup that makes future payments seamless."
-    },
-    {
-      "question": "Is this safe?",
-      "answer": "Yes, this process is completely secure. It is facilitated by NPCI, the National Payments Corporation of India, and uses your bank's official net banking encryption. No one can access your bank credentials through this process."
-    },
-    {
-      "question": "What is e-mandate?",
-      "answer": "E-Mandate is a digital authorization to allow automatic recurring debits from your bank account. It replaces the need for physical mandate forms and is approved by RBI and NPCI."
-    },
-    {
-      "question": "What is UMRN?",
-      "answer": "UMRN stands for Unique Mandate Reference Number. It is a unique identifier assigned to your e-mandate once it is successfully registered. You can see it on the final confirmation screen."
-    },
-    {
-      "question": "What is NPCI?",
-      "answer": "NPCI stands for National Payments Corporation of India. It is the organization that manages and processes e-mandate registrations. You will be redirected to their secure page during the process."
-    },
-    {
-      "question": "I did not receive OTP",
-      "answer": "If you have not received the OTP, please wait 30 seconds and check if your registered mobile number has good network coverage. You may also try clicking on Resend OTP on the bank page. If the issue persists, please contact your bank's customer care."
-    },
-    {
-      "question": "OTP expired",
-      "answer": "If your OTP has expired, please click on the Resend OTP option on the bank page to receive a new one. OTPs are valid for a limited time, usually 3 to 5 minutes."
-    },
-    {
-      "question": "I forgot my net banking password",
-      "answer": "If you have forgotten your net banking password, please visit your bank's official website or app and use the Forgot Password option to reset it. Once reset, you can come back and continue with the mandate registration."
-    },
-    {
-      "question": "Page is stuck or not loading",
-      "answer": "If the page is stuck, please check your internet connection. You may try refreshing the page or reopening the link from your email or SMS. Avoid closing the browser during the process as it may interrupt the registration."
-    },
-    {
-      "question": "Can I cancel the mandate later?",
-      "answer": "Yes, you can cancel your e-mandate at any time by contacting the company or through your bank's net banking portal. Cancellation typically takes 1 to 2 business days to process."
-    },
-    {
-      "question": "What banks are supported?",
-      "answer": "E-mandate is supported by most major banks in India including SBI, HDFC, ICICI, Axis, Kotak, PNB, Bank of Baroda, and many others. Your bank should be available in the list on the NPCI page."
-    },
-    {
-      "question": "What is the mandate amount?",
-      "answer": "The mandate amount is the maximum debit amount that will be authorized. The actual debit each cycle will be as per your repayment schedule and will not exceed this amount."
-    },
-    {
-      "question": "How long does this take?",
-      "answer": "The entire e-mandate registration process typically takes about 5 to 10 minutes. I am here to guide you through every step."
-    },
-    {
-      "question": "I want to stop or do it later",
-      "answer": "No problem at all. The link stays active for 15 days — you can open it and complete it yourself whenever you are ready. Call us if you need any help. Thank you, have a great day!"
-    },
-  {
-    "question": "Mandate kya hota hai?",
-    "answer": "Mandate ek authorization hota hai jo aapke bank account se automatic debit ki permission deta hai, aapke repayment schedule ke hisaab se. Yeh ek baar ka setup hota hai jisse future payments aasani se ho jaate hain."
-  },
-  {
-    "question": "Kya yeh safe hai?",
-    "answer": "Ji haan, yeh process bilkul secure hai. Yeh NPCI yani National Payments Corporation of India ke through hota hai aur aapke bank ki official net banking encryption use karta hai. Is process ke through koi bhi aapke bank credentials access nahi kar sakta."
-  },
-  {
-    "question": "E-mandate kya hota hai?",
-    "answer": "E-Mandate ek digital authorization hota hai jo aapke bank account se automatic recurring debit ki permission deta hai. Yeh physical mandate forms ki jagah use hota hai aur RBI aur NPCI dwara approved hai."
-  },
-  {
-    "question": "UMRN kya hota hai?",
-    "answer": "UMRN ka matlab Unique Mandate Reference Number hota hai. Yeh ek unique number hota hai jo aapke e-mandate successful register hone ke baad assign kiya jaata hai. Aap ise final confirmation screen par dekh sakte hain."
-  },
-  {
-    "question": "NPCI kya hota hai?",
-    "answer": "NPCI ka matlab National Payments Corporation of India hota hai. Yeh organization e-mandate registrations ko manage aur process karta hai. Process ke dauraan aapko unke secure page par redirect kiya jayega."
-  },
-  {
-    "question": "Mujhe OTP receive nahi hua",
-    "answer": "Agar aapko OTP receive nahi hua hai, toh kripaya 30 seconds wait karein aur check karein ki aapke registered mobile number par network sahi hai ya nahi. Aap bank page par Resend OTP option par bhi click kar sakte hain. Agar issue continue rahe toh kripaya apne bank ke customer care se contact karein."
-  },
-  {
-    "question": "OTP expire ho gaya",
-    "answer": "Agar aapka OTP expire ho gaya hai, toh kripaya bank page par Resend OTP option par click karein taaki naya OTP receive ho sake. OTP usually 3 se 5 minutes tak valid hota hai."
-  },
-  {
-    "question": "Main apna net banking password bhool gaya hoon",
-    "answer": "Agar aap apna net banking password bhool gaye hain, toh kripaya apne bank ki official website ya app par jaakar Forgot Password option ka use karein. Password reset hone ke baad aap wapas aakar mandate registration continue kar sakte hain."
-  },
-  {
-    "question": "Page stuck hai ya load nahi ho raha",
-    "answer": "Agar page load nahi ho raha ya stuck hai, toh kripaya apna internet connection check karein. Aap page refresh kar sakte hain ya email ya SMS se link dobara open kar sakte hain. Process ke dauraan browser band na karein kyunki isse registration interrupt ho sakta hai."
-  },
-  {
-    "question": "Kya main mandate baad mein cancel kar sakta hoon?",
-    "answer": "Ji haan, aap apna e-mandate kabhi bhi cancel kar sakte hain company se contact karke ya apne bank ke net banking portal ke through. Cancellation process hone mein usually 1 se 2 working days lagte hain."
-  },
-  {
-    "question": "Kaun kaun se banks supported hain?",
-    "answer": "E-mandate India ke zyadatar major banks mein supported hai jaise SBI, HDFC, ICICI, Axis, Kotak, PNB, Bank of Baroda aur kai anya banks. Aapka bank NPCI page ki list mein available hona chahiye."
-  },
-  {
-    "question": "Mandate amount kya hota hai?",
-    "answer": "Mandate amount woh maximum debit amount hota hai jiske liye authorization di jaati hai. Har cycle mein actual debit aapke repayment schedule ke hisaab se hoga aur is amount se zyada nahi hoga."
-  },
-  {
-    "question": "Yeh process kitna time leta hai?",
-    "answer": "Pura e-mandate registration process usually 5 se 10 minutes leta hai. Main har step par aapki madad ke liye yahan hoon."
-  },
-  {
-    "question": "Main abhi stop karna chahta hoon ya baad mein karunga",
-    "answer": "Koi problem nahi hai. Link 15 din tak active rahega — aap jab ready ho tab ise open karke process complete kar sakte hain. Agar kisi bhi madad ki zarurat ho toh humein call karein. Dhanyavaad, aapka din shubh ho."
-  }
-  ],
   "auth_modes": {
     "net_banking": {
       "name": "Net Banking",
@@ -199,16 +85,16 @@
     "language_selection": "{customer_name}. Welcome to eMandate registration. Please choose your language 'English' or 'Hindi'.",
     "intro": "I am an automated assistant calling on behalf of {company_name}. I'll guide you through your e-mandate registration it will take 2 to 3 minutes. Shall we proceed?",
     "auth_mode_selection": "Please Say 1 for Net Banking, 2 for Debit Card, 3 for PAN or Customer ID, 4 for Aadhaar Online, or 5 for Simplified Aadhaar. Which option do you prefer?",
-    "review_mandate": "On the form open on your screen, you should see your name, bank account number, EMI amount, and dates. Please verify — are all your details correct?",
+    "review_mandate": "On the form open on your screen, you should see your name, bank account number, EMI amount, and dates. Please verify \u2014 are all your details correct?",
     "npci_redirect": "The page is redirecting to NPCI's secure server. Has the NPCI page loaded?",
     "npci_checkbox": "On this page there is a checkbox at the bottom for Terms and Conditions. First tick that checkbox, then click Submit. Have you clicked Submit?",
     "bank_login": "The secure login page of your bank should now be open. Carefully enter your Net Banking User ID and Password.  Please use the same credentials you use to log in on your bank's official website or app. Once you have logged in, please say 'done' or 'completed'. I'll wait here.",
-    "debit_card_entry": "Now enter your Debit Card number, expiry date, and CVV on screen and click Submit. CVV is on the back of your card — a 3-digit number. After submitting, please say 'done'.",
+    "debit_card_entry": "Now enter your Debit Card number, expiry date, and CVV on screen and click Submit. CVV is on the back of your card \u2014 a 3-digit number. After submitting, please say 'done'.",
     "pan_cust_id_entry": "Now enter your PAN number or Customer ID on screen and click Submit. PAN is 10 characters. Customer ID is on the first page of your passbook. After submitting, please say 'done'.",
     "aadhaar_online_entry": "Now enter your 12-digit Aadhaar number on screen, select the OTP option, and click Send OTP. Once you have clicked Send OTP, please say 'done'.",
     "aadhaar_simple_entry": "For Simplified Aadhaar, please enter your virtual ID or masked Aadhaar number on the screen. You will receive an OTP on your Aadhaar-linked mobile. After entering the details, please say 'done'.",
     "otp_entry": "An OTP will arrive from your bank on your registered mobile number. Enter it on screen and click Submit. Once the OTP is submitted, please say 'done'.",
-    "processing_hold": "Excellent! The page is now processing — please do not close the browser or press back for 10 seconds. The page will automatically redirect on its own. Has the page changed or a new page appeared?",
+    "processing_hold": "Excellent! The page is now processing \u2014 please do not close the browser or press back for 10 seconds. The page will automatically redirect on its own. Has the page changed or a new page appeared?",
     "success": "Congratulations! Your eSign e-mandate is successfully complete! Please note your UMRN number.",
     "closing": "Thank you! Have a wonderful day!",
     "auth_selected_prefix": "Great! You have selected {mode}. ",
@@ -218,27 +104,27 @@
     "unclear": "I didn't catch that. ",
     "npci_loading_wait": "Please hold for a moment. Check your internet connection. The NPCI page should load shortly. Let me know when you see the NPCI logo at the top.",
     "otp_wait": "I understand. Please wait 30 seconds and check if your mobile has good network coverage. You can also try clicking Resend OTP on the bank page. Let me know once you receive the OTP so we can continue.",
-    "intro_rejection": "No problem at all. The link stays active for 15 days — you can open it and complete it yourself whenever you are ready. Call us if you need any help. Thank you, have a great day!",
+    "intro_rejection": "No problem at all. The link stays active for 15 days \u2014 you can open it and complete it yourself whenever you are ready. Call us if you need any help. Thank you, have a great day!",
     "processing_hold_long": "Great. Please hold for 10 seconds and do not close your browser. The page is now redirecting back to the summary page.",
     "exit_message": "No problem at all. You can always complete this later using the same link. Thank you for your time, have a wonderful day!",
     "rejection_callback_offer": "No problem! Would you like us to call you back at a more convenient time to help you with this, or should we end the call for now?",
     "empty_input": "I'm sorry, I couldn't hear you. Could you please say that again?",
     "fallback_response": "I'm not sure I understood. Could you please repeat or rephrase that?"
   },
-   "step_scripts_hindi": {
+  "step_scripts_hindi": {
     "language_selection": " {customer_name}. Welcome to eMandate registration. Please choose your language 'English' or 'Hindi'.",
     "intro": " Main {company_name} ki taraf se ek automated assistant bol rahi hoon. Main aapke e-mandate registration process mein guide karungi. Isme lagbhag do se teen minute lagenge. Kya hum shuru karein?",
     "auth_mode_selection": "Authentication complete karne ke liye kripaya apna option choose karein. Net Banking ke liye ek bolein, Debit Card ke liye do bolein, PAN ya Customer ID ke liye teen bolein, Aadhaar Online ke liye chaar bolein, aur Simplified Aadhaar ke liye paanch bolein. Aap kaunsa option choose karna chahenge?",
     "review_mandate": "Aapke screen par jo form khula hai, usme aapka naam, bank account number, EMI amount aur dates dikh rahe honge. Kripya teen cheezon ko verify karein Kya aapki saari details sahi hain?",
     "npci_redirect": "Page NPCI ke secure server par redirect ho raha hai. Kya NPCI page load ho gaya?",
-    "npci_checkbox": "Is page par neeche ek checkbox hoga — Terms and Conditions ke liye. Pehle woh checkbox tick karein, phir Submit button dabayein. Kya aapne Submit button daba diya?",
-    "bank_login": "Ab aapke bank ka secure login page khul chuka hoga. Yahan apna Net Banking User ID aur Password dhyan se enter karein. Yeh aapka ATM PIN nahi hai — wahi credentials use karein jo aap bank ki official website ya app me login karne ke liye use karte hain. Jab login ho jaye toh 'ho gaya' ya 'kar diya' bolein. Main yahin wait kar rahi hoon.",
-    "debit_card_entry": "Ab screen par apna Debit Card number, expiry date, aur CVV enter karein aur Submit dabayein. CVV card ke peeche hota hai — 3 digit ka number. Submit karne ke baad 'ho gaya' bolein.",
+    "npci_checkbox": "Is page par neeche ek checkbox hoga \u2014 Terms and Conditions ke liye. Pehle woh checkbox tick karein, phir Submit button dabayein. Kya aapne Submit button daba diya?",
+    "bank_login": "Ab aapke bank ka secure login page khul chuka hoga. Yahan apna Net Banking User ID aur Password dhyan se enter karein. Yeh aapka ATM PIN nahi hai \u2014 wahi credentials use karein jo aap bank ki official website ya app me login karne ke liye use karte hain. Jab login ho jaye toh 'ho gaya' ya 'kar diya' bolein. Main yahin wait kar rahi hoon.",
+    "debit_card_entry": "Ab screen par apna Debit Card number, expiry date, aur CVV enter karein aur Submit dabayein. CVV card ke peeche hota hai \u2014 3 digit ka number. Submit karne ke baad 'ho gaya' bolein.",
     "pan_cust_id_entry": "Ab screen par apna PAN number ya Customer ID enter karein aur Submit dabayein. PAN 10 character ka hota hai. Customer ID aapki passbook ke pehle page par hoti hai. Submit karne ke baad 'ho gaya' bolein.",
     "aadhaar_online_entry": "Ab screen par apna 12 digit Aadhaar number enter karein aur OTP option select karke Send OTP dabayein. Send OTP dabane ke baad 'ho gaya' bolein.",
     "aadhaar_simple_entry": "Simplified Aadhaar ke liye, kripya apna virtual ID ya masked Aadhaar number daalein. Aapko apne Aadhaar-linked mobile par ek OTP milega. Details daalne ke baad 'kar diya' bolein.",
     "otp_entry": "Aapke registered mobile number par bank se OTP aayega. Woh enter karein aur Submit dabayein. OTP submit karne ke baad 'ho gaya' bolein.",
-    "processing_hold": "Bahut achha! Ab page process kar raha hai — please 10 second tak browser band mat karein aur back button bhi mat dabayein. Page khud hi agle page par redirect ho jayega. Kya page badal gaya ya koi naya page aa gaya?",
+    "processing_hold": "Bahut achha! Ab page process kar raha hai \u2014 please 10 second tak browser band mat karein aur back button bhi mat dabayein. Page khud hi agle page par redirect ho jayega. Kya page badal gaya ya koi naya page aa gaya?",
     "success": "Congratulations! Aapka eSign e-mandate successfully complete ho gaya! UMRN number note kar lein.",
     "closing": "Dhanyavaad! Aapka din shubh ho!",
     "auth_selected_prefix": "Bahut badiya! Aapne {mode} chuna hai. ",
@@ -248,15 +134,13 @@
     "unclear": "Maaf kijiye, main samajh nahi payi. ",
     "npci_loading_wait": "Kripya thoda wait karein. Apna internet connection check karein. NPCI page thodi der mein load ho jayega. Jab aapko upar NPCI ka logo dikhe, toh mujhe batayein.",
     "otp_wait": "Main samajh sakti hoon. Kripya 30 second wait karein aur dekhein ki aapke mobile mein network sahi hai ya nahi. Aap bank page par Resend OTP par bhi click kar sakte hain. Jab aapko OTP mil jaye toh mujhe batayein taaki hum aage badh sakein.",
-    "intro_rejection": "Koi baat nahi. Yeh link 15 din tak active rahega — aap jab bhi ready hon, ise open karke khud complete kar sakte hain. Agar koi madad chahiye ho toh humein call karein. Dhanyavaad, aapka din shubh ho!",
+    "intro_rejection": "Koi baat nahi. Yeh link 15 din tak active rahega \u2014 aap jab bhi ready hon, ise open karke khud complete kar sakte hain. Agar koi madad chahiye ho toh humein call karein. Dhanyavaad, aapka din shubh ho!",
     "processing_hold_long": "Bahut badhiya. Kripya 10 second wait karein aur browser band mat karein. Page ab wapas summary page par redirect ho raha hai.",
     "exit_message": "Theek hai, koi baat nahi. Aap baad mein phir try kar sakte hain usi link se. Aapka din shubh ho! Dhanyavaad.",
     "rejection_callback_offer": "Main samajh sakti hoon. Kya aap chahte hain ki hum aapko baad mein call karein, ya phir abhi call end kar dein?",
     "empty_input": "Maaf kijiye, main aapki awaaz nahi sun payi. Kya aap phir se bol sakte hain?",
     "fallback_response": "Mujhe samajh nahi aaya. Kya aap dobara bol sakte hain?"
   },
-
-
   "short_scripts": {
     "language_selection": "Please choose your language: English or Hindi.",
     "intro": "Shall we proceed?",
@@ -313,8 +197,8 @@
     "aadhaar_simple_entry": "Details received!",
     "otp_entry": "OTP submitted!",
     "processing_hold": "Processing done!"
-},
-"acknowledgement_hi": {
+  },
+  "acknowledgement_hi": {
     "language_selection": "Bilkul!",
     "intro": "Bilkul, chaliye shuru karte hain!",
     "auth_mode_selection": "Theek hai!",
@@ -328,5 +212,5 @@
     "aadhaar_simple_entry": "Details mil gayi!",
     "otp_entry": "OTP submit ho gaya!",
     "processing_hold": "Process complete ho gaya!"
-}
+  }
 }

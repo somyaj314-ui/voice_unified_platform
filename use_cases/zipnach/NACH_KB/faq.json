@@ -1,0 +1,244 @@
+{
+  "faqs": [
+    {
+      "question": "What is a mandate?",
+      "answer": "A mandate is an authorization that allows automatic debits from your bank account as per your agreed repayment schedule. It is a one-time setup that makes future payments seamless."
+    },
+    {
+      "question": "Is this safe?",
+      "answer": "Yes, this process is completely secure. It is facilitated by NPCI, the National Payments Corporation of India, and uses your bank's official net banking encryption. No one can access your bank credentials through this process."
+    },
+    {
+      "question": "What is e-mandate?",
+      "answer": "E-Mandate is a digital authorization to allow automatic recurring debits from your bank account. It replaces the need for physical mandate forms and is approved by RBI and NPCI."
+    },
+    {
+      "question": "What is UMRN?",
+      "answer": "UMRN stands for Unique Mandate Reference Number. It is a unique identifier assigned to your e-mandate once it is successfully registered. You can see it on the final confirmation screen."
+    },
+    {
+      "question": "What is NPCI?",
+      "answer": "NPCI stands for National Payments Corporation of India. It is the organization that manages and processes e-mandate registrations. You will be redirected to their secure page during the process."
+    },
+    {
+      "question": "I did not receive OTP",
+      "answer": "If you have not received the OTP, please wait 30 seconds and check if your registered mobile number has good network coverage. You may also try clicking on Resend OTP on the bank page. If the issue persists, please contact your bank's customer care."
+    },
+    {
+      "question": "OTP expired",
+      "answer": "If your OTP has expired, please click on the Resend OTP option on the bank page to receive a new one. OTPs are valid for a limited time, usually 3 to 5 minutes."
+    },
+    {
+      "question": "I forgot my net banking password",
+      "answer": "If you have forgotten your net banking password, please visit your bank's official website or app and use the Forgot Password option to reset it. Once reset, you can come back and continue with the mandate registration."
+    },
+    {
+      "question": "Page is stuck or not loading",
+      "answer": "If the page is stuck, please check your internet connection. You may try refreshing the page or reopening the link from your email or SMS. Avoid closing the browser during the process as it may interrupt the registration."
+    },
+    {
+      "question": "Can I cancel the mandate later?",
+      "answer": "Yes, you can cancel your e-mandate at any time by contacting the company or through your bank's net banking portal. Cancellation typically takes 1 to 2 business days to process."
+    },
+    {
+      "question": "What banks are supported?",
+      "answer": "E-mandate is supported by most major banks in India including SBI, HDFC, ICICI, Axis, Kotak, PNB, Bank of Baroda, and many others. Your bank should be available in the list on the NPCI page."
+    },
+    {
+      "question": "What is the mandate amount?",
+      "answer": "The mandate amount is the maximum debit amount that will be authorized. The actual debit each cycle will be as per your repayment schedule and will not exceed this amount."
+    },
+    {
+      "question": "How long does this take?",
+      "answer": "The entire e-mandate registration process typically takes about 5 to 10 minutes. I am here to guide you through every step."
+    },
+    {
+      "question": "I want to stop or do it later",
+      "answer": "No problem at all. The link stays active for 15 days you can open it and complete it yourself whenever you are ready. Call us if you need any help. Thank you, have a great day!"
+    },
+    {
+      "question": "Mandate kya hota hai?",
+      "answer": "Mandate ek authorization hota hai jo aapke bank account se automatic debit ki permission deta hai, aapke repayment schedule ke hisaab se. Yeh ek baar ka setup hota hai jisse future payments aasani se ho jaate hain."
+    },
+    {
+      "question": "Kya yeh safe hai?",
+      "answer": "Ji haan, yeh process bilkul secure hai. Yeh NPCI yani National Payments Corporation of India ke through hota hai aur aapke bank ki official net banking encryption use karta hai. Is process ke through koi bhi aapke bank credentials access nahi kar sakta."
+    },
+    {
+      "question": "E-mandate kya hota hai?",
+      "answer": "E-Mandate ek digital authorization hota hai jo aapke bank account se automatic recurring debit ki permission deta hai. Yeh physical mandate forms ki jagah use hota hai aur RBI aur NPCI dwara approved hai."
+    },
+    {
+      "question": "UMRN kya hota hai?",
+      "answer": "UMRN ka matlab Unique Mandate Reference Number hota hai. Yeh ek unique number hota hai jo aapke e-mandate successful register hone ke baad assign kiya jaata hai. Aap ise final confirmation screen par dekh sakte hain."
+    },
+    {
+      "question": "NPCI kya hota hai?",
+      "answer": "NPCI ka matlab National Payments Corporation of India hota hai. Yeh organization e-mandate registrations ko manage aur process karta hai. Process ke dauraan aapko unke secure page par redirect kiya jayega."
+    },
+    {
+      "question": "Mujhe OTP receive nahi hua",
+      "answer": "Agar aapko OTP receive nahi hua hai, toh kripaya 30 seconds wait karein aur check karein ki aapke registered mobile number par network sahi hai ya nahi. Aap bank page par Resend OTP option par bhi click kar sakte hain. Agar issue continue rahe toh kripaya apne bank ke customer care se contact karein."
+    },
+    {
+      "question": "OTP expire ho gaya",
+      "answer": "Agar aapka OTP expire ho gaya hai, toh kripaya bank page par Resend OTP option par click karein taaki naya OTP receive ho sake. OTP usually 3 se 5 minutes tak valid hota hai."
+    },
+    {
+      "question": "Main apna net banking password bhool gaya hoon",
+      "answer": "Agar aap apna net banking password bhool gaye hain, toh kripaya apne bank ki official website ya app par jaakar Forgot Password option ka use karein. Password reset hone ke baad aap wapas aakar mandate registration continue kar sakte hain."
+    },
+    {
+      "question": "Page stuck hai ya load nahi ho raha",
+      "answer": "Agar page load nahi ho raha ya stuck hai, toh kripaya apna internet connection check karein. Aap page refresh kar sakte hain ya email ya SMS se link dobara open kar sakte hain. Process ke dauraan browser band na karein kyunki isse registration interrupt ho sakta hai."
+    },
+    {
+      "question": "Kya main mandate baad mein cancel kar sakta hoon?",
+      "answer": "Ji haan, aap apna e-mandate kabhi bhi cancel kar sakte hain company se contact karke ya apne bank ke net banking portal ke through. Cancellation process hone mein usually 1 se 2 working days lagte hain."
+    },
+    {
+      "question": "Kaun kaun se banks supported hain?",
+      "answer": "E-mandate India ke zyadatar major banks mein supported hai jaise SBI, HDFC, ICICI, Axis, Kotak, PNB, Bank of Baroda aur kai anya banks. Aapka bank NPCI page ki list mein available hona chahiye."
+    },
+    {
+      "question": "Mandate amount kya hota hai?",
+      "answer": "Mandate amount woh maximum debit amount hota hai jiske liye authorization di jaati hai. Har cycle mein actual debit aapke repayment schedule ke hisaab se hoga aur is amount se zyada nahi hoga."
+    },
+    {
+      "question": "Yeh process kitna time leta hai?",
+      "answer": "Pura e-mandate registration process usually 5 se 10 minutes leta hai. Main har step par aapki madad ke liye yahan hoon."
+    },
+    {
+      "question": "Main abhi stop karna chahta hoon ya baad mein karunga",
+      "answer": "Koi problem nahi hai. Link 15 din tak active rahega aap jab ready ho tab ise open karke process complete kar sakte hain. Agar kisi bhi madad ki zarurat ho toh humein call karein. Dhanyavaad, aapka din shubh ho."
+    },
+    {
+      "question": "What is zipNACH?",
+      "answer": "zipNACH is a NACH mandate processing platform that enables the corporate to register and manage auto-debit mandates securely. zipNACH does not hold any of your funds and does not initiate debits independently."
+    },
+    {
+      "question": "zipNACH kya hai?",
+      "answer": "zipNACH ek NACH mandate processing platform hai jo corporate ko secure auto-debit mandates register aur manage karne mein madad karta hai. zipNACH aapke funds hold nahi karta aur apni marzi se paise nahi kaatta."
+    },
+    {
+      "question": "Can the company debit any amount they want after mandate setup?",
+      "answer": "No. The mandate has a maximum amount cap agreed at registration. Debits cannot exceed this amount. If they try to debit more, your bank will reject it automatically."
+    },
+    {
+      "question": "Kya company apni marzi se amount kaat sakti hai?",
+      "answer": "Nahi. Mandate mein ek maximum amount cap hota hai. Debit is amount se zyada nahi ho sakta. Agar company zyada debit karne ki koshish karegi toh bank use automatically reject kar dega."
+    },
+    {
+      "question": "Will I be notified before each debit?",
+      "answer": "Yes. As per RBI and NPCI guidelines, you will receive an SMS and/or email notification at least 24 hours before every scheduled debit."
+    },
+    {
+      "question": "Kya mujhe har debit se pehle bataya jayega?",
+      "answer": "Ji haan. RBI aur NPCI ki guidelines ke anusaar, aapko har scheduled debit se kam se kam 24 ghante pehle ek SMS ya email notification milega."
+    },
+    {
+      "question": "What if I don't have enough balance on the debit date?",
+      "answer": "If your account has insufficient balance, the debit will fail and you will be notified. Your bank may apply a bounce charge. Please maintain sufficient balance on or before the scheduled debit date."
+    },
+    {
+      "question": "Agar debit date par mere account mein balance nahi hua toh kya hoga?",
+      "answer": "Agar account mein balance nahi hai toh debit fail ho jayega. Aapka bank bounce charge laga sakta hai. Kripaya debit date se pehle sufficient balance maintain karein."
+    },
+    {
+      "question": "What is the difference between MAX and FXD mandate?",
+      "answer": "FXD means exactly the same amount will be debited every time. MAX means the debit can be any amount up to the registered maximum, which is useful for variable bills."
+    },
+    {
+      "question": "MAX aur FXD mandate mein kya farq hai?",
+      "answer": "FXD ka matlab hai har baar exactly same amount katega. MAX ka matlab hai ki aapke registered maximum cap tak koi bhi amount kat sakta hai, jo variable bills ke liye achha hota hai."
+    },
+    {
+      "question": "Can I register a mandate for someone else's account?",
+      "answer": "No. The mandate must be registered by the account holder or authorised signatory of the account. Third-party registration is not permitted."
+    },
+    {
+      "question": "Kya main kisi aur ke account par mandate register kar sakta hoon?",
+      "answer": "Nahi. Mandate sirf account holder ya authorised signatory dwara hi register kiya ja sakta hai. Kisi third-party ke liye allowed nahi hai."
+    },
+    {
+      "question": "Can I use my credit card instead?",
+      "answer": "No. NACH eMandate requires a debit card linked to the bank account that will be debited. Credit cards cannot be used for NACH mandate registration."
+    },
+    {
+      "question": "Kya main credit card use kar sakta hoon?",
+      "answer": "Nahi. NACH eMandate ke liye us bank account se linked debit card chahiye jismein se paise katenge. Credit cards NACH registration ke liye use nahi ho sakte."
+    },
+    {
+      "question": "Do I need to share my card number on the call?",
+      "answer": "No, never share your card number verbally. I will send a secure encrypted link to your registered mobile. Please enter your card details only on that secure page."
+    },
+    {
+      "question": "Kya mujhe call par apna card number batana hoga?",
+      "answer": "Nahi, kabhi bhi apna card number verbally na batayein. Main aapke registered mobile par ek secure link bhejungi, kripaya wahan details daalein."
+    },
+    {
+      "question": "What is CVV? Do I need to enter it?",
+      "answer": "For eMandate via debit card, CVV is not required. You only need your 16-digit card number, expiry date, and the OTP sent to your registered mobile."
+    },
+    {
+      "question": "CVV kya hai? Kya mujhe ise dalna hoga?",
+      "answer": "Debit card se eMandate ke liye CVV ki zarurat nahi hoti. Aapko sirf 16-digit card number, expiry date aur mobile par aaya OTP chahiye."
+    },
+    {
+      "question": "Will money be deducted from my card right now?",
+      "answer": "No. This registration does not deduct any money. It only gives authority to debit your account on scheduled dates per the mandate terms."
+    },
+    {
+      "question": "Kya mere card se abhi paise katenge?",
+      "answer": "Nahi. Is registration mein abhi koi paise nahi katenge. Yeh sirf scheduled dates par amount debit karne ki authority deta hai."
+    },
+    {
+      "question": "Do I need to share my Aadhaar number on the call?",
+      "answer": "No, never share your Aadhaar number verbally on any call. I will send a secure link to your registered mobile for you to enter it safely."
+    },
+    {
+      "question": "Kya mujhe call par apna Aadhaar number batana hoga?",
+      "answer": "Nahi, kabhi bhi apna Aadhaar number call par verbally na batayein. Aapko ek secure link bheja jayega jahan aap ise daal sakte hain."
+    },
+    {
+      "question": "Will zipNACH store my Aadhaar number?",
+      "answer": "No. As per UIDAI and RBI regulations, Aadhaar numbers are never stored by zipNACH. Only a masked reference is retained, and the full number is immediately discarded after verification."
+    },
+    {
+      "question": "Kya zipNACH mera Aadhaar number store karega?",
+      "answer": "Nahi. UIDAI aur RBI ke rules ke mutabiq zipNACH kabhi bhi Aadhaar number store nahi karta. Verification ke baad full number delete kar diya jaata hai."
+    },
+    {
+      "question": "What is Simplified Aadhaar? How is it different from full Aadhaar OTP?",
+      "answer": "Simplified Aadhaar only needs your last 4 Aadhaar digits. The OTP is sent by your bank to your bank-registered mobile, not by UIDAI. It checks your Aadhaar details from your bank's own records."
+    },
+    {
+      "question": "Simplified Aadhaar kya hai?",
+      "answer": "Simplified Aadhaar mein sirf Aadhaar ke aakhiri 4 digits chahiye hote hain. Isme OTP aapke bank se aata hai, UIDAI se nahi. Yeh bank ke paas maujood aapke Aadhaar record ko check karta hai."
+    },
+    {
+      "question": "What is a Customer ID? Where do I find it?",
+      "answer": "Your Customer ID is a unique number your bank assigns you. You can find it on your bank passbook, cheque book, bank statement, or by logging into your bank's app."
+    },
+    {
+      "question": "Customer ID kya hoti hai aur kahan milti hai?",
+      "answer": "Customer ID ek unique number hota hai jo bank aapko deta hai. Yeh aapki passbook, cheque book, bank statement ya bank app par mil jayegi."
+    },
+    {
+      "question": "I don't have a PAN card.",
+      "answer": "If you do not have a PAN, you can use your bank Customer ID with your date of birth instead. Alternatively, Aadhaar OTP, Net Banking, or Debit Card are also available."
+    },
+    {
+      "question": "Mere paas PAN card nahi hai.",
+      "answer": "Agar aapke paas PAN card nahi hai, toh aap apne bank Customer ID aur date of birth ka use kar sakte hain. Aap Aadhaar OTP, Net Banking ya Debit card bhi chun sakte hain."
+    },
+    {
+      "question": "Is this call being recorded?",
+      "answer": "Yes, this call is recorded for quality and compliance purposes. However, sensitive authentication details like OTP, card number, and Aadhaar are entered on a secure web form and are not recorded."
+    },
+    {
+      "question": "Kya yeh call record ho rahi hai?",
+      "answer": "Ji haan, quality aur compliance ke liye call record ki jati hai. Lekin OTP, card ya Aadhaar number jaisi sensitive details sirf secure web form par dali jati hain, jo record nahi hoti."
+    }
+  ]
+}

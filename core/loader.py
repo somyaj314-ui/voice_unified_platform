@@ -63,6 +63,10 @@ class UseCaseConfig:
         return self.base_dir / self.raw.get("system_prompt", "system_prompt.txt")
 
     @property
+    def script_path(self) -> Path:
+        return self.base_dir / self.raw.get("script", "script.json")
+
+    @property
     def assets_dir(self) -> Path:
         return self.base_dir / "assets"
 
@@ -291,13 +295,20 @@ def load_use_case(name: str | None = None) -> UseCaseConfig:
     cfg = UseCaseConfig(name=name, base_dir=base, raw=raw)
 
     # Validate required files exist
-    for attr, path in [
-        ("flow.json", cfg.flow_path),
-        ("system_prompt.txt", cfg.system_prompt_path),
-        ("knowledge_base.json", cfg.kb_path),
-        ("keywords.json", cfg.keywords_path),
-        ("entity_schema.json", cfg.entity_schema_path),
-    ]:
+    if name in ("admissions", "zipnach"):
+        required_files = [
+            ("script.json", cfg.script_path),
+        ]
+    else:
+        required_files = [
+            ("flow.json", cfg.flow_path),
+            ("system_prompt.txt", cfg.system_prompt_path),
+            ("knowledge_base.json", cfg.kb_path),
+            ("keywords.json", cfg.keywords_path),
+            ("entity_schema.json", cfg.entity_schema_path),
+        ]
+
+    for attr, path in required_files:
         if not path.exists():
             print(f"[LOADER] WARNING: Required file missing for use case '{name}': {path}")
 

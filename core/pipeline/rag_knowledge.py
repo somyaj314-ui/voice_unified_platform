@@ -47,6 +47,9 @@ def configure_rag(
     _EXTRA_KB_DIRS = extra_kb_dirs or []
     _RAG_THRESHOLD = threshold
     _retriever = None   # force re-init
+    
+    # Eagerly initialize to load files and print logs at startup
+    get_retriever()
 
 
 class RAGRetriever:
@@ -82,6 +85,9 @@ class RAGRetriever:
     # ── KB loading ────────────────────────────────────────────────────────────
 
     def _load_kb(self, path: str) -> None:
+        if not os.path.exists(path):
+            return
+            
         with open(path, "r", encoding="utf-8") as f:
             data = json.load(f)
         self.topics    = data.get("topics", {})
@@ -89,7 +95,7 @@ class RAGRetriever:
         self.questions = [faq["question"] for faq in self.faqs]
         self.answers   = [faq["answer"]   for faq in self.faqs]
         self.faq_topics = [faq.get("topic", "") for faq in self.faqs]
-        print(f"[RAG] Loaded {len(self.faqs)} FAQs from {path}")
+        print(f"[RAG] Loaded {len(self.faqs)} FAQs from file: {path}")
 
     def _load_extra_kb_dir(self, kb_dir: str) -> None:
         """Load supplementary JSON files from an extra KB directory."""
@@ -115,6 +121,7 @@ class RAGRetriever:
                     self.topics[topic_key] = {"summary": desc}
 
             faqs = mdata.get("faqs") or mdata.get("faqs_list") or []
+            file_added = 0
             for faq in faqs:
                 answer   = faq.get("answer") or faq.get("response") or ""
                 examples = faq.get("examples") or faq.get("questions") or []
@@ -130,9 +137,13 @@ class RAGRetriever:
                 self.answers.append(answer)
                 self.faq_topics.append(topic_key)
                 added += 1
+                file_added += 1
+                
+            if file_added:
+                print(f"[RAG] Loaded {file_added} FAQs from file: {full}")
 
         if added:
-            print(f"[RAG] Merged {added} extra FAQs from {kb_dir}")
+            print(f"[RAG] Successfully loaded {added} extra FAQs from folder: {kb_dir}")
 
     # ── Indexing ──────────────────────────────────────────────────────────────
 
@@ -251,9 +262,20 @@ class RAGRetriever:
         return ""
 
     def get_step_script(self, step: str) -> str | None:
-        with open(self.kb_path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-        scripts = data.get("step_scripts_outbound") or data.get("step_scripts", {})
+        scripts = {}
+        if os.path.exists(self.kb_path):
+            with open(self.kb_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            scripts = data.get("step_scripts_outbound") or data.get("step_scripts", {})
+            
+        if not scripts:
+            # Fallback to script.json in the same directory
+            script_path = os.path.join(os.path.dirname(self.kb_path), "script.json")
+            if os.path.exists(script_path):
+                with open(script_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                scripts = data.get("step_scripts_outbound") or data.get("step_scripts", {}) or data
+
         return scripts.get(step)
 
     # ── Encoding ──────────────────────────────────────────────────────────────

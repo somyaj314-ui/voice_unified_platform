@@ -1,63 +1,92 @@
 {
-  "WRONG_NUMBER_KEYWORDS": [
-    "wrong number",
-    "galat number"
+  "WEAK_POSITIVES": [
+    "ok", "okay", "haan", "ha", "han", "hanji", "hmm",
+    "yes", "yeah", "yep", "sure", "right", "correct",
+    "theek", "thik", "theek hai", "bilkul",
+    "got it", "perfect", "great", "ready", "proceed",
+    "हाँ", "हां", "जी", "ठीक है", "बिल्कुल", "अच्छा", "सही"
   ],
-  "WRONG_PERSON_KEYWORDS": [
-    "wrong person",
-    "not me"
+  "STRONG_COMPLETION": [
+    "done", "submitted", "entered", "completed", "logged in",
+    "clicked", "logged", "submit", "enter",
+    "kar diya", "kardiya", "kardia", "kr diya", "krdiya", "kar liya",
+    "ho gaya", "ho gya", "hogaya", "hogya", "ho gaya hai", "ho chuka",
+    "hua", "dal diya", "daal diya", "bhej diya",
+    "कर दिया", "हो गया", "भेज दिया", "डाल दिया", "सबमिट कर दिया"
   ],
-  "DND_KEYWORDS": [
-    "do not call",
-    "stop calling",
-    "dnd"
+  "SHORT_UTTERANCE_WHITELIST": [
+    "yes", "no", "ok", "okay",
+    "done", "wait", "help", "repeat",
+    "yes please", "no thank you"
   ],
-  "CALL_LATER_KEYWORDS": [
-    "call later",
-    "busy",
-    "baad mein"
+  "SPOKEN_DIGITS": {
+    "zero": "0", "one": "1", "two": "2", "three": "3", "four": "4",
+    "five": "5", "six": "6", "seven": "7", "eight": "8", "nine": "9",
+    "shunya": "0", "ek": "1", "do": "2", "teen": "3", "char": "4",
+    "paanch": "5", "chhe": "6", "saat": "7", "aath": "8", "rose": "9", "nau": "9",
+    "oh": "0"
+  },
+  "NEGATIVE_KEYWORDS": [
+    "no", "nahi", "nhi", "na", "nahin", "nope", "not done",
+    "nahi hua", "nhi hua", "nhi ho raha", "mana", "galat",
+    "incorrect", "mat", "band karo", "nhi kr rhi", "nhi kr rha",
+    "abhi nhi", "abhi nahi","नहीं", "ना", "नही", "मना", "गलत", "बंद करो", "मत"
+  ],
+  "REPEAT_KEYWORDS": [
+    "repeat", "again", "sorry", "pardon", "ek baar", "dobara",
+    "dubara", "phir se", "fir se", "sunai nahi diya", "kya bola",
+    "boliye", "say that again", "what did you say",
+    "दोबारा", "फिर से", "समझ नहीं आया", "क्या बोला"
+  ],
+  "WAIT_KEYWORDS": [
+    "wait", "hold", "ruko", "ek second", "one second",
+    "just a moment", "minute", "hold on", "thoda ruko",
+    "रुको", "एक सेकंड", "ठहरो"
+  ],
+  "HELP_KEYWORDS": [
+    "help", "problem", "issue", "stuck", "error", "fail",
+    "not working", "samajh nahi", "confused",
+    "pata nahi", "kya karna hai",
+    "bhul", "bhool", "yaad nahi", "forgot", "forget",
+    "password nahi pata", "password bhul", "pata nahi password",
+    "user id nahi pata", "user id bhul", "id bhul",
+    "password reset", "reset password"
   ],
   "HUMAN_AGENT_KEYWORDS": [
-    "talk to human",
-    "agent",
-    "customer care"
+    "agent", "human", "representative", "customer care", "support person",
+    "agent se baat", "insaan se baat", "kisi agent se baat", "human agent"
+  ],
+  "ERROR_KEYWORDS": [
+    "nahi ho raha", "nhi ho raha", "not working", "error", "failed", "fail",
+    "page nahi khul raha", "page nahi khul rha", "page load nahi hua",
+    "submit nahi ho raha", "stuck", "issue", "problem", "invalid otp",
+    "otp wrong", "otp galat", "expired", "timeout", "slow", "loading"
   ],
   "EXIT_KEYWORDS": [
     "bye",
-    "exit",
-    "quit"
+    "disconnect",
+    "stop",
+    "not interested",
+    "don't call",
+    "do not call",
+    "no need",
+    "end call",
+    "wrong number"
   ],
-  "REPEAT_KEYWORDS": [
-    "repeat",
-    "say again",
-    "pardon"
+  "IN_PROGRESS_KEYWORDS": [
+    "kar raha hoon", "kar raha hu", "kar rahi hoon", "kar rahi hu",
+    "doing", "trying", "process mein", "proccess", "in progress",
+    "entering", "type kar", "typing", "dekh raha", "wait", "ruko"
   ],
-  "WAIT_KEYWORDS": [
-    "wait",
-    "hold on",
-    "ek minute"
-  ],
-  "HELP_KEYWORDS": [
-    "help",
-    "assist"
-  ],
-  "WEAK_POSITIVES": [
-    "yes",
-    "yeah",
-    "haan",
-    "correct",
-    "right"
-  ],
-  "STRONG_COMPLETION": [
-    "done",
-    "completed",
-    "ho gaya"
-  ],
-  "NEGATIVE_KEYWORDS": [
-    "no",
-    "nah",
-    "nahi",
-    "wrong",
-    "incorrect"
+  "CALL_LATER_KEYWORDS": [
+    "call later",
+    "later",
+    "busy now",
+    "busy",
+    "in meeting",
+    "call me later",
+    "set callback",
+    "callback",
+    "schedule callback"
   ]
 }

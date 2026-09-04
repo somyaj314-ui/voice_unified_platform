@@ -7,3 +7,5 @@ tts:
   preset_id: my_speaker_saavi
 llm:
   model: qwen2.5:1.5b
+extra_kb_dirs:
+- NACH_KB
