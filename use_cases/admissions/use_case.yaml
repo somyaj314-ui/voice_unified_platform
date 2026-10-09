@@ -9,3 +9,7 @@ llm:
   model: qwen2.5:1.5b
 extra_kb_dirs:
 - MERI_KB
+
+stt:
+  model_size: Systran/faster-whisper-medium
+  acoustic_probe_enabled: false

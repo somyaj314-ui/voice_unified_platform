@@ -1,9 +1,9 @@
 """
-tts_pipeline.py v4 — Indic-Mio with chunk streaming
+tts_pipeline.py v5 — Multi-Voice Indic-Mio with Redis & Disk Caching
 ==============================================================================
-- synthesize() and generate_audio() — blocking, full audio return (unchanged)
-- generate_audio_streaming() — NEW: yields mulaw bytes chunk by chunk
-- _split_into_chunks() — extracted helper (shared by both paths)
+- Supports multi-voice presets (e.g. simran.pt, voice_male.pt, etc.)
+- Multi-tier cache: Redis (primary, partitioned by use_case + voice_id) -> Local Disk (secondary)
+- synthesize(), generate_audio(), and generate_audio_streaming() accept optional `voice` param.
 """
 
 from pathlib import Path
@@ -17,6 +17,7 @@ import hashlib
 import numpy as np
 from core.audio_utils import float32_16k_to_mulaw_8k, resample_float32, wav_file_to_float32
 from .tts_engine import get_tts, MIO_TTS_URL, _tts_preset_id
+from .redis_cache import redis_cache
 
 try:
     import soundfile as sf
@@ -53,17 +54,14 @@ def _split_into_chunks(clean_text: str, max_chars: int = 250) -> list[str]:
             continue
 
         if len(sentence) > max_chars:
-            # flush current
             if current_chunk:
                 chunks.append(" ".join(current_chunk))
                 current_chunk = []
                 current_len = 0
-            # split long sentence by comma/semicolon
             parts = re.split(r'(?<=[,;])\s+', sentence)
             for part in parts:
                 part = part.strip()
                 if len(part) > max_chars:
-                    # split by word
                     words = part.split()
                     for word in words:
                         if current_len + len(word) + 1 > max_chars:
@@ -99,14 +97,14 @@ def _split_into_chunks(clean_text: str, max_chars: int = 250) -> list[str]:
     return [c.strip() for c in chunks if c.strip()]
 
 
-def _mio_chunk_to_mulaw(chunk_text: str) -> bytes:
+def _mio_chunk_to_mulaw(chunk_text: str, voice: str | None = None) -> bytes:
     """
-    Send one chunk to Mio, return mulaw 8kHz bytes.
-    Raises on HTTP error so caller can handle/skip.
+    Send one chunk to Mio with the specified voice preset, return mulaw 8kHz bytes.
     """
+    preset_id = voice or _tts_preset_id or os.getenv("preset_id", "simran.pt")
     resp = requests.post(MIO_TTS_URL, json={
         "text": chunk_text,
-        "reference": {"type": "preset", "preset_id": _tts_preset_id},
+        "reference": {"type": "preset", "preset_id": preset_id},
         "llm": {
             "temperature": 0.5,
             "top_p": 0.9,
@@ -132,25 +130,23 @@ def _mio_chunk_to_mulaw(chunk_text: str) -> bytes:
     return float32_16k_to_mulaw_8k(wav_np)
 
 
-def synthesize(text, output_path=Path("speech.wav"), language=_DEFAULT_LANG):
+def synthesize(text: str, output_path: Path = Path("speech.wav"), language: str = _DEFAULT_LANG, voice: str | None = None):
     """Blocking synthesis — writes WAV file to output_path."""
     text = text.strip()
     if not text:
         return
-    lang = _normalize_lang(language)
     try:
         tts_engine = get_tts()
         mode = tts_engine.get_mode()
         if mode == "mio" and SOUNDFILE_AVAILABLE:
-            _synthesize_mio(text, output_path, tts_engine)
+            _synthesize_mio(text, output_path, tts_engine, voice=voice)
         elif mode == "pyttsx3":
             _synthesize_pyttsx3(text, output_path, tts_engine)
     except Exception as e:
         print(f"[TTS] Synthesis failed: {e}")
 
 
-def _synthesize_mio(text: str, output_path: Path, tts_engine) -> None:
-    """Blocking: synthesize all chunks, concatenate, write WAV file."""
+def _synthesize_mio(text: str, output_path: Path, tts_engine, voice: str | None = None) -> None:
     try:
         if not SOUNDFILE_AVAILABLE:
             raise ImportError("soundfile not available")
@@ -162,11 +158,12 @@ def _synthesize_mio(text: str, output_path: Path, tts_engine) -> None:
 
         chunk_audios = []
         sr = None
+        preset_id = voice or _tts_preset_id or os.getenv("preset_id", "simran.pt")
 
         for idx, chunk in enumerate(chunks):
             resp = requests.post(MIO_TTS_URL, json={
                 "text": chunk,
-                "reference": {"type": "preset", "preset_id": _tts_preset_id},
+                "reference": {"type": "preset", "preset_id": preset_id},
                 "llm": {
                     "temperature": 0.5,
                     "top_p": 0.9,
@@ -204,7 +201,6 @@ def _synthesize_pyttsx3(text: str, output_path: Path, tts_engine) -> None:
             raise RuntimeError("pyttsx3 engine not initialized")
         tts_engine.pyttsx3_engine.save_to_file(text, str(output_path))
         tts_engine.pyttsx3_engine.runAndWait()
-        print(f"[TTS] pyttsx3 synthesized -> {output_path}")
     except Exception as exc:
         print(f"[TTS] pyttsx3 synthesis failed: {exc}")
 
@@ -215,44 +211,39 @@ class TTSPipeline:
         self.cache_dir = Path(cache_dir)
         self.temp_dir.mkdir(parents=True, exist_ok=True)
         self.cache_dir.mkdir(parents=True, exist_ok=True)
-        self._purge_stale_temp_files()
 
-    def _cache_key(self, text: str, language: str) -> str:
-        normalized = unicodedata.normalize("NFKD", f"{language.strip().lower()}|{text.strip()}")
+    def _cache_key(self, text: str, language: str, voice_id: str) -> str:
+        normalized = unicodedata.normalize("NFKD", f"{language.strip().lower()}|{voice_id.strip().lower()}|{text.strip()}")
         return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
 
-    def _purge_stale_temp_files(self) -> None:
-        count = 0
-        for f in self.temp_dir.glob("temp_output_*.wav"):
-            try:
-                f.unlink()
-                count += 1
-            except Exception:
-                pass
-        if count:
-            pass
+    def generate_audio(self, text: str, language: str = "en", voice: str | None = None) -> bytes:
+        voice_id = voice or _tts_preset_id or os.getenv("preset_id", "default")
+        
+        # 1. Check Redis Cache
+        cached_redis = redis_cache.get_tts_audio(text, language, voice_id)
+        if cached_redis:
+            return cached_redis
 
-    def generate_audio(self, text: str, language: str) -> bytes:
-        """
-        Blocking: returns complete mulaw 8kHz bytes after full synthesis.
-        Used for short/precomputed responses where streaming isn't needed.
-        """
-        cache_key = self._cache_key(text, language)
+        # 2. Check Disk Cache
+        cache_key = self._cache_key(text, language, voice_id)
         cache_wav = self.cache_dir / f"{cache_key}.wav"
         if cache_wav.exists():
             try:
                 audio_f32, sr = wav_file_to_float32(str(cache_wav))
                 if sr != 16000:
                     audio_f32 = resample_float32(audio_f32, sr, 16000)
-                return float32_16k_to_mulaw_8k(audio_f32)
+                mulaw_bytes = float32_16k_to_mulaw_8k(audio_f32)
+                redis_cache.set_tts_audio(text, language, voice_id, mulaw_bytes)
+                return mulaw_bytes
             except Exception:
                 try:
                     cache_wav.unlink()
                 except Exception:
                     pass
 
+        # 3. Generate Audio
         temp_wav = self.temp_dir / f"temp_output_{uuid.uuid4().hex}.wav"
-        synthesize(text=text, output_path=temp_wav, language=language)
+        synthesize(text=text, output_path=temp_wav, language=language, voice=voice_id)
 
         if not temp_wav.exists():
             return b""
@@ -261,12 +252,17 @@ class TTSPipeline:
             audio_f32, sr = wav_file_to_float32(str(temp_wav))
             if sr != 16000:
                 audio_f32 = resample_float32(audio_f32, sr, 16000)
+            mulaw_bytes = float32_16k_to_mulaw_8k(audio_f32)
+
+            # Store in Redis & Disk
+            redis_cache.set_tts_audio(text, language, voice_id, mulaw_bytes)
             try:
                 cache_wav.parent.mkdir(parents=True, exist_ok=True)
                 temp_wav.replace(cache_wav)
             except Exception:
                 pass
-            return float32_16k_to_mulaw_8k(audio_f32)
+
+            return mulaw_bytes
         except Exception:
             return b""
         finally:
@@ -276,28 +272,25 @@ class TTSPipeline:
                 except Exception:
                     pass
 
-    def generate_audio_streaming(self, text: str, language: str):
+    def generate_audio_streaming(self, text: str, language: str = "en", voice: str | None = None):
         """
-        ── STREAMING PATH ──────────────────────────────────────────────────────
-        Generator: yields mulaw 8kHz bytes as EACH chunk is synthesized.
-        Caller streams chunk to phone immediately — no waiting for full audio.
-
-        Usage:
-            for chunk_bytes in tts_pipeline.generate_audio_streaming(text, lang):
-                await _enqueue_audio(outbox_queue, chunk_bytes)
-
-        Latency profile:
-            Before: wait N×3s → then stream everything
-            After:  wait 3s   → stream chunk1, wait 3s → stream chunk2 ...
-                    User hears first word after 3s instead of N×3s
+        Streaming TTS with multi-voice Redis caching.
         """
+        voice_id = voice or _tts_preset_id or os.getenv("preset_id", "default")
+        
+        # Check Redis Cache first
+        cached_redis = redis_cache.get_tts_audio(text, language, voice_id)
+        if cached_redis:
+            yield cached_redis
+            return
+
         if not SOUNDFILE_AVAILABLE:
-            yield self.generate_audio(text, language)
+            yield self.generate_audio(text, language, voice=voice_id)
             return
 
         tts_engine = get_tts()
         if tts_engine.get_mode() != "mio":
-            yield self.generate_audio(text, language)
+            yield self.generate_audio(text, language, voice=voice_id)
             return
 
         clean_text = _clean_text(text)
@@ -306,15 +299,18 @@ class TTSPipeline:
         if not chunks:
             return
 
-        import time as _time
-        wall_start = _time.monotonic()
-
+        all_mulaw_parts = []
         for idx, chunk in enumerate(chunks):
             try:
-                mulaw_bytes = _mio_chunk_to_mulaw(chunk)
+                mulaw_bytes = _mio_chunk_to_mulaw(chunk, voice=voice_id)
+                all_mulaw_parts.append(mulaw_bytes)
                 yield mulaw_bytes
             except Exception:
                 continue
+
+        if all_mulaw_parts:
+            combined = b"".join(all_mulaw_parts)
+            redis_cache.set_tts_audio(text, language, voice_id, combined)
 
 
 tts_pipeline = TTSPipeline()

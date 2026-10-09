@@ -1,0 +1,15 @@
+{
+  "input": "Thank you so much. We will connect with you shortly.",
+  "voice": "simran_clone_indian",
+  "language": "English",
+  "emotion": "neutral",
+  "temperature": 0.55,
+  "top_p": 0.87,
+  "repetition_penalty": 1.04,
+  "max_tokens": 650,
+  "seed": 42,
+  "stream": false,
+  "response_format": "wav",
+  "cache": true
+}
+

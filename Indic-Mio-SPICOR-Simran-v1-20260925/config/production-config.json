@@ -1,0 +1,27 @@
+{
+  "package_version": "1.0.0",
+  "package_date": "2026-09-25",
+  "base_model": "SPRINGLab/Indic-Mio",
+  "base_model_local_path": "models/Indic-Mio",
+  "codec_model": "Aratako/MioCodec-25Hz-44.1kHz-v2",
+  "codec_loading": "Use the Hugging Face repository ID. This MioCodec loader does not accept a filesystem path.",
+  "adapter_name": "indic-mio-spicor-fullshort-stage2",
+  "adapter_path": "finetuning/runs/indic-mio-spicor-fullshort-stage2",
+  "voice": {
+    "id": "simran_clone_indian",
+    "audio_path": "data/voices/simran_clone_indian.mp3",
+    "source_file_in_package": "voices/simran_clone_indian.mp3"
+  },
+  "generation": {
+    "language": "English",
+    "emotion": "neutral",
+    "temperature": 0.55,
+    "top_p": 0.87,
+    "repetition_penalty": 1.04,
+    "max_tokens": 650,
+    "seed": 42,
+    "cache": true,
+    "response_format": "wav",
+    "speed": "automatic; no model speed parameter was applied"
+  }
+}

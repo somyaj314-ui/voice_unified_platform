@@ -249,96 +249,123 @@ class WhisperSTT:
     def transcribe(self, audio: np.ndarray, language: str = "en") -> str:
         """
         Transcribe numpy audio array (float32, 16kHz) to text using Whisper.
-
-        Gate 1 — minimum duration:
-            Reject segments shorter than MIN_AUDIO_DURATION_S (1.0s).
-            Whisper hallucinates common phrases ("in the", "you") on short audio.
-
-        Gate 2 — energy floor:
-            Reject segments with RMS < MIN_PRE_TRANSCRIBE_RMS (effectively silent).
-
-        Gate 3 — hallucination filter:
-            Reject transcriptions that exactly match known Whisper hallucination
-            phrases produced on silence or noise.
+        Uses advanced per-use-case dynamic language detection.
         """
         if self.model is None:
             return ""
-
         if audio is None or len(audio) == 0:
             return ""
 
-        whisper_lang = LANGUAGE_CODE_MAP.get(str(language).strip().lower(), "en")
+        from core.loader import load_use_case
+        import math
+        _cfg = load_use_case()
+        stt_cfg = _cfg.raw.get("stt", {})
+        
+        # Load configs
+        acoustic_probe_enabled = stt_cfg.get("acoustic_probe_enabled", False)
+        mismatch_margin = float(stt_cfg.get("mismatch_margin", 0.20))
+        short_clip_threshold_sec = float(stt_cfg.get("short_clip_threshold_sec", 3.0))
+        conf_gates = stt_cfg.get("confidence_gate", {"en": 0.45, "hi": 0.50})
+        
+        expected_lang = str(language).strip().lower()
+        if expected_lang not in {"en", "hi", "ur"}:
+            expected_lang = "en"
+            
+        whisper_lang = LANGUAGE_CODE_MAP.get(expected_lang, "en")
 
-        # ── Gate 1: minimum duration ──────────────────────────────────────────
-        # Whisper is called at 16kHz so len(audio)/16000 = duration in seconds.
-        audio_sr = 16000  # pipeline always feeds 16kHz float32
+        audio_sr = 16000
         duration_s = len(audio) / audio_sr
-        rms = float(np.sqrt(np.mean(audio.astype(np.float32) ** 2)))  # pre-gate rms
+        rms = float(np.sqrt(np.mean(audio.astype(np.float32) ** 2)))
 
         if duration_s < MIN_SHORT_AUDIO_DURATION_S:
-            print(
-                f"[STT] Skipped: audio too short ({duration_s:.2f}s < {MIN_SHORT_AUDIO_DURATION_S}s). "
-                "Would cause Whisper hallucination."
-            )
             return ""
-
-        # ── Gate 2: energy floor ──────────────────────────────────────────────
         if duration_s < MIN_AUDIO_DURATION_S and rms < MIN_SHORT_AUDIO_RMS:
-            print(
-                f"[STT] Skipped: short audio too weak "
-                f"(dur={duration_s:.2f}s < {MIN_AUDIO_DURATION_S}s, rms={rms:.4f} < {MIN_SHORT_AUDIO_RMS})."
-            )
             return ""
-        if duration_s < MIN_AUDIO_DURATION_S:
-            print(f"[STT] Short telephony utterance accepted (dur={duration_s:.2f}s rms={rms:.4f})")
         if rms < MIN_PRE_TRANSCRIBE_RMS:
-            print(f"[STT] Skipped: audio too quiet (rms={rms:.4f} < {MIN_PRE_TRANSCRIBE_RMS}).")
             return ""
 
         print(f"[STT] Transcribing: dur={duration_s:.2f}s rms={rms:.4f}")
-        print(f"[ASR_PARTIAL] status=starting | duration_s={duration_s:.2f} | rms={rms:.4f}")
 
-        # Save to temp WAV file (faster-whisper accepts file path)
         with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
             tmp_path = tmp.name
 
         try:
             with wave.open(tmp_path, "wb") as wf:
                 wf.setnchannels(1)
-                wf.setsampwidth(2)  # int16 = 2 bytes
+                wf.setsampwidth(2)
                 wf.setframerate(audio_sr)
-                # audio is float32 [-1,1]; convert to int16 for WAV
                 pcm16 = np.clip(audio, -1.0, 1.0)
                 pcm16 = (pcm16 * 32767).astype(np.int16)
                 wf.writeframes(pcm16.tobytes())
 
+            mismatch_detected = False
+            
+            # Stage 1 & 2: Acoustic Probe
+            if acoustic_probe_enabled:
+                try:
+                    # Faster-whisper model.detect_language expects a numpy array or file object.
+                    lang, prob, all_probs = self.model.detect_language(audio)
+                    probs_dict = {p[0]: p[1] for p in all_probs}
+                    
+                    en_prob = probs_dict.get("en", 0.0)
+                    hi_prob = probs_dict.get("hi", 0.0)
+                    ur_prob = probs_dict.get("ur", 0.0)
+                    hindustani_prob = hi_prob + ur_prob
+                    
+                    target_prob = en_prob if expected_lang == "en" else hindustani_prob
+                    other_prob = hindustani_prob if expected_lang == "en" else en_prob
+                    
+                    if (en_prob + hindustani_prob) >= 0.05 or target_prob >= 0.10:
+                        mismatch_detected = (other_prob - target_prob > mismatch_margin)
+                        
+                        # Stage 2B - Short Clip Suppressor
+                        if mismatch_detected and duration_s < short_clip_threshold_sec and target_prob >= 0.15:
+                            mismatch_detected = False
+                            
+                except Exception as e:
+                    print(f"[STT] Acoustic probe error: {e}")
+
+            # Stage 3 - Transcription (No language lock if probe enabled)
+            transcribe_lang_param = None if acoustic_probe_enabled else whisper_lang
             segments, info = self.model.transcribe(
                 tmp_path,
                 beam_size=5,
-                language=whisper_lang,
+                language=transcribe_lang_param,
                 vad_filter=True,
                 vad_parameters={"min_silence_duration_ms": 500},
             )
-            text = " ".join(seg.text.strip() for seg in segments).strip()
+            
+            segments_list = list(segments)
+            text = " ".join(seg.text.strip() for seg in segments_list).strip()
 
-            # ── Gate 3: hallucination filter ──────────────────────────────────
-            if _is_hallucination(text):
-                print(
-                    f"[STT] Hallucination filtered: '{text}' "
-                    f"(lang={info.language}, prob={info.language_probability:.2f})"
-                )
-                print(f"[ASR_FINAL] text='' | hallucination=True | lang={info.language}")
+            if not text or _is_hallucination(text):
+                return ""
+                
+            # Stage 4B - Post-Transcription check
+            if acoustic_probe_enabled:
+                decoded_lang = getattr(info, "language", None)
+                if decoded_lang and decoded_lang != expected_lang and segments_list:
+                    _decoded_family = "hi" if decoded_lang in ("hi", "ur") else decoded_lang
+                    _expected_family = "hi" if expected_lang in ("hi", "ur") else expected_lang
+                    
+                    # Ignore short number-like texts
+                    import re
+                    is_number_like = re.match(r"^[0-9\s,\.]+$", text)
+                    if _decoded_family != _expected_family and not is_number_like:
+                        print(f"[STT] Mismatch confirmed. Expected {_expected_family}, got {_decoded_family}.")
+                        return "[LANGUAGE_MISMATCH]"
+                        
+            # Stage 8 - Confidence Gate
+            avg_logprob = sum(seg.avg_logprob for seg in segments_list) / len(segments_list) if segments_list else -10
+            confidence = math.exp(avg_logprob)
+            
+            min_conf = conf_gates.get("hi" if expected_lang in ("hi", "ur") else "en", 0.45)
+            
+            if confidence < min_conf:
+                print(f"[STT] Rejected: Confidence {confidence:.2f} < {min_conf:.2f} for '{text}'")
                 return ""
 
-            print(
-                f"[STT] Transcribed: '{text}' "
-                f"(dur={duration_s:.2f}s rms={rms:.4f} "
-                f"lang={info.language} prob={info.language_probability:.2f})"
-            )
-            print(
-                f"[ASR_FINAL] text='{text}' | duration_s={duration_s:.2f} | "
-                f"rms={rms:.4f} | lang={info.language} | prob={info.language_probability:.2f}"
-            )
+            print(f"[STT] Transcribed: '{text}' (conf={confidence:.2f})")
             return text
 
         except Exception as e:

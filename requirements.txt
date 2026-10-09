@@ -4,6 +4,7 @@ scipy
 numpy
 librosa
 sounddevice
+deepfilternet
 
 # PyTorch
 torch

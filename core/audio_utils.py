@@ -217,7 +217,7 @@ def _find_local_silero_repo() -> str | None:
     return _silero_repo_path
 
 
-def _load_silero_model(device: str = "cpu"):
+def _load_silero_model(device: str = "cuda" if torch.cuda.is_available() else "cpu"):
     """
     Load a fresh Silero VAD model for one caller/consumer instance.
     The model is stateful, so sharing one module across the flow engine and
@@ -253,12 +253,25 @@ def _load_silero_model(device: str = "cpu"):
                     raise hub_exc # Re-raise if we can't find a fallback
         else:
             print(f"[VAD] Local Silero not found. Attempting network load...")
-            model, _ = torch.hub.load(
-                repo_or_dir="snakers4/silero-vad",
-                model="silero_vad",
-                force_reload=False,
-                trust_repo=True,
-            )
+            try:
+                model, _ = torch.hub.load(
+                    repo_or_dir="snakers4/silero-vad",
+                    model="silero_vad",
+                    force_reload=False,
+                    trust_repo=True,
+                )
+            except Exception as hub_exc:
+                print(f"[VAD] Hub load failed ({hub_exc}), trying direct JIT load from cache...")
+                import os
+                cache_dir = os.path.join(torch.hub.get_dir(), "snakers4_silero-vad_master")
+                jit_path = os.path.join(cache_dir, "src", "silero_vad", "data", "silero_vad.jit")
+                if not os.path.exists(jit_path):
+                    jit_path = os.path.join(cache_dir, "silero_vad.jit")
+                if os.path.exists(jit_path):
+                    print(f"[VAD] Found JIT model at: {jit_path}")
+                    model = torch.jit.load(jit_path, map_location=device)
+                else:
+                    raise hub_exc
         
         model.to(device)
         model.eval()

@@ -17,44 +17,87 @@
       "transitions": "Event-keyed map for branching transitions — use this when multiple outcomes are possible"
     }
   },
-
   "inline_faqs": {
     "what_is_mandate": {
-      "keywords": ["mandate kya hai", "what is mandate", "e mandate kya", "yeh kya hai"],
+      "keywords": [
+        "mandate kya hai",
+        "what is mandate",
+        "e mandate kya",
+        "yeh kya hai"
+      ],
       "answer_hi": "Mandate ek permission hai jo bank ko deti hain — isse EMI har mahine automatically account se debit hoti hai, manually pay nahi karna hota.",
       "answer_en": "A mandate is a permission you give your bank to automatically debit your EMI each month — so you never miss a payment."
     },
     "is_safe": {
-      "keywords": ["safe hai", "secure hai", "fraud toh nahi", "scam", "dar lag raha"],
+      "keywords": [
+        "safe hai",
+        "secure hai",
+        "fraud toh nahi",
+        "scam",
+        "dar lag raha"
+      ],
       "answer_hi": "Bilkul safe hai. Yeh NPCI aur aapke bank ke official secure page ke through hota hai. Main kabhi bhi aapka password nahi poonchungi.",
       "answer_en": "Completely safe. This goes through NPCI and your bank's own official secure page. I will never ask for your password."
     },
     "no_money_today": {
-      "keywords": ["paisa katega kya", "aaj debit", "abhi transaction", "balance"],
+      "keywords": [
+        "paisa katega kya",
+        "aaj debit",
+        "abhi transaction",
+        "balance"
+      ],
       "answer_hi": "Aaj koi paisa nahi katega. Sirf permission register ho rahi hai. Pehla debit aapki EMI due date par hoga.",
       "answer_en": "No money is deducted today. We are only registering the permission. The first debit happens on your EMI due date."
     }
   },
-
   "global_conversation_handlers": {
     "WAIT": {
-      "signals": ["wait", "ruko", "ek minute", "hold on", "thoda ruko", "ek sec"],
+      "signals": [
+        "wait",
+        "ruko",
+        "ek minute",
+        "hold on",
+        "thoda ruko",
+        "ek sec"
+      ],
       "response_hi": "Koi baat nahi, main wait karungi. Jab ready ho to 'ready hoon' bolein.",
       "response_en": "No problem, I will wait. Say 'I am ready' when you want to continue."
     },
     "REPEAT": {
-      "signals": ["repeat", "dobara bolo", "phir se batao", "samajh nahi aaya", "say again", "ek baar aur"],
+      "signals": [
+        "repeat",
+        "dobara bolo",
+        "phir se batao",
+        "samajh nahi aaya",
+        "say again",
+        "ek baar aur"
+      ],
       "response_hi": "Bilkul, dobara bolti hoon:",
       "response_en": "Of course, repeating:"
     }
   },
-
   "workflows": {
-
     "EMANDATE_MAIN": {
       "workflow_id": "EMANDATE_MAIN",
-      "initial_state": "GREETING",
+      "initial_state": "LANGUAGE_SELECTION",
       "states": [
+        {
+          "state_id": "LANGUAGE_SELECTION",
+          "step": 0,
+          "title": "Select Language",
+          "bot_says_en": "{customer_name}. Welcome to e-mandate registration. Please choose your language. For English, say English. Hindi ke liye, Hindi bolein.",
+          "bot_says_hi": "{customer_name}. Welcome to e-mandate registration. Please choose your language. For English, say English. Hindi ke liye, Hindi bolein.",
+          "confirmation_question_en": null,
+          "confirmation_question_hi": null,
+          "advance_signals": [],
+          "stuck_signals": [],
+          "transitions": {
+            "choose_english": "GREETING",
+            "choose_hindi": "GREETING",
+            "default": "LANGUAGE_SELECTION"
+          },
+          "action": "set_language"
+        },
         {
           "state_id": "GREETING",
           "step": 1,
@@ -63,14 +106,34 @@
           "bot_says_en": "Hello, this is an automated assistant calling on behalf of [Company Name]. I'll guide you through your e-mandate registration. Shall we proceed",
           "confirmation_question_hi": "Kya aap abhi shuru karna chahenge?",
           "confirmation_question_en": "Would you like to proceed now?",
-          "advance_signals": ["haan", "yes", "proceed", "theek hai", "chalo", "sure", "ok", "ready", "han", "shuru karein", "ha"],
+          "advance_signals": [
+            "haan",
+            "yes",
+            "proceed",
+            "theek hai",
+            "chalo",
+            "sure",
+            "ok",
+            "ready",
+            "han",
+            "shuru karein",
+            "ha"
+          ],
           "stuck_signals": [],
           "on_advance": "VERIFY_FORM_DETAILS",
           "on_no": "POLITE_EXIT",
           "resume_prompt_hi": "To, kya hum shuru karein?",
           "resume_prompt_en": "So, shall we begin?",
-          "rag_triggers": ["SAFETY_CONCERN_001", "MANDATE_INFO_001", "MONEY_CONCERN_001"],
-          "inline_faqs": ["what_is_mandate", "is_safe", "no_money_today"]
+          "rag_triggers": [
+            "SAFETY_CONCERN_001",
+            "MANDATE_INFO_001",
+            "MONEY_CONCERN_001"
+          ],
+          "inline_faqs": [
+            "what_is_mandate",
+            "is_safe",
+            "no_money_today"
+          ]
         },
         {
           "state_id": "VERIFY_FORM_DETAILS",
@@ -78,17 +141,42 @@
           "title": "Verify Form Details",
           "bot_says_hi": "Aapke screen par jo form khula hai, usme aapka naam, bank account number, EMI amount aur dates dikh rahe honge. Kripya teen cheezon ko verify karein",
           "bot_says_en": "On the form open on your screen, you should see your name, bank account number, EMI amount, and dates. Please verify three things — name is correct, bank account number is correct, and amount is correct.",
-
           "confirmation_question_hi": "Kya aapki saari details sahi hain?",
           "confirmation_question_en": "Are all your details correct?",
-          "advance_signals": ["haan", "yes", "sahi hai", "sab theek hai", "correct", "ho gaya", "done", "bilkul", "theek"],
-          "stuck_signals": ["galat", "wrong", "nahi", "incorrect", "amount galat", "naam galat", "bank galat", "details wrong"],
+          "advance_signals": [
+            "haan",
+            "yes",
+            "sahi hai",
+            "sab theek hai",
+            "correct",
+            "ho gaya",
+            "done",
+            "bilkul",
+            "theek"
+          ],
+          "stuck_signals": [
+            "galat",
+            "wrong",
+            "nahi",
+            "incorrect",
+            "amount galat",
+            "naam galat",
+            "bank galat",
+            "details wrong"
+          ],
           "on_advance": "SELECT_AUTH_MODE",
           "on_stuck": "ESCALATE_DATA_CORRECTION",
           "resume_prompt_hi": "Achha. Kripya details dobara check karein — naam, account number, aur amount sab sahi hona chahiye.",
           "resume_prompt_en": "Okay. Please check the details again — name, account number, and amount all need to be correct.",
-          "rag_triggers": ["DETAILS_INCORRECT_001", "PAGE_STUCK_001"],
-          "inline_faqs": ["what_is_mandate", "is_safe", "no_money_today"],
+          "rag_triggers": [
+            "DETAILS_INCORRECT_001",
+            "PAGE_STUCK_001"
+          ],
+          "inline_faqs": [
+            "what_is_mandate",
+            "is_safe",
+            "no_money_today"
+          ],
           "escalate_state": "ESCALATE_DATA_CORRECTION"
         },
         {
@@ -99,19 +187,54 @@
           "bot_says_en": "On your screen you will see authentication options — Net Banking, Debit Card, PAN or Customer ID, Aadhaar, and eSign. Please select your preferred option.",
           "confirmation_question_hi": "Aapne kaunsa option select kiya?",
           "confirmation_question_en": "Which option have you selected?",
-          "advance_signals": ["net banking", "debit card", "pan", "aadhaar", "esign", "select kiya", "ho gaya"],
-          "stuck_signals": ["kaunsa choose karein", "difference kya hai", "konsa better hai"],
+          "advance_signals": [
+            "net banking",
+            "debit card",
+            "pan",
+            "aadhaar",
+            "esign",
+            "select kiya",
+            "ho gaya"
+          ],
+          "stuck_signals": [
+            "kaunsa choose karein",
+            "difference kya hai",
+            "konsa better hai"
+          ],
           "transitions": {
-            "NET_BANKING":    {"type": "SUBFLOW", "target_workflow": "SUBFLOW_NET_BANKING",    "target_state": "REVIEW"},
-            "DEBIT_CARD":     {"type": "SUBFLOW", "target_workflow": "SUBFLOW_DEBIT_CARD",     "target_state": "REVIEW"},
-            "PAN_CUST_ID":    {"type": "SUBFLOW", "target_workflow": "SUBFLOW_PAN_CUST_ID",    "target_state": "REVIEW"},
-            "AADHAAR_ONLINE": {"type": "SUBFLOW", "target_workflow": "SUBFLOW_AADHAAR",        "target_state": "REVIEW"},
-            "ESIGN_AADHAAR":  {"type": "SUBFLOW", "target_workflow": "SUBFLOW_ESIGN_AADHAAR",  "target_state": "CONSENT_SUBMIT"}
+            "NET_BANKING": {
+              "type": "SUBFLOW",
+              "target_workflow": "SUBFLOW_NET_BANKING",
+              "target_state": "REVIEW"
+            },
+            "DEBIT_CARD": {
+              "type": "SUBFLOW",
+              "target_workflow": "SUBFLOW_DEBIT_CARD",
+              "target_state": "REVIEW"
+            },
+            "PAN_CUST_ID": {
+              "type": "SUBFLOW",
+              "target_workflow": "SUBFLOW_PAN_CUST_ID",
+              "target_state": "REVIEW"
+            },
+            "AADHAAR_ONLINE": {
+              "type": "SUBFLOW",
+              "target_workflow": "SUBFLOW_AADHAAR",
+              "target_state": "REVIEW"
+            },
+            "ESIGN_AADHAAR": {
+              "type": "SUBFLOW",
+              "target_workflow": "SUBFLOW_ESIGN_AADHAAR",
+              "target_state": "CONSENT_SUBMIT"
+            }
           },
           "resume_prompt_hi": "Theek hai. Screen par Net Banking, Debit Card, PAN, Aadhaar, ya eSign mein se ek select karein.",
           "resume_prompt_en": "Okay. Please select one of the options on screen — Net Banking, Debit Card, PAN, Aadhaar, or eSign.",
           "rag_triggers": [],
-          "inline_faqs": ["what_is_mandate", "is_safe"]
+          "inline_faqs": [
+            "what_is_mandate",
+            "is_safe"
+          ]
         },
         {
           "state_id": "POLITE_EXIT",
@@ -143,7 +266,6 @@
         }
       ]
     },
-
     "SUBFLOW_NET_BANKING": {
       "workflow_id": "SUBFLOW_NET_BANKING",
       "mode_name": "Net Banking",
@@ -156,14 +278,38 @@
           "bot_says_en": "For Net Banking — first verify your name, bank account number, and EMI amount one more time on screen. If all correct, click Proceed, then a popup will appear — click Yes on it.",
           "confirmation_question_hi": "Kya aapne Proceed aur phir Yes daba diya?",
           "confirmation_question_en": "Have you clicked Proceed and then Yes?",
-          "advance_signals": ["haan", "yes", "ho gaya", "done", "clicked", "proceed kiya", "yes daba diya", "theek hai", "kar diya"],
-          "stuck_signals": ["galat", "wrong", "amount galat", "naam galat", "page nahi khula", "link nahi khul rahi"],
+          "advance_signals": [
+            "haan",
+            "yes",
+            "ho gaya",
+            "done",
+            "clicked",
+            "proceed kiya",
+            "yes daba diya",
+            "theek hai",
+            "kar diya"
+          ],
+          "stuck_signals": [
+            "galat",
+            "wrong",
+            "amount galat",
+            "naam galat",
+            "page nahi khula",
+            "link nahi khul rahi"
+          ],
           "on_advance": "NPCI_REDIRECT",
           "on_stuck": "REVIEW",
           "resume_prompt_hi": "Theek hai. Wapas aate hain — details verify karke Proceed aur phir Yes dabayein.",
           "resume_prompt_en": "Okay, coming back — verify details and click Proceed then Yes.",
-          "rag_triggers": ["DETAILS_INCORRECT_001", "PAGE_STUCK_001"],
-          "inline_faqs": ["what_is_mandate", "is_safe", "no_money_today"]
+          "rag_triggers": [
+            "DETAILS_INCORRECT_001",
+            "PAGE_STUCK_001"
+          ],
+          "inline_faqs": [
+            "what_is_mandate",
+            "is_safe",
+            "no_money_today"
+          ]
         },
         {
           "state_id": "NPCI_REDIRECT",
@@ -173,13 +319,33 @@
           "bot_says_en": "The page is now redirecting to NPCI's secure server. You will see a loading screen, then a page with the NPCI logo at the top.",
           "confirmation_question_hi": "Kya aap NPCI page par pahunch gaye hain?",
           "confirmation_question_en": "Have you reached the NPCI page?",
-          "advance_signals": ["haan", "yes", "aa gaya", "dikh raha hai", "logo dikh raha", "loaded", "ho gaya"],
-          "stuck_signals": ["nahi aa raha", "load nahi ho raha", "blank", "white screen", "stuck", "kuch nahi dikh raha", "internet", "network"],
+          "advance_signals": [
+            "haan",
+            "yes",
+            "aa gaya",
+            "dikh raha hai",
+            "logo dikh raha",
+            "loaded",
+            "ho gaya"
+          ],
+          "stuck_signals": [
+            "nahi aa raha",
+            "load nahi ho raha",
+            "blank",
+            "white screen",
+            "stuck",
+            "kuch nahi dikh raha",
+            "internet",
+            "network"
+          ],
           "on_advance": "NPCI_ACTION",
           "on_stuck": "NPCI_REDIRECT",
           "resume_prompt_hi": "Theek hai. Jab NPCI page load ho jaye aur logo dikh jaaye tab batayein.",
           "resume_prompt_en": "Okay. Let me know when the NPCI page loads and you can see the NPCI logo.",
-          "rag_triggers": ["PAGE_STUCK_001", "INTERNET_ISSUE_001"],
+          "rag_triggers": [
+            "PAGE_STUCK_001",
+            "INTERNET_ISSUE_001"
+          ],
           "inline_faqs": []
         },
         {
@@ -190,13 +356,31 @@
           "bot_says_en": "On this page there is a checkbox at the bottom for Terms and Conditions. First tick that checkbox, then click Submit. Submit will not work without ticking the checkbox first.",
           "confirmation_question_hi": "Kya aapne checkbox tick karke Submit daba diya?",
           "confirmation_question_en": "Have you ticked the checkbox and clicked Submit?",
-          "advance_signals": ["haan", "yes", "submit kar diya", "ho gaya", "done", "kar diya", "clicked", "tick kar diya"],
-          "stuck_signals": ["checkbox nahi dikh raha", "submit nahi chal raha", "button nahi hai", "kahan hai", "stuck", "error"],
+          "advance_signals": [
+            "haan",
+            "yes",
+            "submit kar diya",
+            "ho gaya",
+            "done",
+            "kar diya",
+            "clicked",
+            "tick kar diya"
+          ],
+          "stuck_signals": [
+            "checkbox nahi dikh raha",
+            "submit nahi chal raha",
+            "button nahi hai",
+            "kahan hai",
+            "stuck",
+            "error"
+          ],
           "on_advance": "BANK_LOGIN",
           "on_stuck": "NPCI_ACTION",
           "resume_prompt_hi": "Achha. NPCI page par neeche checkbox tick karein, phir Submit dabayein.",
           "resume_prompt_en": "Okay — on the NPCI page tick the checkbox at the bottom, then click Submit.",
-          "rag_triggers": ["PAGE_STUCK_001"],
+          "rag_triggers": [
+            "PAGE_STUCK_001"
+          ],
           "inline_faqs": []
         },
         {
@@ -205,31 +389,72 @@
           "title": "Log in with Net Banking credentials",
           "bot_says_hi": "Ab aapke bank ka secure login page khul chuka hoga. Yahan apna Net Banking User ID aur Password dhyan se enter karein. Yeh aapka ATM PIN nahi hai — wahi credentials use karein jo aap bank ki official website ya app me login karne ke liye use karte hain.",
           "bot_says_en": "The secure login page of your bank should now be open. Carefully enter your Net Banking User ID and Password. This is not your ATM PIN — use the same credentials you use to log in on your bank’s official website or app.",
-           "confirmation_question_hi": "Jab aap login details enter kar lein, mujhe batayein. Main yahin wait kar rahi hoon.",
-           "confirmation_question_en": "Let me know once you have entered your login details. I’ll wait here.",
-          "advance_signals": ["haan", "yes", "login ho gaya", "logged in", "ho gaya", "otp page aa gaya", "done", "andar aa gaya"],
-          "stuck_signals": ["password bhool gaya", "password nahi pata", "login nahi ho raha", "ATM PIN", "4 digit", "net banking nahi hai", "page nahi khula", "galat password", "invalid"],
+          "confirmation_question_hi": "Jab aap login details enter kar lein, mujhe batayein. Main yahin wait kar rahi hoon.",
+          "confirmation_question_en": "Let me know once you have entered your login details. I’ll wait here.",
+          "advance_signals": [
+            "haan",
+            "yes",
+            "login ho gaya",
+            "logged in",
+            "ho gaya",
+            "otp page aa gaya",
+            "done",
+            "andar aa gaya"
+          ],
+          "stuck_signals": [
+            "password bhool gaya",
+            "password nahi pata",
+            "login nahi ho raha",
+            "ATM PIN",
+            "4 digit",
+            "net banking nahi hai",
+            "page nahi khula",
+            "galat password",
+            "invalid"
+          ],
           "on_advance": "OTP_STAGE",
           "on_stuck": "BANK_LOGIN",
           "resume_prompt_hi": "Theek hai. Bank ke login page par net banking User ID aur Password enter karein — ATM PIN nahi.",
           "resume_prompt_en": "Okay — on the bank login page enter your Internet Banking User ID and Password, not your ATM PIN.",
-          "rag_triggers": ["FORGOT_PASSWORD_001", "ATM_PIN_CONFUSION_001", "NO_NET_BANKING_001", "PAGE_STUCK_001"],
-          "inline_faqs": ["is_safe"],
+          "rag_triggers": [
+            "FORGOT_PASSWORD_001",
+            "ATM_PIN_CONFUSION_001",
+            "NO_NET_BANKING_001",
+            "PAGE_STUCK_001"
+          ],
+          "inline_faqs": [
+            "is_safe"
+          ],
           "help_states": {
             "FORGOT_PASSWORD": {
-              "trigger_signals": ["password bhool gaya", "password nahi pata", "forgot password", "reset karna hai"],
+              "trigger_signals": [
+                "password bhool gaya",
+                "password nahi pata",
+                "forgot password",
+                "reset karna hai"
+              ],
               "response_hi": "Koi baat nahi. Pehle apne bank ki website par jaake password reset karein. Jab naya password mil jaaye tab mujhe batayein — link 15 din tak active rahegi.",
               "response_en": "No problem. Please visit your bank's website to reset your password first. Once done, let me know — the link stays active for 15 days.",
               "then": "resume_current_state"
             },
             "ATM_PIN_CONFUSION": {
-              "trigger_signals": ["4 digit", "ATM PIN", "ATM wala", "PIN daala"],
+              "trigger_signals": [
+                "4 digit",
+                "ATM PIN",
+                "ATM wala",
+                "PIN daala"
+              ],
               "response_hi": "ATM PIN nahi — net banking User ID aur Password chahiye. Jo aap bank ki website ya app par login ke liye use karte hain.",
               "response_en": "Not the ATM PIN — you need your net banking User ID and Password. The ones you use to log in to your bank's website or app.",
               "then": "resume_current_state"
             },
             "NO_NET_BANKING": {
-              "trigger_signals": ["net banking nahi hai", "activate nahi hai", "ID nahi pata", "nahi hai mera"],
+              "trigger_signals": [
+                "net banking nahi hai",
+                "activate nahi hai",
+                "ID nahi pata",
+                "nahi hai mera"
+              ],
               "response_hi": "Koi baat nahi. Main aapko Debit Card ya Aadhaar wali link bhej sakti hoon — usi se bhi ho jaayega.",
               "response_en": "No problem. I can send you a fresh link for Debit Card or Aadhaar authentication instead.",
               "then": "escalate"
@@ -244,23 +469,52 @@
           "bot_says_en": "Your bank will now send a 6-digit OTP to your registered mobile number. Please enter that OTP on screen and click Submit. I will wait.",
           "confirmation_question_hi": "Kya OTP aa gaya aur aapne submit kar diya?",
           "confirmation_question_en": "Did you receive the OTP and submit it?",
-          "advance_signals": ["haan", "yes", "otp dala", "submit kar diya", "ho gaya", "done", "enter kar diya", "kar diya"],
-          "stuck_signals": ["OTP nahi aaya", "message nahi aaya", "OTP expire", "wrong OTP", "invalid OTP", "OTP nahi mila"],
+          "advance_signals": [
+            "haan",
+            "yes",
+            "otp dala",
+            "submit kar diya",
+            "ho gaya",
+            "done",
+            "enter kar diya",
+            "kar diya"
+          ],
+          "stuck_signals": [
+            "OTP nahi aaya",
+            "message nahi aaya",
+            "OTP expire",
+            "wrong OTP",
+            "invalid OTP",
+            "OTP nahi mila"
+          ],
           "on_advance": "FINAL_HOLD",
           "on_stuck": "OTP_STAGE",
           "resume_prompt_hi": "Achha. OTP ka wait karein, aaye toh screen par enter karein aur Submit karein.",
           "resume_prompt_en": "Okay — wait for the OTP, once it arrives enter it on screen and click Submit.",
-          "rag_triggers": ["OTP_NOT_RECEIVED_NB_001", "OTP_EXPIRED_001"],
+          "rag_triggers": [
+            "OTP_NOT_RECEIVED_NB_001",
+            "OTP_EXPIRED_001"
+          ],
           "inline_faqs": [],
           "help_states": {
             "OTP_NOT_RECEIVED": {
-              "trigger_signals": ["OTP nahi aaya", "message nahi aaya", "OTP nahi mila", "koi sms nahi"],
+              "trigger_signals": [
+                "OTP nahi aaya",
+                "message nahi aaya",
+                "OTP nahi mila",
+                "koi sms nahi"
+              ],
               "response_hi": "30-60 second wait karein. Network signal check karein. Screen par 'Resend OTP' ka option bhi hoga — woh try karein.",
               "response_en": "Please wait 30 to 60 seconds. Check your network signal. Also look for a Resend OTP button on screen and try that.",
               "then": "resume_current_state"
             },
             "OTP_EXPIRED": {
-              "trigger_signals": ["OTP expire", "invalid OTP", "wrong OTP", "OTP kaam nahi"],
+              "trigger_signals": [
+                "OTP expire",
+                "invalid OTP",
+                "wrong OTP",
+                "OTP kaam nahi"
+              ],
               "response_hi": "OTP usually 5 minute valid hota hai. Screen par 'Resend OTP' button dhundhein aur click karein — nayi OTP aayegi.",
               "response_en": "OTP is usually valid for 5 minutes. Look for the Resend OTP button on screen and click it — a new OTP will be sent.",
               "then": "resume_current_state"
@@ -275,13 +529,29 @@
           "bot_says_en": "Excellent! The page is now processing — please do not close the browser or press back for 10 seconds. The page will automatically redirect on its own.",
           "confirmation_question_hi": "Kya page badal gaya ya koi naya page aa gaya?",
           "confirmation_question_en": "Has the page changed or a new page appeared?",
-          "advance_signals": ["haan", "yes", "page badal gaya", "naya page", "aa gaya", "ho gaya", "redirect", "ok"],
-          "stuck_signals": ["browser band kar diya", "galti se close", "page band ho gaya", "back dab gaya"],
+          "advance_signals": [
+            "haan",
+            "yes",
+            "page badal gaya",
+            "naya page",
+            "aa gaya",
+            "ho gaya",
+            "redirect",
+            "ok"
+          ],
+          "stuck_signals": [
+            "browser band kar diya",
+            "galti se close",
+            "page band ho gaya",
+            "back dab gaya"
+          ],
           "on_advance": "SUCCESS",
           "on_stuck": "FINAL_HOLD",
           "resume_prompt_hi": "Koi baat nahi. Agar mandate process ho gayi toh status khud update ho jaayega. Abhi — kya page badla?",
           "resume_prompt_en": "No problem. If the mandate processed, status will update automatically. Now — has the page changed?",
-          "rag_triggers": ["BROWSER_CLOSED_001"],
+          "rag_triggers": [
+            "BROWSER_CLOSED_001"
+          ],
           "inline_faqs": []
         },
         {
@@ -292,14 +562,36 @@
           "bot_says_en": "Congratulations! Your e-mandate is successfully registered! You will see a UMRN number on screen — this is your mandate's unique ID, please note it down. From now your EMI will be automatically debited each month.",
           "confirmation_question_hi": "Kya aapke koi aur sawaal hain — amount, frequency, cancellation, ya kuch aur?",
           "confirmation_question_en": "Do you have any other questions — about the amount, frequency, cancellation, or anything else?",
-          "advance_signals": ["nahi", "no", "theek hai", "sab clear hai", "shukriya", "thanks", "bas", "koi sawal nahi"],
-          "stuck_signals": ["UMRN", "amount", "frequency", "cancel", "cancellation", "kitna katega"],
+          "advance_signals": [
+            "nahi",
+            "no",
+            "theek hai",
+            "sab clear hai",
+            "shukriya",
+            "thanks",
+            "bas",
+            "koi sawal nahi"
+          ],
+          "stuck_signals": [
+            "UMRN",
+            "amount",
+            "frequency",
+            "cancel",
+            "cancellation",
+            "kitna katega"
+          ],
           "on_advance": "CLOSING",
           "on_stuck": "SUCCESS",
           "resume_prompt_hi": "Aur koi sawaal?",
           "resume_prompt_en": "Any other questions?",
-          "rag_triggers": ["UMRN_INFO_001", "CANCELLATION_001", "MANDATE_INFO_001"],
-          "inline_faqs": ["what_is_mandate"]
+          "rag_triggers": [
+            "UMRN_INFO_001",
+            "CANCELLATION_001",
+            "MANDATE_INFO_001"
+          ],
+          "inline_faqs": [
+            "what_is_mandate"
+          ]
         },
         {
           "state_id": "CLOSING",
@@ -317,7 +609,6 @@
         }
       ]
     },
-
     "SUBFLOW_DEBIT_CARD": {
       "workflow_id": "SUBFLOW_DEBIT_CARD",
       "mode_name": "Debit Card",
@@ -330,14 +621,32 @@
           "bot_says_en": "For Debit Card — verify the details on screen. If all correct, click Proceed, then click Yes on the popup.",
           "confirmation_question_hi": "Kya aapne Proceed aur Yes daba diya?",
           "confirmation_question_en": "Have you clicked Proceed and then Yes?",
-          "advance_signals": ["haan", "yes", "ho gaya", "done", "kar diya"],
-          "stuck_signals": ["galat", "wrong", "amount galat", "naam galat"],
+          "advance_signals": [
+            "haan",
+            "yes",
+            "ho gaya",
+            "done",
+            "kar diya"
+          ],
+          "stuck_signals": [
+            "galat",
+            "wrong",
+            "amount galat",
+            "naam galat"
+          ],
           "on_advance": "NPCI_REDIRECT",
           "on_stuck": "ESCALATE_DATA_CORRECTION",
           "resume_prompt_hi": "Details verify karke Proceed aur Yes dabayein.",
           "resume_prompt_en": "Verify details and click Proceed then Yes.",
-          "rag_triggers": ["DETAILS_INCORRECT_001", "PAGE_STUCK_001"],
-          "inline_faqs": ["what_is_mandate", "is_safe", "no_money_today"]
+          "rag_triggers": [
+            "DETAILS_INCORRECT_001",
+            "PAGE_STUCK_001"
+          ],
+          "inline_faqs": [
+            "what_is_mandate",
+            "is_safe",
+            "no_money_today"
+          ]
         },
         {
           "state_id": "NPCI_REDIRECT",
@@ -347,13 +656,25 @@
           "bot_says_en": "The page is redirecting to NPCI's secure server.",
           "confirmation_question_hi": "Kya NPCI page load ho gaya?",
           "confirmation_question_en": "Has the NPCI page loaded?",
-          "advance_signals": ["haan", "yes", "aa gaya", "loaded"],
-          "stuck_signals": ["nahi aa raha", "stuck", "blank"],
+          "advance_signals": [
+            "haan",
+            "yes",
+            "aa gaya",
+            "loaded"
+          ],
+          "stuck_signals": [
+            "nahi aa raha",
+            "stuck",
+            "blank"
+          ],
           "on_advance": "ENTER_CARD_DETAILS",
           "on_stuck": "NPCI_REDIRECT",
           "resume_prompt_hi": "NPCI page load hone ka wait karein.",
           "resume_prompt_en": "Wait for the NPCI page to load.",
-          "rag_triggers": ["PAGE_STUCK_001", "INTERNET_ISSUE_001"],
+          "rag_triggers": [
+            "PAGE_STUCK_001",
+            "INTERNET_ISSUE_001"
+          ],
           "inline_faqs": []
         },
         {
@@ -364,13 +685,28 @@
           "bot_says_en": "Now enter your Debit Card number, expiry date, and CVV on screen and click Submit. CVV is on the back of your card — a 3-digit number.",
           "confirmation_question_hi": "Kya aapne card details submit kar diye?",
           "confirmation_question_en": "Have you submitted your card details?",
-          "advance_signals": ["haan", "yes", "submit kar diya", "ho gaya", "done"],
-          "stuck_signals": ["CVV", "kahan hai", "expired", "card nahi hai", "invalid"],
+          "advance_signals": [
+            "haan",
+            "yes",
+            "submit kar diya",
+            "ho gaya",
+            "done"
+          ],
+          "stuck_signals": [
+            "CVV",
+            "kahan hai",
+            "expired",
+            "card nahi hai",
+            "invalid"
+          ],
           "on_advance": "OTP_ENTRY",
           "on_stuck": "ENTER_CARD_DETAILS",
           "resume_prompt_hi": "Card number, expiry, aur CVV enter karein phir Submit dabayein.",
           "resume_prompt_en": "Enter card number, expiry, and CVV then click Submit.",
-          "rag_triggers": ["CVV_LOCATION_001", "CARD_EXPIRED_001"],
+          "rag_triggers": [
+            "CVV_LOCATION_001",
+            "CARD_EXPIRED_001"
+          ],
           "inline_faqs": []
         },
         {
@@ -381,13 +717,26 @@
           "bot_says_en": "You will receive an OTP from your bank. Enter that OTP and click Submit.",
           "confirmation_question_hi": "Kya OTP submit ho gaya?",
           "confirmation_question_en": "Has the OTP been submitted?",
-          "advance_signals": ["haan", "yes", "submit kar diya", "ho gaya", "done"],
-          "stuck_signals": ["OTP nahi aaya", "message nahi aaya", "expire"],
+          "advance_signals": [
+            "haan",
+            "yes",
+            "submit kar diya",
+            "ho gaya",
+            "done"
+          ],
+          "stuck_signals": [
+            "OTP nahi aaya",
+            "message nahi aaya",
+            "expire"
+          ],
           "on_advance": "SUCCESS",
           "on_stuck": "OTP_ENTRY",
           "resume_prompt_hi": "OTP enter karein aur Submit dabayein.",
           "resume_prompt_en": "Enter the OTP and click Submit.",
-          "rag_triggers": ["OTP_NOT_RECEIVED_DC_001", "OTP_EXPIRED_001"],
+          "rag_triggers": [
+            "OTP_NOT_RECEIVED_DC_001",
+            "OTP_EXPIRED_001"
+          ],
           "inline_faqs": []
         },
         {
@@ -398,13 +747,23 @@
           "bot_says_en": "Your Debit Card e-mandate is successfully registered! Please note down your UMRN number. Your EMI will be automatically debited going forward.",
           "confirmation_question_hi": "Aur koi sawaal?",
           "confirmation_question_en": "Any other questions?",
-          "advance_signals": ["nahi", "no", "theek hai", "shukriya", "thanks", "bas"],
+          "advance_signals": [
+            "nahi",
+            "no",
+            "theek hai",
+            "shukriya",
+            "thanks",
+            "bas"
+          ],
           "stuck_signals": [],
           "on_advance": "CLOSING",
           "on_stuck": "SUCCESS",
           "resume_prompt_hi": "Aur koi sawaal?",
           "resume_prompt_en": "Any other questions?",
-          "rag_triggers": ["UMRN_INFO_001", "CANCELLATION_001"],
+          "rag_triggers": [
+            "UMRN_INFO_001",
+            "CANCELLATION_001"
+          ],
           "inline_faqs": []
         },
         {
@@ -423,7 +782,6 @@
         }
       ]
     },
-
     "SUBFLOW_PAN_CUST_ID": {
       "workflow_id": "SUBFLOW_PAN_CUST_ID",
       "mode_name": "PAN / Customer ID",
@@ -436,14 +794,29 @@
           "bot_says_en": "For PAN or Customer ID — verify details on screen, then click Proceed and then Yes.",
           "confirmation_question_hi": "Kya aapne Proceed aur Yes daba diya?",
           "confirmation_question_en": "Have you clicked Proceed and then Yes?",
-          "advance_signals": ["haan", "yes", "ho gaya", "done", "kar diya"],
-          "stuck_signals": ["galat", "wrong"],
+          "advance_signals": [
+            "haan",
+            "yes",
+            "ho gaya",
+            "done",
+            "kar diya"
+          ],
+          "stuck_signals": [
+            "galat",
+            "wrong"
+          ],
           "on_advance": "DISCLAIMER",
           "on_stuck": "ESCALATE_DATA_CORRECTION",
           "resume_prompt_hi": "Details verify karke Proceed aur Yes dabayein.",
           "resume_prompt_en": "Verify details and click Proceed then Yes.",
-          "rag_triggers": ["DETAILS_INCORRECT_001"],
-          "inline_faqs": ["what_is_mandate", "is_safe", "no_money_today"]
+          "rag_triggers": [
+            "DETAILS_INCORRECT_001"
+          ],
+          "inline_faqs": [
+            "what_is_mandate",
+            "is_safe",
+            "no_money_today"
+          ]
         },
         {
           "state_id": "DISCLAIMER",
@@ -453,13 +826,26 @@
           "bot_says_en": "A disclaimer page will appear. Read it, scroll down, tick the consent checkbox, and click Proceed.",
           "confirmation_question_hi": "Kya disclaimer accept ho gaya?",
           "confirmation_question_en": "Have you accepted the disclaimer?",
-          "advance_signals": ["haan", "yes", "ho gaya", "done", "accept kar diya", "proceed kiya"],
-          "stuck_signals": ["kuch nahi dikh raha", "page nahi khula", "stuck"],
+          "advance_signals": [
+            "haan",
+            "yes",
+            "ho gaya",
+            "done",
+            "accept kar diya",
+            "proceed kiya"
+          ],
+          "stuck_signals": [
+            "kuch nahi dikh raha",
+            "page nahi khula",
+            "stuck"
+          ],
           "on_advance": "ENTER_PAN_OR_CUSTID",
           "on_stuck": "DISCLAIMER",
           "resume_prompt_hi": "Disclaimer page par scroll karein, checkbox tick karein, phir Proceed dabayein.",
           "resume_prompt_en": "On the disclaimer page scroll down, tick the checkbox, then click Proceed.",
-          "rag_triggers": ["PAGE_STUCK_001"],
+          "rag_triggers": [
+            "PAGE_STUCK_001"
+          ],
           "inline_faqs": []
         },
         {
@@ -470,13 +856,28 @@
           "bot_says_en": "Now enter your PAN number or Customer ID on screen and click Submit. PAN is 10 characters. Customer ID is on the first page of your passbook.",
           "confirmation_question_hi": "Kya PAN ya Customer ID submit ho gaya?",
           "confirmation_question_en": "Have you submitted your PAN or Customer ID?",
-          "advance_signals": ["haan", "yes", "submit kar diya", "ho gaya", "done"],
-          "stuck_signals": ["PAN nahi hai", "customer ID nahi pata", "invalid", "galat"],
+          "advance_signals": [
+            "haan",
+            "yes",
+            "submit kar diya",
+            "ho gaya",
+            "done"
+          ],
+          "stuck_signals": [
+            "PAN nahi hai",
+            "customer ID nahi pata",
+            "invalid",
+            "galat"
+          ],
           "on_advance": "OTP_ENTRY",
           "on_stuck": "ENTER_PAN_OR_CUSTID",
           "resume_prompt_hi": "PAN ya Customer ID enter karke Submit dabayein.",
           "resume_prompt_en": "Enter your PAN or Customer ID then click Submit.",
-          "rag_triggers": ["PAN_NOT_AVAILABLE_001", "CUST_ID_CONFUSION_001", "PAN_FORMAT_001"],
+          "rag_triggers": [
+            "PAN_NOT_AVAILABLE_001",
+            "CUST_ID_CONFUSION_001",
+            "PAN_FORMAT_001"
+          ],
           "inline_faqs": []
         },
         {
@@ -487,13 +888,26 @@
           "bot_says_en": "An OTP will arrive from your bank on your registered mobile number. Enter it and click Submit.",
           "confirmation_question_hi": "Kya OTP submit ho gaya?",
           "confirmation_question_en": "Has the OTP been submitted?",
-          "advance_signals": ["haan", "yes", "submit kar diya", "ho gaya", "done"],
-          "stuck_signals": ["OTP nahi aaya", "expire", "invalid"],
+          "advance_signals": [
+            "haan",
+            "yes",
+            "submit kar diya",
+            "ho gaya",
+            "done"
+          ],
+          "stuck_signals": [
+            "OTP nahi aaya",
+            "expire",
+            "invalid"
+          ],
           "on_advance": "SUCCESS",
           "on_stuck": "OTP_ENTRY",
           "resume_prompt_hi": "OTP enter karein aur Submit dabayein.",
           "resume_prompt_en": "Enter the OTP and click Submit.",
-          "rag_triggers": ["OTP_NOT_RECEIVED_PAN_001", "OTP_EXPIRED_001"],
+          "rag_triggers": [
+            "OTP_NOT_RECEIVED_PAN_001",
+            "OTP_EXPIRED_001"
+          ],
           "inline_faqs": []
         },
         {
@@ -504,13 +918,23 @@
           "bot_says_en": "Your e-mandate is successfully registered! Please note your UMRN number. Your EMI will be automatically debited going forward.",
           "confirmation_question_hi": "Aur koi sawaal?",
           "confirmation_question_en": "Any other questions?",
-          "advance_signals": ["nahi", "no", "theek hai", "shukriya", "thanks", "bas"],
+          "advance_signals": [
+            "nahi",
+            "no",
+            "theek hai",
+            "shukriya",
+            "thanks",
+            "bas"
+          ],
           "stuck_signals": [],
           "on_advance": "CLOSING",
           "on_stuck": "SUCCESS",
           "resume_prompt_hi": "Aur koi sawaal?",
           "resume_prompt_en": "Any other questions?",
-          "rag_triggers": ["UMRN_INFO_001", "CANCELLATION_001"],
+          "rag_triggers": [
+            "UMRN_INFO_001",
+            "CANCELLATION_001"
+          ],
           "inline_faqs": []
         },
         {
@@ -529,7 +953,6 @@
         }
       ]
     },
-
     "SUBFLOW_AADHAAR": {
       "workflow_id": "SUBFLOW_AADHAAR",
       "mode_name": "Aadhaar Online",
@@ -542,14 +965,28 @@
           "bot_says_en": "For Aadhaar — verify details on screen, then click Proceed and then Yes.",
           "confirmation_question_hi": "Kya aapne Proceed aur Yes daba diya?",
           "confirmation_question_en": "Have you clicked Proceed and then Yes?",
-          "advance_signals": ["haan", "yes", "ho gaya", "done"],
-          "stuck_signals": ["galat", "wrong"],
+          "advance_signals": [
+            "haan",
+            "yes",
+            "ho gaya",
+            "done"
+          ],
+          "stuck_signals": [
+            "galat",
+            "wrong"
+          ],
           "on_advance": "ENTER_AADHAAR",
           "on_stuck": "ESCALATE_DATA_CORRECTION",
           "resume_prompt_hi": "Details verify karke Proceed aur Yes dabayein.",
           "resume_prompt_en": "Verify details and click Proceed then Yes.",
-          "rag_triggers": ["DETAILS_INCORRECT_001"],
-          "inline_faqs": ["what_is_mandate", "is_safe", "no_money_today"]
+          "rag_triggers": [
+            "DETAILS_INCORRECT_001"
+          ],
+          "inline_faqs": [
+            "what_is_mandate",
+            "is_safe",
+            "no_money_today"
+          ]
         },
         {
           "state_id": "ENTER_AADHAAR",
@@ -559,13 +996,25 @@
           "bot_says_en": "Enter your 12-digit Aadhaar number on screen and click Submit.",
           "confirmation_question_hi": "Kya Aadhaar number submit ho gaya?",
           "confirmation_question_en": "Have you submitted your Aadhaar number?",
-          "advance_signals": ["haan", "yes", "submit kar diya", "ho gaya", "done"],
-          "stuck_signals": ["Aadhaar nahi hai", "12 digit", "nahi pata"],
+          "advance_signals": [
+            "haan",
+            "yes",
+            "submit kar diya",
+            "ho gaya",
+            "done"
+          ],
+          "stuck_signals": [
+            "Aadhaar nahi hai",
+            "12 digit",
+            "nahi pata"
+          ],
           "on_advance": "AADHAAR_OTP",
           "on_stuck": "ENTER_AADHAAR",
           "resume_prompt_hi": "12 digit Aadhaar number enter karein aur Submit dabayein.",
           "resume_prompt_en": "Enter your 12-digit Aadhaar number and click Submit.",
-          "rag_triggers": ["AADHAAR_NUMBER_001"],
+          "rag_triggers": [
+            "AADHAAR_NUMBER_001"
+          ],
           "inline_faqs": []
         },
         {
@@ -576,13 +1025,26 @@
           "bot_says_en": "An OTP will arrive from UIDAI on your Aadhaar-registered mobile number. Enter it and click Submit.",
           "confirmation_question_hi": "Kya Aadhaar OTP submit ho gaya?",
           "confirmation_question_en": "Has the Aadhaar OTP been submitted?",
-          "advance_signals": ["haan", "yes", "submit kar diya", "ho gaya", "done"],
-          "stuck_signals": ["OTP nahi aaya", "alag number", "expire"],
+          "advance_signals": [
+            "haan",
+            "yes",
+            "submit kar diya",
+            "ho gaya",
+            "done"
+          ],
+          "stuck_signals": [
+            "OTP nahi aaya",
+            "alag number",
+            "expire"
+          ],
           "on_advance": "SUCCESS",
           "on_stuck": "AADHAAR_OTP",
           "resume_prompt_hi": "Aadhaar OTP enter karein aur Submit dabayein.",
           "resume_prompt_en": "Enter the Aadhaar OTP and click Submit.",
-          "rag_triggers": ["AADHAAR_OTP_WRONG_MOBILE_001", "OTP_EXPIRED_001"],
+          "rag_triggers": [
+            "AADHAAR_OTP_WRONG_MOBILE_001",
+            "OTP_EXPIRED_001"
+          ],
           "inline_faqs": []
         },
         {
@@ -593,12 +1055,21 @@
           "bot_says_en": "Your Aadhaar e-mandate is successfully registered! Please note your UMRN number.",
           "confirmation_question_hi": "Aur koi sawaal?",
           "confirmation_question_en": "Any other questions?",
-          "advance_signals": ["nahi", "no", "theek hai", "shukriya", "thanks", "bas"],
+          "advance_signals": [
+            "nahi",
+            "no",
+            "theek hai",
+            "shukriya",
+            "thanks",
+            "bas"
+          ],
           "stuck_signals": [],
           "on_advance": "CLOSING",
           "resume_prompt_hi": "Aur koi sawaal?",
           "resume_prompt_en": "Any other questions?",
-          "rag_triggers": ["UMRN_INFO_001"],
+          "rag_triggers": [
+            "UMRN_INFO_001"
+          ],
           "inline_faqs": []
         },
         {
@@ -617,7 +1088,6 @@
         }
       ]
     },
-
     "SUBFLOW_ESIGN_AADHAAR": {
       "workflow_id": "SUBFLOW_ESIGN_AADHAAR",
       "mode_name": "eSign via Aadhaar",
@@ -630,14 +1100,28 @@
           "bot_says_en": "For eSign — a consent page will appear on screen. Read it and click the Submit button.",
           "confirmation_question_hi": "Kya aapne Submit daba diya?",
           "confirmation_question_en": "Have you clicked Submit?",
-          "advance_signals": ["haan", "yes", "submit kar diya", "ho gaya", "done"],
-          "stuck_signals": ["page nahi khula", "stuck"],
+          "advance_signals": [
+            "haan",
+            "yes",
+            "submit kar diya",
+            "ho gaya",
+            "done"
+          ],
+          "stuck_signals": [
+            "page nahi khula",
+            "stuck"
+          ],
           "on_advance": "ENTER_AADHAAR",
           "on_stuck": "CONSENT_SUBMIT",
           "resume_prompt_hi": "Consent page par Submit dabayein.",
           "resume_prompt_en": "Click Submit on the consent page.",
-          "rag_triggers": ["PAGE_STUCK_001"],
-          "inline_faqs": ["what_is_mandate", "is_safe"]
+          "rag_triggers": [
+            "PAGE_STUCK_001"
+          ],
+          "inline_faqs": [
+            "what_is_mandate",
+            "is_safe"
+          ]
         },
         {
           "state_id": "ENTER_AADHAAR",
@@ -647,13 +1131,27 @@
           "bot_says_en": "Now enter your 12-digit Aadhaar number on screen, select the OTP option, and click Send OTP.",
           "confirmation_question_hi": "Kya aapne Aadhaar enter karke Send OTP daba diya?",
           "confirmation_question_en": "Have you entered your Aadhaar and clicked Send OTP?",
-          "advance_signals": ["haan", "yes", "otp bheja", "send kiya", "ho gaya", "done"],
-          "stuck_signals": ["Aadhaar nahi hai", "fingerprint", "biometric"],
+          "advance_signals": [
+            "haan",
+            "yes",
+            "otp bheja",
+            "send kiya",
+            "ho gaya",
+            "done"
+          ],
+          "stuck_signals": [
+            "Aadhaar nahi hai",
+            "fingerprint",
+            "biometric"
+          ],
           "on_advance": "VERIFY_OTP",
           "on_stuck": "ENTER_AADHAAR",
           "resume_prompt_hi": "Aadhaar number enter karein, OTP select karein, phir Send OTP dabayein.",
           "resume_prompt_en": "Enter your Aadhaar number, select OTP, then click Send OTP.",
-          "rag_triggers": ["AADHAAR_NUMBER_001", "FINGERPRINT_OPTION_001"],
+          "rag_triggers": [
+            "AADHAAR_NUMBER_001",
+            "FINGERPRINT_OPTION_001"
+          ],
           "inline_faqs": []
         },
         {
@@ -664,13 +1162,28 @@
           "bot_says_en": "An OTP will arrive on your Aadhaar-registered mobile. Enter it and click Verify OTP.",
           "confirmation_question_hi": "Kya OTP verify ho gaya?",
           "confirmation_question_en": "Has the OTP been verified?",
-          "advance_signals": ["haan", "yes", "verified", "ho gaya", "done"],
-          "stuck_signals": ["OTP nahi aaya", "expire", "invalid", "red"],
+          "advance_signals": [
+            "haan",
+            "yes",
+            "verified",
+            "ho gaya",
+            "done"
+          ],
+          "stuck_signals": [
+            "OTP nahi aaya",
+            "expire",
+            "invalid",
+            "red"
+          ],
           "on_advance": "SUCCESS",
           "on_stuck": "VERIFY_OTP",
           "resume_prompt_hi": "OTP enter karein aur Verify OTP dabayein.",
           "resume_prompt_en": "Enter the OTP and click Verify OTP.",
-          "rag_triggers": ["AADHAAR_OTP_WRONG_MOBILE_001", "OTP_EXPIRED_001", "ESIGN_STATUS_RED_001"],
+          "rag_triggers": [
+            "AADHAAR_OTP_WRONG_MOBILE_001",
+            "OTP_EXPIRED_001",
+            "ESIGN_STATUS_RED_001"
+          ],
           "inline_faqs": []
         },
         {
@@ -681,12 +1194,21 @@
           "bot_says_en": "Congratulations! Your eSign e-mandate is successfully complete! Please note your UMRN number.",
           "confirmation_question_hi": "Aur koi sawaal?",
           "confirmation_question_en": "Any other questions?",
-          "advance_signals": ["nahi", "no", "theek hai", "shukriya", "thanks", "bas"],
+          "advance_signals": [
+            "nahi",
+            "no",
+            "theek hai",
+            "shukriya",
+            "thanks",
+            "bas"
+          ],
           "stuck_signals": [],
           "on_advance": "CLOSING",
           "resume_prompt_hi": "Aur koi sawaal?",
           "resume_prompt_en": "Any other questions?",
-          "rag_triggers": ["UMRN_INFO_001"],
+          "rag_triggers": [
+            "UMRN_INFO_001"
+          ],
           "inline_faqs": []
         },
         {
@@ -705,6 +1227,5 @@
         }
       ]
     }
-
   }
 }

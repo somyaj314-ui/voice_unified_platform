@@ -312,7 +312,85 @@ Output ONLY valid JSON."""
             print(f"[LLM-Slot] Error: {e}")
             return {"intent": "unclear"}
 
+    def generate_response(
+        self,
+        user_message: str,
+        conversation_history: list,
+        session_info: dict,
+        context: str = "",
+    ) -> str:
+        """
+        Generate a domain-scoped conversational reply.
+
+        Guardrails enforced here:
+        1. The system message leads with the use-case system_prompt so the LLM
+           knows exactly what domain it is operating in.
+        2. A hard OFF-TOPIC RULE is injected: if the user's question is unrelated
+           to the domain, the LLM MUST return a polite, short refusal and redirect.
+        3. Response is capped at 2-3 short sentences for voice delivery.
+        4. Markdown, lists, and tables are forbidden (voice-unsafe).
+        """
+        # Build conversation history block (last 6 turns max)
+        history_block = ""
+        if conversation_history:
+            for msg in conversation_history[-6:]:
+                role = "Agent" if msg.get("role") == "assistant" else "User"
+                history_block += f"{role}: {msg.get('content', '')}\n"
+
+        # Session context
+        session_block = ""
+        if session_info:
+            parts = []
+            for k, v in session_info.items():
+                if v:
+                    parts.append(f"{k}: {v}")
+            if parts:
+                session_block = "Known info: " + " | ".join(parts)
+
+        # RAG context
+        context_block = f"\nRelevant knowledge:\n{context}\n" if context else ""
+
+        system_message = f"""{_SYSTEM_PROMPT}
+
+RESPONSE RULES — MUST FOLLOW:
+1. Answer ONLY questions that fall within the domain described above.
+2. If the user asks about ANYTHING off-topic (other subjects, general knowledge, unrelated questions), respond with ONE short, calm refusal sentence, then redirect to the domain. Example: "I can only help with [domain topic]. Is there anything about that I can assist you with?"
+3. Never guess, fabricate, or use information not present in the knowledge base or conversation.
+4. Keep your reply to 2-3 short sentences only — this is a voice call, not a text chat.
+5. Do NOT use markdown, bullet points, numbered lists, or tables. Plain spoken sentences only.
+6. Do NOT repeat the user's question back to them.
+7. Speak in the same language the user used (English, Hindi, or Hinglish).
+{context_block}
+{session_block}"""
+
+        messages = [
+            {"role": "system", "content": system_message},
+        ]
+
+        # Inject conversation history
+        if history_block:
+            messages.append({
+                "role": "user",
+                "content": f"Conversation so far:\n{history_block}\nUser's latest message: {user_message}"
+            })
+        else:
+            messages.append({"role": "user", "content": user_message})
+
+        try:
+            response = self._call_chat_backend(
+                messages=messages,
+                model_name=self.vllm_model if self.backend == "vllm" else self.ollama_model,
+                temperature=0.3,
+                max_tokens=120,
+            ).strip()
+            print(f"[LLM-Response] Generated: '{response[:80]}...'")
+            return response
+        except Exception as e:
+            print(f"[LLM-Response] Error: {e}")
+            return ""
+
     def is_available(self) -> bool:
+
         return True
 
 

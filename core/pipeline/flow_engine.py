@@ -34,6 +34,20 @@ from dataclasses import dataclass, field
 from typing import Optional, Any
 
 
+# ── Barge-In Configuration ────────────────────────────────────────────────────
+# ENABLE_BARGE_IN: Master switch. Set False to restore old echo-suppression.
+ENABLE_BARGE_IN: bool = True
+
+# User must produce this many milliseconds of *consecutive* speech frames while
+# the bot is playing before barge-in fires. Avoids triggering on breath/static.
+BARGE_IN_MIN_SPEECH_MS: int = 400
+
+# How many consecutive Silero-positive frames (each ~32ms) are needed to confirm
+# real speech. 3 × 32ms = ~96ms of consecutive frames → validated rapidly.
+CONSECUTIVE_SPEECH_FRAMES_FOR_INTERRUPT: int = 3
+
+
+
 # ── Session context ───────────────────────────────────────────────────────────
 
 @dataclass
@@ -48,6 +62,21 @@ class SessionContext:
     call_ended:           bool = False
     pending_audio_clips:  list = field(default_factory=list)
     metadata:             dict = field(default_factory=dict)
+
+    # ── Barge-in state ────────────────────────────────────────────────────────
+    # True for the single turn immediately following a barge-in event.
+    # Flow engine can use this to craft a shorter "I heard you" acknowledgement.
+    was_barge_in:         bool = False
+
+    # True while bot playback is being interrupted but user utterance has not
+    # yet been fully processed. Cleared when process() is called after barge-in.
+    interruption_active:  bool = False
+
+    # Stack of state keys pushed when an interruption fires.
+    # Allows the engine to know what topic was being discussed before the user
+    # cut in — useful for "resume after interruption" logic.
+    topic_stack:          list = field(default_factory=list)
+
 
 
 # ── Flow Engine ───────────────────────────────────────────────────────────────
@@ -73,9 +102,20 @@ class FlowEngine:
         self.llm       = llm
         self.hooks     = hooks
 
-        self.initial_state     = flow.get("initial_state", "")
-        self.states            = flow.get("states", {})
-        self.llm_fallback_set  = set(flow.get("llm_fallback_states", []))
+        if "workflows" in flow:
+            # Legacy format support (e.g. zipnach)
+            wf = list(flow["workflows"].values())[0]
+            self.initial_state = wf.get("initial_state", "")
+            self.states = {}
+            for s in wf.get("states", []):
+                state_id = s.get("state_id")
+                if state_id:
+                    self.states[state_id] = s
+            self.llm_fallback_set = set()
+        else:
+            self.initial_state     = flow.get("initial_state", "")
+            self.states            = flow.get("states", {})
+            self.llm_fallback_set  = set(flow.get("llm_fallback_states", []))
 
         print(
             f"[FlowEngine] Loaded {len(self.states)} states, "
@@ -104,6 +144,15 @@ class FlowEngine:
         state_key = session.current_state
         state_def = self.states.get(state_key, {})
         session.turn_count += 1
+
+        # ── 0. Clear barge-in one-shot flags ─────────────────────────────────
+        # was_barge_in is True only for this turn (the turn right after barge-in).
+        # interruption_active is cleared now that the user utterance is being
+        # processed — bot is no longer being interrupted.
+        prev_was_barge_in       = session.was_barge_in
+        session.was_barge_in    = False
+        session.interruption_active = False
+
 
         # ── 1. Check for optional state-level action (hooks) ──────────────────
         action = state_def.get("action")
@@ -186,13 +235,95 @@ class FlowEngine:
             except Exception as e:
                 print(f"[FlowEngine] LLM response error: {e}")
 
+        # ── 5b. Off-topic / unknown intent guardrail ──────────────────────────
+        # If the intent is UNKNOWN and we are NOT in an LLM-fallback state
+        # (so there's no LLM handler above to catch it), return a polite domain
+        # refusal instead of silently re-reading the current state script.
+        # This prevents the bot from awkwardly repeating itself on irrelevant input.
+        if intent_name == "unknown" and next_state not in self.llm_fallback_set:
+            refusal = self._off_topic_refusal(session.language)
+            print(f"[FlowEngine] Off-topic refusal triggered | state={state_key} | lang={session.language}")
+            session.last_bot_text = refusal
+            # Stay in current state — don't advance the flow
+            return refusal, False
+
         # Default: return new state's script
         script = self._get_script(next_state, session.language)
         script = self._format_script(script, session, memory)
         session.last_bot_text = script
         return script, is_terminal
 
+
+    # ── Barge-in API ──────────────────────────────────────────────────────────
+
+    def handle_barge_in(self, session: SessionContext) -> None:
+        """
+        Called by server.py the moment user speech is detected during bot playback.
+
+        - Pushes the current conversation state onto the topic_stack so the engine
+          can know what was being discussed before the interruption (for resumption).
+        - Marks interruption_active=True and was_barge_in=True so the next call to
+          process() knows this turn is a post-interruption turn.
+        """
+        if not ENABLE_BARGE_IN:
+            return
+
+        # Only push state if it's not already at the top of the stack
+        if not session.topic_stack or session.topic_stack[-1] != session.current_state:
+            session.topic_stack.append(session.current_state)
+
+        session.interruption_active = True
+        session.was_barge_in        = True
+
+        print(
+            f"[FlowEngine] Barge-in recorded | state={session.current_state} | "
+            f"topic_stack={session.topic_stack} | session={session.session_id[:8]}"
+        )
+
+    def stop_user_speaking_barge_in(self, session: SessionContext) -> None:
+        """
+        Called when the user finishes speaking after a barge-in and processing
+        is complete. Resets interruption_active (was_barge_in already cleared
+        by process()). The topic_stack is left intact for higher-level logic.
+        """
+        session.interruption_active = False
+
     # ── Internal helpers ──────────────────────────────────────────────────────
+
+    def _off_topic_refusal(self, language: str = "en") -> str:
+        """
+        Return a short, calm, voice-friendly off-topic refusal line.
+        Picks the right language variant from the knowledge base (script.json).
+        These are hardcoded fallbacks — the LLM's generate_response() handles
+        more nuanced refusals when the LLM is available.
+        """
+        lang = (language or "en").strip().lower()
+
+        # 1. Try to fetch use-case specific refusal from the KB
+        if self.retriever:
+            try:
+                kb_script = self.retriever.get_step_script(f"off_topic_refusal_{lang}")
+                if kb_script:
+                    return kb_script
+            except Exception:
+                pass
+
+        # 2. Hardcoded generic fallbacks if not found in KB
+        refusals = {
+            "en": (
+                "I can only help with queries related to this service. "
+                "Is there anything else I can assist you with?"
+            ),
+            "hi": (
+                "Main sirf is service se related sawaalon mein aapki madad kar sakta hoon. "
+                "Kya koi aur sawaal hai jo main aapke liye answer kar sakta hoon?"
+            ),
+            "hinglish": (
+                "Main sirf is service ke baare mein help kar sakta hoon. "
+                "Koi aur query hai kya?"
+            ),
+        }
+        return refusals.get(lang, refusals["en"])
 
     def _transition(self, session: SessionContext, next_state: str) -> None:
         if next_state not in self.states and next_state != session.current_state:
@@ -211,6 +342,14 @@ class FlowEngine:
             return script.get(language) or script.get("en") or ""
         if isinstance(script, str):
             return script
+            
+        # Legacy format fallback (e.g. zipnach)
+        legacy_script = state_def.get(f"bot_says_{language}")
+        if legacy_script:
+            return legacy_script
+        legacy_en = state_def.get("bot_says_en")
+        if legacy_en:
+            return legacy_en
 
         # KB lookup via retriever
         script_key = state_def.get("script_key")
@@ -218,7 +357,9 @@ class FlowEngine:
             try:
                 kb_script = self.retriever.get_step_script(script_key)
                 if kb_script:
-                    return kb_script
+                    if isinstance(kb_script, dict):
+                        return kb_script.get(language) or kb_script.get("en") or ""
+                    return str(kb_script)
             except Exception:
                 pass
 

@@ -102,8 +102,9 @@
     "callback_prompt": "Absolutely, no problem. When would be a better time to call back - morning, afternoon, or evening?",
     "callback_confirmed": "Our team will call you back at that time.",
     "resume_bridge": "Coming back to where we were -",
-
-    "admissions_helpline": "1800-XXX-XXXX"
+    "admissions_helpline": "1800-XXX-XXXX",
+    
+    "off_topic_refusal_en": "I can only help with queries related to MERI admissions. Is there anything about our programs or admission process I can assist you with?"
   },
 
   "audio_clips": {

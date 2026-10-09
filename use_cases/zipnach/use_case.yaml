@@ -1,6 +1,6 @@
 name: zipnach
 display_name: Zipnach Voice Bot
-server_port: 8768
+server_port: 8769
 asterisk:
   app_name: zipnach_agent
 tts:
@@ -9,3 +9,13 @@ llm:
   model: qwen2.5:1.5b
 extra_kb_dirs:
 - NACH_KB
+
+stt:
+  model_size: Systran/faster-whisper-medium
+  acoustic_probe_enabled: true
+  supported_languages: ["en", "hi"]
+  mismatch_margin: 0.20
+  short_clip_threshold_sec: 3.0
+  confidence_gate:
+    en: 0.45
+    hi: 0.50
